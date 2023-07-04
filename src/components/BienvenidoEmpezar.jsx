@@ -44,7 +44,7 @@ function Bienvenido({ navigation }) {
             <Text style={styles.tituloBien}>Gracias a nuestros satélites</Text>
             <Text style={styles.bienvenidaT}>Podrás obtener información sobre agricultura, minería, petróleo y mucho más...</Text>
             <View style={styles.botonconteiner}>
-               <TouchableWithoutFeedback onPress={() => navigation.navigate('bienvenidos')}>
+               <TouchableWithoutFeedback onPress={() => navigation.navigate('login')}>
                   <View style={styles.siguienteButton}>
                      <Text style={styles.buttonText}>EMPEZAR</Text>
                   </View>

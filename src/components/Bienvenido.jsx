@@ -24,7 +24,7 @@ function Bienvenido({ navigation }) {
    ).current;
 
    const handleOmitirPress = () => {
-      navigation.navigate('bienvenidoempezar');
+      navigation.navigate('login');
    };
    return (
       <View style={styles.container} {...panResponder.panHandlers}>
