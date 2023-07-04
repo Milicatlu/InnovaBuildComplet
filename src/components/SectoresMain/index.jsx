@@ -1,299 +1,165 @@
 import {
+   View,
    StyleSheet,
+   FlatList,
    Dimensions,
    ImageBackground,
-   View,
-   TouchableOpacity,
-   Image,
-   Modal,
    Text,
-} from "react-native"
-import { SectoresMain } from "./SectoresMain/index"
-import Constants from "expo-constants"
-import { Login } from "./Login.jsx"
-import { createDrawerNavigator } from "@react-navigation/drawer"
-import { CustomDrawerContent } from "./CustomDrawerContent"
-import { useState, useEffect } from "react"
-import { PetroleoCategoria } from "./CategoriaPetroleo"
-import { Configuraciones } from "./Configuraciones/index.jsx"
-import { Mineria } from "./Mineria.jsx"
-import { Perfil } from "./Perfil.jsx"
-import { Terminos } from "./Terminos.jsx"
-import { TerminosDos } from "./TerminosDos"
-import { Notificaciones } from "./Notificaciones"
-import { EtapaPetroleo } from "./EtapaPetroleo"
-import { PetroleoMenu } from "./PetroleoMenu"
-import { Link } from "@react-navigation/native"
-import { Agriculturamenu } from "./Agriculturamenu"
-import { SiloMenu } from "./SiloMenu.jsx"
-import { Grafico2 } from "./GraficoPrueba"
-import { EtapaMineria } from "./EtapaMineria"
-import { AgriculturaSilo } from "./AgriculturaSilo"
-import { supabase } from "../lib/supabase"
-import MapScreen from "./MapScreen"
-const { height, width, fontScale, scale } = Dimensions.get("window")
-const Drawer = createDrawerNavigator();
-
-export function Main({ navigation }) {
-   const [modalVisible, setModalVisible] = useState(false)
-
-   const [latestNotification, setLatestNotification] = useState(null);
-
-   useEffect(() => {
-      const fetchLatestNotification = async () => {
-         try {
-            const { data, error } = await supabase
-               .from("notificaciones")
-               .select()
-               .order("time", { ascending: false })
-
-            if (error) {
-               console.error("Error al obtener la última notificación:", error);
-            } else if (data && data.length > 0) {
-               setLatestNotification(data[0]);
-            }
-         } catch (error) {
-            console.error("Error al obtener la última notificación:", error);
-         }
-      };
-
-      fetchLatestNotification();
-   }, []);
-
-   const toggleModal = () => {
-      setModalVisible(!modalVisible);
+   Image,
+ } from 'react-native';
+ import {StyledText} from '../StyledText';
+ import {theme} from '../../theme';
+ import {Link} from '@react-navigation/native';
+ import {AppBar} from '../AppBar';
+ import {useAuth} from '../../../context/AuthProvider';
+ import {useEffect} from 'react';
+ import {getUserName} from '../../lib/supabaseHandler';
+ import {updateUserConstant} from '../../Constants/userConstants';
+ 
+ const {width, height} = Dimensions.get ('window');
+ 
+ export function SectoresMain () {
+   const {user} = useAuth ();
+ 
+   const aguantar = async () => {
+     console.log('USER-EMAIL: ',user.email)
+     const response = await getUserName (user.email);
+     await updateUserConstant (
+       response.data[0].name,
+       response.data[0].email,
+       response.data[0].uuid
+     );
+     await console.log ('response data: ', response.data[0]);
    };
-
-   //funcion para poner hora y fecha ordenado
-   const formatDateTime = (dateTime) => {
-      const date = new Date(dateTime)
-      const formattedDate = formatDate(date)
-      const formattedTime = formatTime(date)
-      return `${formattedDate} ${formattedTime}`
-   }
-   const formatDate = (date) => {
-      const day = date.getDate()
-      const month = date.getMonth() + 1
-      const year = date.getFullYear()
-      return `${padZero(day)}/${padZero(month)}/${year}`
-   }
-   const formatTime = (date) => {
-      const hours = date.getHours()
-      const minutes = date.getMinutes()
-      return `${padZero(hours)}:${padZero(minutes)}`
-   }
-   const padZero = (number) => {
-      return number < 10 ? `0${number}` : number
-   }
-
-
-
+ 
+   useEffect (() => {
+     aguantar();
+   });
+ 
    return (
-      <>
-         <ImageBackground
-            source={require("../../assets/images/Fondo-06.jpg")}
-            style={{
-               flex: 1,
-               marginTop: Constants.statusBarHeight,
-               flexDirection: "column",
-            }}
-         >
-            <Drawer.Navigator
-               useLegacyImplementation
-               drawerContent={(props) => <CustomDrawerContent {...props} />}
-               screenOptions={{
-                  headerPressOpacity: 1,
-                  headerTintColor: "#FFF",
-                  headerTitleStyle: {
-                     fontWeight: "bold",
-                  },
-                  headerTransparent: true,
-                  headerTitle: "",
-                  headerStatusBarHeight: 15,
-                  headerRight: () => (
-                     <View style={{ flexDirection: "row" }}>
-                        <TouchableOpacity
-                           onPress={toggleModal}
-                           style={styles.notificationButton}
-                        >
-                           <Image
-                              source={require("../../assets/icons/Notificaciones.png")}
-                              style={styles.notificationIcon}
-                           />
-                        </TouchableOpacity>
-                        <Image
-                           style={styles.ButtonP}
-                           source={require("../../assets/images/FotoPerfil.png")}
-                        />
-                        <Link
-                           style={styles.ButtonP}
-                           to={{ screen: "Perfil" }}
-                           onPress={() => navigation.navigate("Perfil")} // Navigate to 'Perfil' screen
-                        ></Link>
-
-                        <Link
-                           style={styles.ButtonInicio}
-                           to={{ screen: "Inicio" }}
-                           onPress={() => navigation.navigate("Inicio")} // Navigate to 'Inicio' screen
-                        ></Link>
-                     </View>
-                  ),
-               }}
-            >
-               <Drawer.Screen name="Inicio" component={SectoresMain} />
-               <Drawer.Screen name="Login" component={Login} />
-               <Drawer.Screen name="Mineria" component={Mineria} />
-               <Drawer.Screen name="Agricultura" component={SiloMenu} />
-               <Drawer.Screen name="Petroleo" component={PetroleoMenu} />
-               <Drawer.Screen name="Configuraciones" component={Configuraciones} />
-               <Drawer.Screen name="Perfil" component={Perfil} />
-               <Drawer.Screen name="Terminos" component={Terminos} />
-               <Drawer.Screen name="TerminosDos" component={TerminosDos} />
-               <Drawer.Screen name="Notificaciones" component={Notificaciones} />
-               <Drawer.Screen name="PetroleoCategoria" component={PetroleoCategoria} />
-               <Drawer.Screen name="PetroleoMenu" component={PetroleoMenu} />
-               <Drawer.Screen name="AgriculturaMenu" component={Agriculturamenu} />
-               <Drawer.Screen name="SiloMenu" component={SiloMenu} />
-               <Drawer.Screen name="Grafico2" component={Grafico2} />
-               <Drawer.Screen name="AgriculturaSilo" component={AgriculturaSilo} />
-               <Drawer.Screen name="EtapaPetroleo" component={EtapaPetroleo} />
-               <Drawer.Screen name="EtapaMineria" component={EtapaMineria} />
-               <Drawer.Screen name="Mapa" component={MapScreen} />
-
-
-            </Drawer.Navigator>
-            <Modal
-               visible={modalVisible}
-               animationType="fade"
-               transparent={true}
-               onRequestClose={toggleModal}
-            >
-               <View style={styles.modalBackground}>
-                  <View style={styles.modalBackground}>
-                     <TouchableOpacity
-                        onPress={toggleModal}
-                        style={{
-                           left: width / -6.2,
-                           top: height / 160,
-                        }}
-                     >
-                        <Image
-                           source={require("../../assets/icons/Notificaciones.png")}
-                           style={{
-                              height: height / 28,
-                              width: width / 14,
-                              left: width / 2.16,
-                              bottom: height / 28,
-                           }}
-                        />
-                     </TouchableOpacity>
-
-                     <View style={styles.modalContainer}>
-                        {latestNotification && (
-                           <View style={styles.notificationContainer}>
-                              <Text style={styles.notificationType}>{latestNotification.type}</Text>
-                              <Text style={styles.notificationTime}>{formatDateTime(latestNotification.time)}</Text>
-                              <Text style={styles.notificacionTitulo}>{latestNotification.title}</Text>
-                              <Text style={styles.notificationMessage}>{latestNotification.message}</Text>
-                           </View>
-                        )}
-                     </View>
-
-                  </View>
-               </View>
-            </Modal>
-         </ImageBackground>
-      </>
-   )
-}
-const styles = StyleSheet.create({
-   modalBackground: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
-      width: width,
-      marginTop: height / -3.12,
+     <ImageBackground
+       source={require ('../../../assets/images/Fondo-06.jpg')}
+       style={{
+         paddingTop: 10,
+         height: Dimensions.get ('window').height + 10,
+       }}
+       imageStyle={{
+         justifyContent: 'center',
+         alignItems: 'center',
+       }}
+     >
+       <AppBar />
+ 
+       <StyledText
+         fontSize="subheading3"
+         color="secondary"
+         align="center"
+         style={styles.titulo}
+       >
+         APLICACIONES
+       </StyledText>
+       <View
+         style={{
+           width: Dimensions.get ('window').width / 100 * 80,
+           marginRight: Dimensions.get ('window').width / 100 * 10,
+           marginLeft: Dimensions.get ('window').width / 100 * 10,
+ 
+           justifyContent: 'center',
+           alignItems: 'center',
+         }}
+       >
+         <Link style={{margin: 10}} to={{screen: 'Mineria'}}>
+           <ImageBackground
+             source={require ('../../../assets/images/Mineria.png')}
+             style={styles.container}
+             imageStyle={{borderRadius: 15}}
+           >
+             <View style={styles.containerDark} />
+             <StyledText
+               fontSize="subheading2"
+               fontWeight="bold"
+               color="primary"
+               align="center"
+             >
+               MINERIA
+             </StyledText>
+           </ImageBackground>
+         </Link>
+         <Link style={{margin: 10}} to={{screen: 'PetroleoCategoria'}}>
+           <ImageBackground
+             source={require ('../../../assets/images/Petroleo.png')}
+             style={styles.container}
+             imageStyle={{borderRadius: 15}}
+           >
+             <View style={styles.containerDark} />
+             <StyledText
+               fontSize="subheading2"
+               fontWeight="bold"
+               color="primary"
+               align="center"
+             >
+               PETROLEO
+             </StyledText>
+           </ImageBackground>
+         </Link>
+         <Link style={{margin: 10}} to={{screen: 'AgriculturaMenu'}}>
+           <ImageBackground
+             source={require ('../../../assets/images/Agricultura.png')}
+             style={styles.container}
+             imageStyle={{borderRadius: 15}}
+           >
+             <View style={styles.containerDark} />
+             <StyledText
+               fontSize="subheading2"
+               fontWeight="bold"
+               color="primary"
+               align="center"
+             >
+               AGRICULTURA
+             </StyledText>
+           </ImageBackground>
+         </Link>
+       </View>
+       <Image
+         source={require ('../../../assets/images/SateliteHd.png')}
+         style={styles.satelitechic}
+       />
+     </ImageBackground>
+   );
+ }
+ 
+ const styles = StyleSheet.create ({
+   satelitechic: {
+     position: 'absolute',
+     left: width * 0.60,
+     top: width / 6,
+     width: Dimensions.get ('window').width -150,
+     height: Dimensions.get ('window').height - 500,
+     resizeMode: 'contain',
    },
-   modalContainer: {
-      backgroundColor: "#fff",
-      paddingLeft: width / 60,
-      paddingRight: width / 60,
-      paddingBottom: height / 20,
-      paddingTop: height / 90,
-      borderRadius: scale * 11,
-      height: height / 5.4,
-      width: width / 1.25,
+   container: {
+     margin: 10,
+     flexDirection: 'row',
+     justifyContent: 'center',
+     alignItems: 'center',
+     backgroundColor: theme.colors.primaryBackgroundColor,
+     height: Dimensions.get ('window').height / 5,
+     width: Dimensions.get ('window').width / 100 * 70,
+     borderRadius: 15,
    },
-   label: {
-      flexDirection: "row",
-      height: height / 1,
-      width: width / 1.7,
+   containerDark: {
+     borderRadius: 15,
+     backgroundColor: 'rgba(0,0,0,0.27)',
+     width: '100%',
+     height: '100%',
+     maxWidth: '100%',
+     position: 'absolute',
    },
-   image: {
-      width: width / 10,
-      height: height / 22,
-      tintColor: "black",
-      alignSelf: "center",
+   titulo: {
+     margin: 40,
+     fontSize: 43,
+     fontWeight: 'bold',
+     fontWeight: '900',
+     fontFamily: 'Lato-Bold',
    },
-   text: {
-      fontFamily: "Lato-Bold",
-      alignSelf: "center",
-      textAlign: "center",
-      fontSize: fontScale * 15,
-      width: width / 1.9,
-   },
-   ButtonInicio: {
-      width: width / 9,
-      height: height / 19,
-      right: "55%",
-      position: "absolute",
-      top: "9%",
-      flex: 5,
-      zIndex: 2,
-   },
-   ButtonP: {
-      top: "3.5%",
-      position: "absolute",
-      width: width / 9,
-      right: "5%",
-      height: height / 19,
-      flex: 1,
-   },
-   notificationButton: {
-      left: width / - 6.2,
-      top: height / 104,
-   },
-   notificationIcon: {
-      height: height / 30,
-      width: width / 14,
-   },
-   notificationContainer: {
-      borderBottomColor: "#d9d9d9",
-      margin: scale * 6.4,
-   },
-   notificationType: {
-      fontFamily: "Lato-Bold",
-      fontSize: fontScale * 18,
-      textAlign: "left",
-      color: "#03B6E8",
-   },
-   notificationTime: {
-      color: "#878789",
-      fontSize: fontScale * 18,
-      alignSelf: "flex-end",
-      bottom: height / 38,
-      fontFamily: "Lato-Bold",
-   },
-   notificacionTitulo: {
-      fontSize: fontScale * 22,
-      fontFamily: "Lato-Bold",
-      bottom: height / 70,
-   },
-   notificationMessage: {
-      textAlign: "left",
-      fontSize: fontScale * 18,
-      fontFamily: "Lato-Regular",
-      lineHeight: height / 35,
-   },
-});
+ });
