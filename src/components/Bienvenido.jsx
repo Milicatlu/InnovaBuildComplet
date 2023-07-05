@@ -1,9 +1,8 @@
+//RESPONSIVE
 import { ImageBackground, StyleSheet, Text, View, Image } from 'react-native';
 import React, { useRef } from 'react';
 import { PanResponder, TouchableWithoutFeedback } from 'react-native';
 const { width, height } = Dimensions.get('window');
-import { useState } from 'react';
-
 import { Dimensions } from 'react-native';
 import {
    widthPercentageToDP,

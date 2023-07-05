@@ -1,3 +1,4 @@
+//RESPONSIVE
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';

@@ -1,3 +1,4 @@
+//RESPONSIVE Y BORRAR COSAS NO SUASASD
 import {
    ImageBackground,
    Pressable,

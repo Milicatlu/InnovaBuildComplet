@@ -1,4 +1,4 @@
-
+//RESPONSIVE
 import {
     ImageBackground,
     Alert,

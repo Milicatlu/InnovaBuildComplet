@@ -1,3 +1,4 @@
+//RESPONSIVE
 import { View,StyleSheet,Text } from "react-native"
 
 export function Visual({data:{humedadColor,temperaturaColor,CO2Color,humedad,CO2,temperatura}}){

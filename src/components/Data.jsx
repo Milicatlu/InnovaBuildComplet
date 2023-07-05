@@ -1,12 +1,10 @@
+//RESPONSIVE
 import React from "react"
 import {
    View,
    StyleSheet,
    Text,
-   TouchableNativeFeedback,
-   Alert,
 } from "react-native"
-import Constants from "expo-constants"
 
 export const Data = ({ styleContainer, styleText, value }) => {
    return (

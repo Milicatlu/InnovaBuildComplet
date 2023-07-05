@@ -19,7 +19,7 @@ export function Grafico({ dataSets, labels }) {
                labels: labels,
                datasets: dataSets,
             }}
-            width={screenWidth - 100}
+            width={screenWidth - 100}//RESPONSIVE
             height={(screenHeight / 100) * 30}
             chartConfig={chartConfig}
             yAxisInterval={5}

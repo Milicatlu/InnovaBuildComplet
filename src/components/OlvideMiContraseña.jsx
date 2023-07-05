@@ -1,3 +1,4 @@
+//RESPONSIVE
 import {
     ImageBackground,
     Pressable,

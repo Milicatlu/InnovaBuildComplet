@@ -1,3 +1,4 @@
+//RESPONSIVE y borrar cosas no usadas
 import {
     ImageBackground,
     Pressable,

@@ -1,3 +1,4 @@
+//RESPONSIVE
 import { StyledText } from "./StyledText"
 
 export function Agricultura() {

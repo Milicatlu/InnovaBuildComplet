@@ -1,8 +1,8 @@
+//RESPONSIVE
 import { ImageBackground, StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native';
 import React, { useRef } from 'react';
 import { PanResponder } from 'react-native';
 import { Dimensions } from 'react-native';
-import { useState } from 'react';
 
 const { width, height } = Dimensions.get('window');
 import {

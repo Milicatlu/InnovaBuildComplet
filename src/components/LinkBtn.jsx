@@ -1,3 +1,4 @@
+//RESPONSIVE
 import { Link } from "@react-navigation/native"
 import { StyleSheet, View } from "react-native"
 

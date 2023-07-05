@@ -1,3 +1,4 @@
+//RESPONSIVE Y BORRAR COSAS NO USASDAS
 import {
    ImageBackground,
    Pressable,

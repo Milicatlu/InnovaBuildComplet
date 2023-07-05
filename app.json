@@ -4,12 +4,12 @@
     "slug": "InnovaBuild",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/IsoBlanco.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/images/FondoComienzo-011.png",
+      "resizeMode": "cover",
+      "backgroundColor": "black"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/FondoComienzo-011.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.lulu1212121212.InnovaBuild"

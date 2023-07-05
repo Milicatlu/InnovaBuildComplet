@@ -1,7 +1,7 @@
+//RESPONSIVE 
 import { StyleSheet, Dimensions, TouchableHighlight, View, ImageBackground } from "react-native"
 import { StyledText } from "./StyledText"
 import { theme } from "../theme"
-import { useState } from "react"
 import { Link } from "react-router-native"
 
 

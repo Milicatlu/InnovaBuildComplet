@@ -1,3 +1,4 @@
+//RESPONSIVE
 import React from "react"
 import {
     ImageBackground,

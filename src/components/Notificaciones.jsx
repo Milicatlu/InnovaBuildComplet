@@ -49,26 +49,6 @@ export function Notificaciones(props){
             }))
     }
     
-    //Funcion para cerrar notificaciones
-    const closeNotification = async (id, index) => {
-        try {
-            // Eliminar la notificación de la base de datos
-            await supabase.from("notificaciones").delete().match({ id })
-        
-            setClosedNotifications((prevClosedNotifications) => {
-                const updatedClosedNotifications = { ...prevClosedNotifications }
-                updatedClosedNotifications[id] = true
-                return updatedClosedNotifications
-            })
-      
-            setLastClosedNotificationIndex(index)
-        } 
-        
-        catch (error) {
-            console.error("Error al cerrar la notificacion", error)
-        }
-    }
-
     //Funcion para borrar notificacion
     const deleteNotification = async (id) => {
         try {

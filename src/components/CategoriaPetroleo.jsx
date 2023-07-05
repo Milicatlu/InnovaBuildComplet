@@ -1,17 +1,7 @@
-import {
-   View,
-   Text,
-   ImageBackground,
-   StyleSheet,
-   TouchableOpacity,
-   Dimensions,
-   Image
-} from "react-native"
-import { Link } from "@react-navigation/native"
-import { StyledButton3, StyledButton4 } from "./StyledButton"
+import { View,Text,ImageBackground,StyleSheet,TouchableOpacity,Dimensions,Image} from "react-native"
 import { AppBar } from "./AppBar"
-import { PetroleoMenu } from "./PetroleoMenu"
-const { height, width, fontScale, scale } = Dimensions.get("window")
+
+const { height, width,} = Dimensions.get("window")
 export function PetroleoCategoria(props) {
    return (
       <>

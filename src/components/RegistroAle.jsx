@@ -1,3 +1,4 @@
+//RESPONSIVE
 import {
    ImageBackground,
    Pressable,
@@ -33,6 +34,12 @@ export function RegistroAle({ navigation }) {
    });
    const [confirmPass, setConfirmPass] = useState("");
    const [modalVisibleBoton, setModalVisibleBoton] = useState(false);
+   const [visible,setVisible] = useState(false)
+   const [visible1,setVisible1] = useState(false)
+
+   const hola = num =>{
+      
+   }
 
    async function singUpWithAnEmail() {
       if (user.password == confirmPass) {

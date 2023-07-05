@@ -1,14 +1,12 @@
+//RESPONSIVE
 import {
     View,
     Text,
     Image,
     Dimensions,
-    TouchableOpacity,
-    StyleSheet,
-    Pressable,
   } from 'react-native';
-  import React, { useState } from 'react';
-  export function AppBar({ navigation }) {
+  import React from 'react';
+  export function AppBar() {
     return (
       <View
         style={{
@@ -19,7 +17,6 @@ import {
           justifyContent: 'space-around',
         }}
       >
-        <Text></Text>
         <Image
           style={{
             width: 70,
