@@ -26,7 +26,8 @@ export function CustomDrawerContent(props) {
       <DrawerContentScrollView  {...props}>
          <View style={{
             flexDirection: "column",
-            alignItems: "center"
+            alignItems: "center",
+            marginTop:30,
          }}>
 
             <Image

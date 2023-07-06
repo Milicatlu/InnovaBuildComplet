@@ -94,3 +94,10 @@ export const getUserName = async (email) => {
 
   return response;
 };
+
+export const resetPass = async (resetPasswordURL,email) =>{
+  const response = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: resetPasswordURL,
+  });
+  return response;
+}

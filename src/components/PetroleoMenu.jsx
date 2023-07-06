@@ -4,33 +4,16 @@ import {
     Pressable,
     StyleSheet,
     View,
-    TextInput,
-    DrawerItem,
-    DrawerItemicon,
-    Text,
     Dimensions
   } from "react-native";
   import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
   import { StyledButton } from "./StyledButton";
-  import { FontAwesome } from "@expo/vector-icons";
-  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import { StyledText } from "./StyledText";
   import { AppBar } from "./AppBar";
-  import { faEdit } from "@fortawesome/free-regular-svg-icons";
-  import { DropdownDrag } from "./DropdownDrag";
-  import { jwt } from "../helpers/Config";
-  import AsyncStorage from "@react-native-async-storage/async-storage";
-  import { GraficoAgricultura } from "./Grafico";
   import { useState, useEffect } from "react";
-  import { InfluxDBHelper } from "../helpers/InfluxDB";
   import { StyledButtonAgri } from "./StyledButton";
-  import { GraficoView } from "./VerMas/GraficoView";
-  import { SiloMenu } from "./SiloMenu";
-  import { Ionicons } from "@expo/vector-icons";
-  import { DrawerContentScrollView } from "@react-navigation/drawer";
   import { MaterialIcons } from "@expo/vector-icons";
-  import { Drawer } from "react-native-paper";
-  import * as Font from 'expo-font';
+  
   
   
   export function PetroleoMenu(props) {
@@ -89,13 +72,10 @@ import {
   
               <View style={{ marginTop: 10 }}>
                 <ScrollView>{renderSiloBolsa()}</ScrollView>
-                <TouchableOpacity
-                  style={styles.icono}
-                  onPress={handleAddSiloBolsa}
-                >
                   <StyledButton
                     styleContainer={styles.lleno}
                     styledProps={{ fontSize: "subheading1" }}
+                    onPress={handleAddSiloBolsa}
                   >
                     <MaterialIcons name="add" size={22} color={"white"} /> NUEVO
                     PETROLEO
@@ -108,7 +88,7 @@ import {
                       </StyledText>
                     </MaterialIcons>
                   </View>
-                </TouchableOpacity>
+                
               </View>
             </View>
           </ImageBackground>

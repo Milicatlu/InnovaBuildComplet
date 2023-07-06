@@ -18,16 +18,21 @@ const { width, height } = Dimensions.get('window');
 const screenWidthPercentage = widthPercentageToDP('50%');
 const screenHeightPercentage = heightPercentageToDP('50%');
 
+
 export function Login({ navigation }) {
    const { login } = useAuth();
-
+   const [password, setPassword] = useState('');
+   const [isPasswordVisible, setPasswordVisibility] = useState(false);
+     const handlePasswordVisibility = () => {
+      setPasswordVisibility(!isPasswordVisible);
+   }
    const [user, setUser] = useState({
       email: 'innovaspaceprueba@gmail.com',
       password: '12345678Aa',
       backgroundColor1: '#C6C6C8',
       backgroundColor2: '#C6C6C8',
    });
-
+ 
    const handleLogin = async (email, password) => {
       try {
          const {
@@ -74,26 +79,32 @@ export function Login({ navigation }) {
                   value={user.email}
                />
             </View>
+
             <View style={styles.subsubcont}>
-               <Image style={styles.icons} source={require('../../assets/images/Ojo.png')} />
+               <TouchableOpacity onPress={handlePasswordVisibility}>
+                  <Image
+                     style={styles.icons}
+                     source={isPasswordVisible
+                        ? require('../../assets/images/Ojo.png')
+                        : require('../../assets/images/Nover.png')
+                     }
+                  />
+               </TouchableOpacity>
                <TextInput
                   style={[
                      styles.TextView,
                      { backgroundColor: user.backgroundColor2 },
-                     { width: screenWidthPercentage * 0.7 },
+                     { width: screenWidthPercentage * 0.5 },
                   ]}
-                  placeholder="Contraseña"
-                  placeholderTextColor="#A9A9A9"
-                  onChangeText={(text) =>
-                     setUser({
-                        ...user,
-                        password: text,
-                        backgroundColor2: 'white',
-                     })
-                  }
-                  value={user.password}
+                  value={password}
+                  onChangeText={(pwd) => setPassword(pwd)}
+                  secureTextEntry={!isPasswordVisible}
+                  placeholder="Password"
                />
+
             </View>
+
+
             <Pressable
                style={[
                   styles.btn,
@@ -186,7 +197,7 @@ const styles = StyleSheet.create({
       flex: 0.92,
       height: height * 0.045,
       borderRadius: 8,
-      paddingLeft: width * -0.90,
+      paddingLeft: width * 0.02,
       alignItems: 'center',
    },
    icons: {
@@ -220,3 +231,23 @@ const styles = StyleSheet.create({
 });
 
 export default Login;
+/* <View style={styles.subsubcont}>
+               <Image style={styles.icons} source={require('../../assets/images/Ojo.png')} />
+               <TextInput
+                  style={[
+                     styles.TextView,
+                     { backgroundColor: user.backgroundColor2 },
+                     { width: screenWidthPercentage * 0.5 },
+                  ]}
+                  placeholder="Contraseña"
+                  placeholderTextColor="#A9A9A9"
+                  onChangeText={(text) =>
+                     setUser({
+                        ...user,
+                        password: text,
+                        backgroundColor2: 'white',
+                     })
+                  }
+                  value={user.password}
+               />
+            </View>*/ 

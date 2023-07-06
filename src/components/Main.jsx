@@ -9,7 +9,6 @@ import {
   Text,
 } from "react-native"
 import { SectoresMain } from "./SectoresMain/index"
-import Constants from "expo-constants"
 import { Login } from "./Login.jsx"
 import { createDrawerNavigator } from "@react-navigation/drawer"
 import { CustomDrawerContent } from "./CustomDrawerContent"
@@ -37,20 +36,22 @@ const Drawer = createDrawerNavigator()
 export function Main({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false)
 
-  const [notificacion, setNotificacion] = useState([])
+    const [notificacion, setNotificacion] = useState([])
 
-  useEffect(() => {
+    useEffect(() => {
     const fetchnotificacion = async () => {
-      try {
+        try {
         const { data, error } = await supabase
-          .from("notificaciones")
-          .select()
+            .from("notificaciones")
+            .select()
           .order("time", { ascending: false })
         if (error) {
           console.error("Error al obtener la última notificación:", error)
         } else if (data && data.length > 0) {
           setNotificacion(data[0])
-
+        }
+        else {
+          setNotificacion(null)
         }
       } catch (error) {
         console.error("Error al obtener la última notificación:", error)
@@ -103,29 +104,25 @@ export function Main({ navigation }) {
 
 
   return (
-  <View style={styles.container}>
+    <View style={styles.container}>
       <ImageBackground
         source={require("../../assets/images/Fondo-06.jpg")} resizeMode="cover"
         style={{
-            
-            flex: 1,
-      
+          flex: 1,
         }}
       >
         <Drawer.Navigator
           useLegacyImplementation
           drawerContent={(props) => <CustomDrawerContent {...props} />}
           screenOptions={{
-            headerPressOpacity: 1,
             headerTintColor: "#FFF",
-         
             headerTitleStyle: {
               fontWeight: "bold",
             },
             headerTransparent: true,
             headerTitle: "",
             headerStatusBarHeight: height / 25,
-            
+
             headerRight: () => (
               <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
@@ -190,7 +187,7 @@ export function Main({ navigation }) {
                 onPress={toggleModal}
                 style={{
                   left: width / 3.3,
-                  bottom: height / 17
+                  bottom: height / 15
                 }}
               >
                 <Image
@@ -202,16 +199,24 @@ export function Main({ navigation }) {
                 />
               </TouchableOpacity>
 
+              {!notificacion ? (
               <View style={styles.modalContainer}>
-                {notificacion && (
-                  <View style={styles.notificationContainer}>
-                    <Text style={styles.notificationType}>{notificacion.type}</Text>
-                    <Text style={styles.notificationTime}>{formatDateTime(notificacion.time)}</Text>
-                    <Text style={styles.notificacionTitulo}>{notificacion.title}</Text>
-                    <Text style={styles.notificationMessage}>{notificacion.message}</Text>
-                  </View>
-                )}
-              </View>
+                <View style={styles.notificationContainer}>
+                  <Text style={styles.noNotificaciones}>No posee notificaciones pendientes</Text>
+                </View>
+              </View> 
+                  ) : (
+                <TouchableOpacity onPress={() => {navigation.navigate("Notificaciones"); toggleModal()}} style={styles.modalContainer}>
+                  {notificacion && (
+                    <View style={styles.notificationContainer}>
+                      <Text style={styles.notificationType}>{notificacion.type}</Text>
+                      <Text style={styles.notificationTime}>{formatDateTime(notificacion.time)}</Text>
+                      <Text style={styles.notificacionTitulo}>{notificacion.title}</Text>
+                      <Text style={styles.notificationMessage}>{notificacion.message}</Text>
+                    </View>
+                  )}
+                </TouchableOpacity>
+      )}
             </View>
           </View>
         </Modal>
@@ -219,9 +224,9 @@ export function Main({ navigation }) {
   )
 }
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-   
+  container: {
+    flex: 1,
+
   },
   modalBackground: {
     flex: 1,
@@ -274,6 +279,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: width / 9,
     right: "5%",
+    marginTop:height*-0.011,
     height: height / 19,
     flex: 1,
   },
@@ -284,6 +290,7 @@ const styles = StyleSheet.create({
   notificationIcon: {
     height: height / 30,
     width: width / 14,
+    bottom: height / 90
   },
   notificationContainer: {
     borderBottomColor: "#d9d9d9",
@@ -313,4 +320,10 @@ const styles = StyleSheet.create({
     fontFamily: "Lato-Regular",
     lineHeight: height / 35,
   },
+  noNotificaciones: {
+    fontFamily: "Lato-Bold",
+    alignSelf:"center",
+    marginTop: height / 19,
+    fontSize: fontScale * 18
+  }
 })

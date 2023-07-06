@@ -7,9 +7,9 @@
     "icon": "./assets/images/IsoBlanco.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/FondoComienzo-011.png",
-      "resizeMode": "cover",
-      "backgroundColor": "black"
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/FondoComienzo-011.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.lulu1212121212.InnovaBuild"
@@ -29,8 +29,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "2dbea0d2-3c72-453f-98cb-bacc900765a6"
+        "projectId": "b4f5cd39-ad57-434d-b687-170b11ba543c"
       }
-    }
+    },
+    "scheme": "innovabuild"
   }
 }

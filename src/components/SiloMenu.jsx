@@ -12,19 +12,12 @@ import {
   import { StyledButton2, StyledButton } from "./StyledButton";
   import { StyledText } from "./StyledText";
   import { AppBar } from "./AppBar";
-  import { DropdownDrag } from "./DropdownDrag";
   // import AsyncStorage from "@react-native-async-storage/async-storage"
   import { useState, useEffect } from "react";
-  import { GraficoAgricultura } from "./Grafico";
   import { InfluxDBHelper } from "../helpers/InfluxDB";
-  import { color, set } from "react-native-reanimated";
-  import { ActivityIndicator } from "react-native-paper";
-  import { VerMas } from "./VerMas";
-  import { Visual } from "./Visual";
-  import { Grafico2 } from "./GraficoPrueba";
+
   const { width, height } = Dimensions.get("window");
   import { Dimensions } from "react-native";
-  import { ButtonsNav } from "./VerMas/ButtonsNav";
   export function SiloMenu(props) {
     const [isOpen, setIsOpen] = useState(false)
     const [temperatura, setTemperatura] = useState(25)
@@ -248,13 +241,15 @@ import {
                                 Humedad
                             </StyledText>
                         </View>
+
                         <View style={styles.imagencontainer}>
-                            <ImageBackground
-                                source={require("../../assets/images/palabra-02.png")}
-                                style={{ height: "125%" }}
-                            />   
-                            
+                        <ImageBackground
+                        source={require("../../assets/images/Tormometros.png")}
+                        style={{height:"100%"}}
+                        />
                         </View>
+
+                        
                         {CO2Array && temperaturaArray && humedadArray && (
                             <TouchableOpacity
                                 onPress={() => {

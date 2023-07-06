@@ -1,16 +1,6 @@
 //RESPONSIVE
-import {
-   ImageBackground,
-   Pressable,
-   StyleSheet,
-   TouchableOpacity,
-   View,
-   Text,
-   Image,
-   Switch
-} from "react-native"
+import { ImageBackground, StyleSheet, View, Text } from "react-native"
 import SwitchSelector from "react-native-switch-selector";
-
 import { StyledText } from "./StyledText"
 import { AppBar } from "./AppBar"
 import { useState } from "react"

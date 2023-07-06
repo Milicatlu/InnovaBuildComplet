@@ -23,7 +23,7 @@ function Bienvenido({ navigation }) {
    ).current;
 
    const handleOmitirPress = () => {
-      navigation.navigate('login');
+      navigation.navigate('cambiocontra');
    };
    return (
       <View style={styles.container} {...panResponder.panHandlers}>

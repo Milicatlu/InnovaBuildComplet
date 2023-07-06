@@ -1,7 +1,6 @@
 //RESPONSIVE
 import {
     View,
-    Text,
     Image,
     Dimensions,
   } from 'react-native';
@@ -10,7 +9,7 @@ import {
     return (
       <View
         style={{
-          height: 80,
+          height: Dimensions.get("window").height / 10.5,
           backgroundColor: 'rgba(0,0,0,0)',
           alignContent: 'center',
           flexDirection: 'row',
@@ -19,11 +18,12 @@ import {
       >
         <Image
           style={{
-            width: 70,
-            height: 70,
-            margin: 10,
+            width: Dimensions.get("window").width / 6,
+            height: Dimensions.get("window").height / 12,
+            margin: Dimensions.get("window").width / 40,
             position: 'absolute',
-            left: Dimensions.get('window').width / 2 - 45,
+            marginTop:Dimensions.get("window").height*0.030,
+            left: Dimensions.get('window').width / 2.60,
             zIndex: 1,
           }}
           source={require('../../assets/images/IsoBlanco.png')}

@@ -68,6 +68,7 @@ export function Notificaciones(props){
         }
     }
 
+    
 
     //function para llamar notificacion
     const fetchNotifications = async () => {
@@ -89,6 +90,7 @@ export function Notificaciones(props){
         }
     }
 
+        
     useEffect(()=>{
         fetchNotifications()
     },[])
@@ -120,7 +122,7 @@ export function Notificaciones(props){
         <>
             <ImageBackground 
                 source={ require("../../assets/images/Fondo-06.jpg")}
-                style={{ paddingTop: height / 100, height: height}}
+                style={{ paddingTop: height / 100, height: height + height / 20}}
                 imageStyle={{ justifyContent: "center", alignItems: "center" }}
             >   
                 <AppBar/>
@@ -130,7 +132,7 @@ export function Notificaciones(props){
                     align="center"
                     style={{margin: scale, 
                             fontSize : fontScale * 42, 
-                            height:height / 13}}
+                            height:height / 7}}
                 >
                     <Text style={{fontFamily:"Lato-Bold"}}>
                         NOTIFICACIONES
@@ -162,7 +164,10 @@ export function Notificaciones(props){
             <View style={styles.datosC} >
                 <View style={styles.datos} {...props}>
                     <ScrollView>
-                        {filterNotifications(notifications).map((notification, index) =>
+                        {filterNotifications(notifications).length === 0 ? (
+                            <Text style={styles.noNotificacion}>No posee notificaciones pendientes</Text> 
+                        ) : (
+                        filterNotifications(notifications).map((notification, index) =>
                             <React.Fragment key={notification.id}>
                                 {!closedNotifications[notification.id] && (
                                     <TouchableOpacity
@@ -188,7 +193,8 @@ export function Notificaciones(props){
                                 )}
                                 <Text style={styles.relleno}/>
                             </React.Fragment>
-                        )}
+                        )
+                        )} 
                     </ScrollView>
                 </View>
             </View>
@@ -337,5 +343,11 @@ const styles = StyleSheet.create({
         width: width / 12,
         right: width / 46,
         bottom: height / 100,
+    },
+    noNotificacion:{
+        fontFamily:"Lato-Bold",
+        alignSelf:"center",
+        marginTop: height / 25,
+        fontSize: fontScale * 20
     },
 })

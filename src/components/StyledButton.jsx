@@ -1,16 +1,10 @@
 //RESPONSIVE
 import React from "react"
 import {
-    ImageBackground,
     StyleSheet,
-    Text,
     TouchableOpacity,
-    View,
-    fontSize,
 } from "react-native"
 import { StyledText } from "./StyledText"
-//import { FaPencilAlt } from 'react-icons/fa';
-const image = { uri: "https://reactjs.org/logo-og.png" }
 export function StyledButton({
     styledProps,
     onPress,
@@ -77,6 +71,7 @@ export function StyledButtonAgri({
                 align="center"
                 color="#FFF"
                 fontSize={20}
+                fontFamily="Lato-Bold"
             >
                 {children}
             </StyledText>

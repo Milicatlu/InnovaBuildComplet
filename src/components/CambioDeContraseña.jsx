@@ -15,10 +15,12 @@ import {
   import { StyledText } from "./StyledText";
   import { Dimensions } from "react-native";
   import { StyledButton } from "./StyledButton";
-  import { useState } from "react";
+  import { useState, useEffect } from "react";
   import { TouchableHighlight } from "react-native-gesture-handler";
   import { supabase } from "../lib/supabase";
   import { singUpEmail } from "../lib/supabaseHandler";
+  import * as Linking from 'expo-linking'
+  const resetPasswordURL = Linking.createURL("/cambiocontra");
   const { width, height } = Dimensions.get("window");
   import {
     widthPercentageToDP,
@@ -27,46 +29,64 @@ import {
   const screenWidthPercentage = widthPercentageToDP("50%");
   const screenHeightPercentage = heightPercentageToDP("50%");
   
-  export function OlvideMiContraseña({ navigation }) {
-    const [user, setUser] = useState({
-      email: ""
-    });
+  export function CambioDeContraseña({ navigation }) {
+    const [password, setPassword] = useState("")
+    const [confirmPass, setConfirmPass] = useState("");
     const [modalVisible, setModalVisible] = useState(false);
+    const [condition, setCondition] = useState(true)
+    const [disable, setDisable] = useState(false)
     const handleEnviar = () => {
       // Lógica para enviar el formulario o realizar las acciones necesarias
       // al tocar el botón "Enviar"
+      
+    
       setModalVisible(true);
+    };
+
+    useEffect(()=>{
+      if (password == confirmPass) {
+        setCondition(true);
+        setDisable(false)
+      } else {
+        setCondition(false);
+        setDisable(true)
+      }
+    },[password, confirmPass])
+
+    
+    const handleChangeConfirmPass =  text => {
+       setConfirmPass(text);
+      handleCompare();
+    };
+    const handleChangePassword =  text => {
+       setPassword(text);
+      handleCompare();
     };
   
     return (
-      <>
+      
         <ImageBackground
           source={require("../../assets/images/Fondo-06.jpg")}
-          style={{
-            height: Dimensions.get("window").height + 10
-          }}
-          imageStyle={{
-            justifyContent: "center",
-            alignItems: "center"
-          }}
+          resizeMode="cover" style={styles.image}
+         
         >
           <Image
             style={styles.tinyLogo}
             source={require("../../assets/images/IsoBlanco.png")}
           />
-          <Text style={styles.text}>OLVIDÉ MI CONTRASEÑA</Text>
+          <Text style={styles.text}>RECUPERAR CONTRASEÑA</Text>
           <View style={styles.container}>
             <Text style={styles.complete} editable={false}>
-              Por favor, completá tu e-mail para restablecer tu contraseña
+              Por favor, completá los campos para restablecer tu contraseña
             </Text>
           </View>
           <View style={styles.datosC}>
             <View style={styles.datos}>
               <StyledText fontSize={"subheading1"} style={styles.label}>
-                E-mail
+              Nueva contraseña
               </StyledText>
               <View
-                style={{ flexDirection: "row", justifyContent: "space-between" }}
+                style={{ flexDirection: "row", justifyContent: "space-between" ,width:Dimensions.get('window').width *0.7,}}
               >
                 <View style={styles.icon}>
                   <Image
@@ -76,13 +96,8 @@ import {
                 </View>
                 <TextInput
                   style={styles.textarea}
-                  value={user.name}
-                  onChangeText={(text) =>
-                    setUser({
-                      ...user,
-                      email: text
-                    })
-                  }
+                  value={password}
+                  onChangeText={(text)=>setPassword(text)}
                 ></TextInput>
               </View>
               <View
@@ -94,17 +109,53 @@ import {
                 }}
               ></View>
             </View>
+            <View style={styles.datos}>
+              <StyledText fontSize={"subheading1"} style={styles.label}>
+                Confirmar contraseña
+              </StyledText>
+              <View
+                style={{ flexDirection: "row", justifyContent: "space-between" , width:Dimensions.get('window').width *0.7,}}
+              >
+                <View style={styles.icon}>
+                  <Image
+                    style={styles.tiny}
+                    source={require("../../assets/icons/Editar.png")}
+                  />
+                </View>
+                <TextInput
+                  style={styles.textarea}
+                  value={confirmPass}
+                  onChangeText={(text)=>setConfirmPass(text)}
+                ></TextInput>
+              </View>
+              
+              <View
+                style={{
+                  top: 20,
+                  height: 1.5,
+                  backgroundColor: "#d9d9d9",
+                  width: "100%"
+                }}
+              ></View>
+            
+            </View>
+            {condition ?  <></>: <StyledText fontSize={"parrafo"} style={styles.label2}>
+              ¡Las contraseñas no son iguales!
+              </StyledText>}
+            
+            
             <View
               style={{
                 flexDirection: "row",
                 justifyContent: "space-around",
                 margin: 10,
-                top: "50%"
+                top:Dimensions.get('window').width *0.35,
               }}
             >
               <TouchableOpacity
                 style={styles.guardarButton}
                 onPress={handleEnviar}
+                disabled={disable}
               >
                 <Text style={styles.buttonText}>Enviar</Text>
               </TouchableOpacity>
@@ -148,11 +199,13 @@ import {
             </View>
           </Modal>
         </ImageBackground>
-      </>
+      
     );
   }
-  export default OlvideMiContraseña;
   const styles = StyleSheet.create({
+    image:{
+      flex:1,
+    },
     modalContainer: {
       flex: 1,
       justifyContent: "center",
@@ -237,7 +290,7 @@ import {
     text: {
       color: "#03B6E8",
       top: "20%",
-      fontSize: 35,
+      fontSize: Dimensions.get('window').width *0.07,
       lineHeight: 41,
       letterSpacing: 0.374,
       fontFamily: "Lato-Bold",
@@ -261,12 +314,15 @@ import {
       paddingBottom: 30
     },
     label: {
-      color: "grey"
+      color: "grey",
+    },
+    label2:{
+      color: "red",
     },
     textarea: {
       height: 30,
       top: 10,
-      fontSize: 20,
+      fontSize: 25,
       color: "black",
       flex: 1
     },
