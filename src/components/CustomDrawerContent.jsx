@@ -3,6 +3,7 @@ import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer"
 import { Image, View, Text, Animated, Dimensions } from "react-native"
 import { userConstant } from "../Constants/userConstants";
 const { height, width, fontScale, scale } = Dimensions.get("window")
+import {singOut} from '../hooks/useSingOut.jsx'
 export function CustomDrawerContent(props) {
    //Estado para controlar la visibilidad del modal
    const [opcionVisible, setOpcionVisible] = useState(false);
@@ -312,6 +313,7 @@ export function CustomDrawerContent(props) {
             }}
             label="Cerrar Sesion"
             onPress={() => {
+               singOut()
                props.navigation.navigate("Login")
             }}
          />

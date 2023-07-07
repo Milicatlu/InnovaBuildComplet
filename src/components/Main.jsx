@@ -29,6 +29,7 @@ import { Grafico2 } from "./GraficoPrueba"
 import { EtapaMineria } from "./EtapaMineria"
 import { AgriculturaSilo } from "./AgriculturaSilo"
 import { supabase } from "../lib/supabase"
+import { getUser } from "../lib/supabaseHandler"
 import MapScreen from "./MapScreen"
 const { height, width, fontScale, scale } = Dimensions.get("window")
 const Drawer = createDrawerNavigator()
@@ -40,11 +41,13 @@ export function Main({ navigation }) {
 
     useEffect(() => {
     const fetchnotificacion = async () => {
+        const response = await getUser()
         try {
         const { data, error } = await supabase
             .from("notificaciones")
             .select()
-          .order("time", { ascending: false })
+            .eq("notificacionid",  response.id)
+            .order("time", { ascending: false })
         if (error) {
           console.error("Error al obtener la última notificación:", error)
         } else if (data && data.length > 0) {
@@ -109,6 +112,7 @@ export function Main({ navigation }) {
         source={require("../../assets/images/Fondo-06.jpg")} resizeMode="cover"
         style={{
           flex: 1,
+
         }}
       >
         <Drawer.Navigator
@@ -122,7 +126,6 @@ export function Main({ navigation }) {
             headerTransparent: true,
             headerTitle: "",
             headerStatusBarHeight: height / 25,
-
             headerRight: () => (
               <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
@@ -202,7 +205,9 @@ export function Main({ navigation }) {
               {!notificacion ? (
               <View style={styles.modalContainer}>
                 <View style={styles.notificationContainer}>
-                  <Text style={styles.noNotificaciones}>No posee notificaciones pendientes</Text>
+                      <Text style={styles.notificationType}>Notificaciones</Text>
+                      <Text style={styles.notificationTime}>Ahora</Text>
+                      <Text style={styles.noNotificaciones}>No posee notificaciones pentientes en este momento</Text>
                 </View>
               </View> 
                   ) : (
@@ -235,7 +240,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     marginTop: height / -3.12,
     width: width,
-
+    
   },
   modalContainer: {
     backgroundColor: "#fff",
@@ -321,9 +326,9 @@ const styles = StyleSheet.create({
     lineHeight: height / 35,
   },
   noNotificaciones: {
+    textAlign: "left",
+    fontSize: fontScale * 18,
     fontFamily: "Lato-Bold",
-    alignSelf:"center",
-    marginTop: height / 19,
-    fontSize: fontScale * 18
+    lineHeight: height / 35,
   }
 })

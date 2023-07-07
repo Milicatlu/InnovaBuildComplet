@@ -4,6 +4,7 @@ import { ScrollView } from "react-native-gesture-handler"
 import { StyledText } from "./StyledText"
 import { AppBar } from "./AppBar"
 import { supabase } from "../lib/supabase"
+import { getUser } from "../lib/supabaseHandler"
 const {height, width, fontScale, scale} = Dimensions.get("window")
 
 export function Notificaciones(props){
@@ -72,12 +73,14 @@ export function Notificaciones(props){
 
     //function para llamar notificacion
     const fetchNotifications = async () => {
+        const response = await getUser()
         try {
             const { data, error } = await supabase
                 .from("notificaciones")
                 .select()
+                .eq("notificacionid",  response.id)
                 .order("time", { ascending: false })
-        
+            
             if (error) {
                 console.error("Error al obtener los datos de notificaciones:", error)
             } else if (data) {
@@ -93,6 +96,11 @@ export function Notificaciones(props){
         
     useEffect(()=>{
         fetchNotifications()
+        const intervalId = setInterval(fetchNotifications, 10000);
+
+        return () => {
+        clearInterval(intervalId);
+        }
     },[])
     
     //funcion para poner hora y fecha ordenado

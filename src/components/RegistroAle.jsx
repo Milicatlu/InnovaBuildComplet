@@ -474,6 +474,7 @@ export function RegistroAle({ navigation }) {
       password: ""
    });
    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+   const [isPasswordVisibleDown, setIsPasswordVisibleDown] = useState(false);
 
    const [confirmPass, setConfirmPass] = useState("");
    const [modalVisibleBoton, setModalVisibleBoton] = useState(false);
@@ -569,6 +570,7 @@ export function RegistroAle({ navigation }) {
                   }}
                ></View>
             </View>
+
             <View style={styles.datos}>
                <StyledText fontSize={height * 0.1} style={styles.label}>
                   Contraseña
@@ -588,7 +590,9 @@ export function RegistroAle({ navigation }) {
                      }
                   ></TextInput>
                   <TouchableOpacity onPress={() => setIsPasswordVisible(prevState => !prevState)}>
-                     <Image source={require('../../assets/images/NoVerGrey.png')} style={styles.nover} />
+                     <Image source={isPasswordVisible 
+                     ? require('../../assets/icons/Ver.png') 
+                     : require('../../assets/images/NoVerGrey.png')} style={styles.nover} />
                   </TouchableOpacity>
                </View>
                <View
@@ -600,10 +604,6 @@ export function RegistroAle({ navigation }) {
                ></View>
             </View>
 
-
-
-           
-
             <View style={styles.datos}>
                <StyledText fontSize={height * 0.025} style={styles.label}>
                   Confirmar contraseña
@@ -612,14 +612,17 @@ export function RegistroAle({ navigation }) {
                   style={{ flexDirection: "row", justifyContent: "space-between" }}
                >
                   <TextInput
-                  secureTextEntry={!isPasswordVisible}
+                     secureTextEntry={!isPasswordVisibleDown}
                      style={styles.textarea}
                      value={confirmPass}
                      //onChange={verifyPassword}
                      onChangeText={(text) => setConfirmPass(text)}
                   ></TextInput>
-                     <TouchableOpacity onPress={() => setIsPasswordVisible(prevState => !prevState)}>
-                     <Image source={require('../../assets/images/NoVerGrey.png')} style={styles.nover2} />
+                  <TouchableOpacity onPress={() => setIsPasswordVisibleDown(prevState => !prevState)}>
+                     <Image source={isPasswordVisibleDown 
+                     ? require('../../assets/icons/Ver.png') 
+                     : require('../../assets/images/NoVerGrey.png')
+                  } style={styles.nover} />
                   </TouchableOpacity>
                </View>
                <View
@@ -630,7 +633,6 @@ export function RegistroAle({ navigation }) {
                   }}
                ></View>
             </View>
-
 
 
             <View
@@ -730,7 +732,7 @@ const styles = StyleSheet.create({
       elevation: 0
    },
    modalTextM: {
-      fontSize: Dimensions.get("window").width - 375,
+      fontSize: Dimensions.get("window").width - 390,
       color: "#03B6E8",
       marginTop: 10,
       fontWeight: "bold"

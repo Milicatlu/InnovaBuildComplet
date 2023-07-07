@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   },
   titulo: {
     margin: 40,
-    fontSize: 43,
+    fontSize:  Dimensions.get('window').height /20,
     fontWeight: 'bold',
     fontWeight: '900',
     fontFamily: 'Lato-Bold',

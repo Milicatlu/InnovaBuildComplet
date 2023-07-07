@@ -19,8 +19,6 @@ import {
   import { TouchableHighlight } from "react-native-gesture-handler";
   import { supabase } from "../lib/supabase";
   import { singUpEmail } from "../lib/supabaseHandler";
-  import * as Linking from 'expo-linking'
-  const resetPasswordURL = Linking.createURL("/cambiocontra");
   const { width, height } = Dimensions.get("window");
   import {
     widthPercentageToDP,
@@ -36,10 +34,7 @@ import {
     const [condition, setCondition] = useState(true)
     const [disable, setDisable] = useState(false)
     const handleEnviar = () => {
-      // Lógica para enviar el formulario o realizar las acciones necesarias
-      // al tocar el botón "Enviar"
       
-    
       setModalVisible(true);
     };
 
@@ -177,9 +172,9 @@ import {
           >
             <View style={styles.modalContainer}>
               <View style={styles.modalView}>
-                <Text style={styles.modalText}>SEGUÍ LOS PASOS</Text>
+                <Text style={styles.modalText}>CAMBIO DE CONTRASEÑA</Text>
                 <Text style={styles.modalDescription}>
-                  Te enviamos un e-mail para restablecer tu contraseña
+                  Contraseña restablecida
                 </Text>
                 <View
                   style={{
@@ -193,7 +188,7 @@ import {
                   style={styles.modalButton}
                   onPress={() => setModalVisible(false)}
                 >
-                  <Text style={styles.modalButtonText}>DE ACUERDO</Text>
+                  <Text style={styles.modalButtonText}>ACEPTAR</Text>
                 </TouchableOpacity>
               </View>
             </View>

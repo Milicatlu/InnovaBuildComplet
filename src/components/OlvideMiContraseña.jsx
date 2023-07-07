@@ -26,6 +26,8 @@ import {
   } from "react-native-responsive-screen";
   const screenWidthPercentage = widthPercentageToDP("50%");
   const screenHeightPercentage = heightPercentageToDP("50%");
+  import { resetPass } from '../lib/supabaseHandler'
+
   
   export function OlvideMiContraseña({ navigation }) {
     const [user, setUser] = useState({
@@ -33,8 +35,7 @@ import {
     });
     const [modalVisible, setModalVisible] = useState(false);
     const handleEnviar = () => {
-      // Lógica para enviar el formulario o realizar las acciones necesarias
-      // al tocar el botón "Enviar"
+      resetPass(navigation, user.email)
       setModalVisible(true);
     };
   

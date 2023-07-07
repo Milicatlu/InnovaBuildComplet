@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import AuthProvider from "./context/AuthProvider.jsx";
 import Registro from "./src/components/RegistroAle.jsx";
 import Login from "./src/components/Login.jsx";
-import {OlvideMiContraseña} from "./src/components/OlvideMiContraseña.jsx";
+import  OlvideMiContraseña  from "./src/components/OlvideMiContraseña.jsx";
 import { Terminos } from "./src/components/Terminos.jsx";
 import { Main } from "./src/components/Main.jsx";
 import { CambioDeContraseña } from "./src/components/CambioDeContraseña.jsx";
@@ -37,6 +37,7 @@ export default function App() {
 
   return (
     <AuthProvider>
+      <StatusBar style="light"/>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="bienvenido" component={Bienvenido} />

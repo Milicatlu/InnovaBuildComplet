@@ -22,7 +22,7 @@ export function Terminos({ navigation, props }) {
          <ImageBackground
             source={require("../../assets/images/Fondo-06.jpg")}
             style={{
-               paddingTop: 10,
+               paddingTop: height / 100,
                height: height + height / 20
             }}
             imageStyle={{

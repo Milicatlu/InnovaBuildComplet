@@ -1,4 +1,11 @@
-//RESPONSIVE
+
+/*  top: screenHeightPercentage - height * 0.3 * 1.47,
+      left: screenWidthPercentage - width * 0.80 * -0.92,
+      height:height*0.050,
+      width: screenWidthPercentage * 1.13,*/
+
+
+
 import {
   ImageBackground,
   Alert,
@@ -103,245 +110,245 @@ export function Perfil({ navigation }) {
   }, [image]);
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require("../../assets/images/Fondo-06.jpg")}
-        resizeMode="cover"
-        style={{
-          flex: 1,
+    <ImageBackground
+      source={require("../../assets/images/Fondo-06.jpg")}
+      resizeMode="cover"
+      style={styles.image}
+
+
+    >
+      <AppBar />
+      <View style={styles.fotoPerfilll} source={fotoPerfil ? { uri: fotoPerfil } : require('../../assets/images/FotoPerfil.png')} />
+
+      <Image style={styles.fotoPerfill} source={fotoPerfil ? { uri: fotoPerfil } : require('../../assets/images/FotoPerfil.png')} />
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
         }}
-
       >
-        <AppBar />
-        <View style={styles.container}>
-          <Image style={styles.fotoPerfill} source={fotoPerfil ? { uri: fotoPerfil } : require('../../assets/images/FotoPerfil.png')} />
-          <Modal
-            animationType="fade"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              Alert.alert("Modal has been closed.");
-              setModalVisible(!modalVisible);
-            }}
-          >
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("camara")}
-                  style={[styles.modalText]}
-                >
-                  <Text style={styles.text}>Tomar foto</Text>
-                </TouchableOpacity>
-                <View
-                  style={{
-                    marginTop: 15,
-                    left: "10%",
-                    height: 1.5,
-                    backgroundColor: "#D9D9D9",
-                    width: "80%"
-                  }}
-                />
-                <TouchableOpacity onPress={"hola"} style={[styles.modalText]}>
-                  <Text style={styles.text}>Subir foto</Text>
-                </TouchableOpacity>
-                <View
-                  style={{
-                    marginTop: 15,
-                    left: "10%",
-                    height: 1.5,
-                    backgroundColor: "#D9D9D9",
-                    width: "80%"
-                  }}
-                />
-                <TouchableOpacity onPress={"hola"} style={[styles.modalText]}>
-                  <Text style={styles.textOrange}>Eliminar foto</Text>
-                </TouchableOpacity>
-                <Pressable
-                  style={[styles.button]}
-                  onPress={() => setModalVisible(!modalVisible)}
-                >
-                  <Text style={styles} />
-                </Pressable>
-              </View>
-            </View>
-          </Modal>
-          <Image
-            source={require("../../assets/images/Camara.png")}
-            style={[styles.Camara]}
-          />
-          <TouchableOpacity
-            onPress={() => setModalVisible(true)}
-            style={[styles.Camara]}
-          ></TouchableOpacity>
-
-          <Modal
-            animationType="fade"
-            transparent={true}
-            visible={modalVisiblePhoto}
-            onRequestClose={() => {
-              Alert.alert('Modal has been closed.');
-              setModalVisible(!modalVisiblePhoto);
-            }}
-          >
-            <View style={styles.muro} />
-            <Image
-              style={styles.fotoPerfilG}
-              source={
-                fotoPerfil
-                  ? { uri: fotoPerfil }
-                  : require('../../assets/images/FotoPerfil.png')
-              }
-            />
-            <Pressable
-              style={[styles.buttonG]}
-              onPress={() => setModalVisiblePhoto(!modalVisiblePhoto)}
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("camara")}
+              style={[styles.modalText]}
             >
-              <Text style={styles}></Text>
-            </Pressable>
-          </Modal>
-          <TouchableOpacity
-            onPress={() => setModalVisiblePhoto(true)}
-            style={[styles.CamaraG]}
-          ></TouchableOpacity>
-
-          <Text style={styles.nUsuario}> {userConstant.name}</Text>
-          <View style={styles.datosC}>
-            <View style={styles.datos}>
-              <StyledText fontSize={"subheading1"} style={styles.label}>
-                Nombre completo
-              </StyledText>
-              <View
-                style={{ flexDirection: "row", justifyContent: "space-between" }}
-              >
-                <TextInput
-                  style={styles.textarea}
-                  onChangeText={(text) =>
-                    setCredentials({
-                      ...credentials,
-                      name: text
-                    })
-                  }
-                >
-                  {userConstant.name}
-                </TextInput>
-                <View style={styles.icon}>
-                  <Ionicons name="md-pencil" size={24} color="#818281" />
-                </View>
-              </View>
-              <View
-                style={{ height: 1.5, backgroundColor: "#D9D9D9", width: "100%" }}
-              />
-            </View>
-            <View style={styles.datos}>
-              <StyledText fontSize={"subheading1"} style={styles.label}>
-                E-mail
-              </StyledText>
-              <View
-                style={{ flexDirection: "row", justifyContent: "space-between" }}
-              >
-                <Text style={styles.textarea} disabled={true}>
-                  {userConstant.email}
-                </Text>
-              </View>
-              <View
-                style={{ height: 1.5, backgroundColor: "#D9D9D9", width: "100%" }}
-              />
-            </View>
-            <View style={styles.datos}>
-              <StyledText fontSize={"subheading1"} style={styles.label}>
-                Número de teléfono
-              </StyledText>
-              <View
-                style={{ flexDirection: "row", justifyContent: "space-between" }}
-              >
-                <TextInput
-                  style={styles.textarea}
-                  onChangeText={(text) =>
-                    setCredentials({
-                      ...credentials,
-                      phone: text
-                    })
-                  }
-                >
-                  {phone}
-                </TextInput>
-                <View style={styles.icon}>
-                  <Ionicons name="md-pencil" size={24} color="#818281" />
-                </View>
-              </View>
-              <View
-                style={{ height: 1.5, backgroundColor: "#D9D9D9", width: "100%" }}
-              />
-            </View>
+              <Text style={styles.text}>Tomar foto</Text>
+            </TouchableOpacity>
             <View
               style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-                margin: Dimensions.get('window').height * 0.02,
-                marginTop: Dimensions.get('window').height * 0.05,
+                marginTop: 15,
+                left: "10%",
+                height: 1.5,
+                backgroundColor: "#D9D9D9",
+                width: "80%"
+              }}
+            />
+            <TouchableOpacity onPress={"hola"} style={[styles.modalText]}>
+              <Text style={styles.text}>Subir foto</Text>
+            </TouchableOpacity>
+            <View
+              style={{
+                marginTop: 15,
+                left: "10%",
+                height: 1.5,
+                backgroundColor: "#D9D9D9",
+                width: "80%"
+              }}
+            />
+            <TouchableOpacity onPress={"hola"} style={[styles.modalText]}>
+              <Text style={styles.textOrange}>Eliminar foto</Text>
+            </TouchableOpacity>
+            <Pressable
+              style={[styles.button]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles} />
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+      <Image
+        source={require("../../assets/images/Camara.png")}
+        style={[styles.Camara]}
+      />
+      <TouchableOpacity
+        onPress={() => setModalVisible(true)}
+        style={[styles.Camara]}
+      ></TouchableOpacity>
 
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisiblePhoto}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisiblePhoto);
+        }}
+      >
+        <View style={styles.muro} />
+        <Image
+          style={styles.fotoPerfilG}
+          source={
+            fotoPerfil
+              ? { uri: fotoPerfil }
+              : require('../../assets/images/FotoPerfil.png')
+          }
+        />
+        <Pressable
+          style={[styles.buttonG]}
+          onPress={() => setModalVisiblePhoto(!modalVisiblePhoto)}
+        >
+          <Text style={styles}></Text>
+        </Pressable>
+      </Modal>
+      <TouchableOpacity
+        onPress={() => setModalVisiblePhoto(true)}
+        style={[styles.CamaraG]}
+      ></TouchableOpacity>
+
+      <Text style={styles.nUsuario}> {userConstant.name}</Text>
+      <View style={styles.datosC}>
+        <View style={styles.datos}>
+          <StyledText fontSize={"subheading1"} style={styles.label}>
+            Nombre completo
+          </StyledText>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <TextInput
+              style={styles.textarea}
+              onChangeText={(text) =>
+                setCredentials({
+                  ...credentials,
+                  name: text
+                })
+              }
+            >
+              {userConstant.name}
+            </TextInput>
+            <View style={styles.icon}>
+              <Ionicons name="md-pencil" size={24} color="#818281" />
+            </View>
+          </View>
+          <View
+            style={{ height: 1.5, backgroundColor: "#D9D9D9", width: "100%" }}
+          />
+        </View>
+        <View style={styles.datos}>
+          <StyledText fontSize={"subheading1"} style={styles.label}>
+            E-mail
+          </StyledText>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <Text style={styles.textarea} disabled={true}>
+              {userConstant.email}
+            </Text>
+          </View>
+          <View
+            style={{ height: 1.5, backgroundColor: "#D9D9D9", width: "100%" }}
+          />
+        </View>
+        <View style={styles.datos}>
+          <StyledText fontSize={"subheading1"} style={styles.label}>
+            Número de teléfono
+          </StyledText>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <TextInput
+              style={styles.textarea}
+              onChangeText={(text) =>
+                setCredentials({
+                  ...credentials,
+                  phone: text
+                })
+              }
+            >
+              {phone}
+            </TextInput>
+            <View style={styles.icon}>
+              <Ionicons name="md-pencil" size={24} color="#818281" />
+            </View>
+          </View>
+          <View
+            style={{ height: 1.5, backgroundColor: "#D9D9D9", width: "100%" }}
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            margin: Dimensions.get('window').height * 0.02,
+            marginTop: Dimensions.get('window').height * 0.05,
+
+          }}
+        >
+          <TouchableOpacity
+            style={styles.guardarButton}
+            onPress={handleEnviar}
+          >
+            <Text style={styles.buttonText}>Guardar cambios</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.cancelarButton} onPress={navigation.navigate('inicio')}>
+            <Text style={styles.buttonTextBlue}>Cancelar</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <View style={styles.centeredView} />
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisibleBoton}
+        onRequestClose={() => {
+          setModalVisible(false);
+        }}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalViewM}>
+            <Text style={styles.modalTextM}>CONFIRMACIÓN</Text>
+            <Text style={styles.modalDescription}>
+              ¿Estás seguro que deseas modificar tus datos?
+            </Text>
+            <View
+              style={{
+                top: 10,
+                height: 1.2,
+                backgroundColor: '#d9d9d9',
+                width: '108%',
+              }}
+            ></View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                margin: 40,
               }}
             >
               <TouchableOpacity
-                style={styles.guardarButton}
-                onPress={handleEnviar}
+                style={styles.modalButton}
+                onPress={() => setModalVisibleBoton(false)}
               >
-                <Text style={styles.buttonText}>Guardar cambios</Text>
+                <Text style={styles.modalButtonText}>SÍ, CONFIRMO</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.cancelarButton} onPress={navigation.navigate('inicio')}>
-                <Text style={styles.buttonTextBlue}>Cancelar</Text>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={() => setModalVisibleBoton(false)}
+              >
+                <Text style={styles.modalButtonTextO}>CANCELAR</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
-        <View style={styles.centeredView} />
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisibleBoton}
-          onRequestClose={() => {
-            setModalVisible(false);
-          }}
-        >
-          <View style={styles.modalContainer}>
-            <View style={styles.modalViewM}>
-              <Text style={styles.modalTextM}>CONFIRMACIÓN</Text>
-              <Text style={styles.modalDescription}>
-                ¿Estás seguro que deseas modificar tus datos?
-              </Text>
-              <View
-                style={{
-                  top: 10,
-                  height: 1.2,
-                  backgroundColor: '#d9d9d9',
-                  width: '108%',
-                }}
-              ></View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  margin: 10,
-                }}
-              >
-                <TouchableOpacity
-                  style={styles.modalButton}
-                  onPress={() => setModalVisibleBoton(false)}
-                >
-                  <Text style={styles.modalButtonText}>SÍ, CONFIRMO</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.modalButton}
-                  onPress={() => setModalVisibleBoton(false)}
-                >
-                  <Text style={styles.modalButtonTextO}>CANCELAR</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </Modal>
-      </ImageBackground>
-    </View>
+      </Modal>
+    </ImageBackground>
   );
 }
 
@@ -378,7 +385,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: width * 0.35,
-    marginTop: width * 0.030,
+    marginTop: width * 0.035,
     height: height * 0.025,
   },
 
@@ -422,7 +429,7 @@ const styles = StyleSheet.create({
     backdropFilter: 'blur(100px)',
     borderRadius: 100,
     left: width * 0.27,
-    top: width * 0.07,
+    top: width * 0.3,
     width: Dimensions.get('window').width - 245,
     height: Dimensions.get('window').height - 640,
   },
@@ -465,7 +472,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     flex: 1,
     borderRadius: 100,
-    top: screenHeightPercentage - height * 0.3 * 1.0,
+    top: screenHeightPercentage - height * 0.3 * 0.6,
     left: screenWidthPercentage - width * 0.80 * -0.18,
     height: height * 0.055,
     width: screenWidthPercentage * 0.25,
@@ -481,9 +488,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    height: Dimensions.get('window').height - 800,
-    bottom: width * 0.05,
-    width: Dimensions.get('window').width - 250,
+    height: Dimensions.get('window').height /15,
+    bottom: width * -0.06,
+    width: Dimensions.get('window').width /2.5,
 
   },
   cancelarButton: {
@@ -494,9 +501,9 @@ const styles = StyleSheet.create({
     padding: 0,
     borderWidth: 1.5,
     borderColor: '#03B6E8',
-    height: Dimensions.get('window').height - 800,
-    bottom: width * 0.05,
-    width: Dimensions.get('window').width - 250,
+    height: Dimensions.get('window').height /15,
+    bottom: width * -0.06,
+    width: Dimensions.get('window').width /2.5,
   },
   buttonText: {
     color: 'white',
@@ -509,17 +516,17 @@ const styles = StyleSheet.create({
     height: 100,
   },
   nUsuario: {
+    
     fontFamily: 'Lato-Bold',
     fontWeight: 'bold',
     fontSize: width * 0.08,
     color: '#03B6E8',
+    position: 'absolute',
+    top: width - 70,
     alignContent: 'center',
-    left: width * 0.35,
-    bottom: Dimensions.get('window').width * -0.6,
+    left:Dimensions.get('window').width /2.8,
   },
-  container: {
-    flex: 1,
-  },
+
   container: {
     flex: 1,
   },
@@ -530,8 +537,8 @@ const styles = StyleSheet.create({
   },
   datosC: {
     width: Dimensions.get('window').width - 0,
-    height: Dimensions.get('window').height - 350,
-    paddingTop: width - 370,
+    height: Dimensions.get('window').height - 100,
+    paddingTop: width - 390,
     top: width - 140,
     backgroundColor: '#fff',
     borderTopEndRadius: 20,
@@ -540,7 +547,7 @@ const styles = StyleSheet.create({
   datos: {
     alignSelf: 'center',
     width: Dimensions.get('window').width - 80,
-    paddingBottom: 30,
+    paddingBottom: 20,
   },
   label: {
     color: '#878789',
@@ -569,13 +576,15 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: width * 0.3,
     position: 'absolute',
-    top: screenHeightPercentage - height * 0.3 * 1.625,
+    top: screenHeightPercentage - height * 0.3 * 1.25,
     left: screenWidthPercentage - width * 0.80 * 0.375,
     height: height * 0.27,
     width: screenWidthPercentage * 1.09,
   },
+  fotoPerfilll: {
+    borderRadius: width * 0.3,
+    left: screenWidthPercentage - width * 0.80 * 0.375,
+    height: height * 0.08,
+    width: screenWidthPercentage * 1.0,
+  },
 });
-  /*  top: screenHeightPercentage - height * 0.3 * 1.47,
-        left: screenWidthPercentage - width * 0.80 * -0.92,
-        height:height*0.050,
-        width: screenWidthPercentage * 1.13,*/
