@@ -15,6 +15,7 @@ import { useAuth } from '../../../context/AuthProvider';
 import { useEffect } from 'react';
 import { getUserName } from '../../lib/supabaseHandler';
 import { updateUserConstant } from '../../Constants/userConstants';
+import { supabase } from '../../lib/supabase';
 
 const { width, height } = Dimensions.get('window');
 
@@ -22,14 +23,23 @@ export function SectoresMain() {
   const { user } = useAuth();
 
   const aguantar = async () => {
-    console.log('USER-EMAIL: ', user.email)
-    const response = await getUserName(user.email);
+    const responsse = await supabase.auth.getSession();
+    try {
+      const response = await getUserName(user.email);
+      await updateUserConstant(
+        response.data[0].name,
+        response.data[0].email,
+        response.data[0].uuid
+      );
+      await console.log('response data: ', response.data[0]);
+    } catch (error) {
+      const response = await getUserName(responsse.data.session.user.email);    
     await updateUserConstant(
       response.data[0].name,
       response.data[0].email,
       response.data[0].uuid
     );
-    await console.log('response data: ', response.data[0]);
+    }
   };
 
   useEffect(() => {

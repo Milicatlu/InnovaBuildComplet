@@ -6,8 +6,8 @@ const AuthContext = createContext({});
 
 export const useAuth = () => useContext(AuthContext);
 
-const login = (email, password) =>
-  supabase.auth.signInWithPassword({ email, password });
+const login = (email, password) => supabase.auth.signInWithPassword({ email, password });
+
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -18,11 +18,11 @@ const AuthProvider = ({ children }) => {
       if (event === "SIGNED_IN") {
         setUser(session.user);
         setAuth(true);
+        console.log('SESION PUNTO USER: ',session.user)
       }
       if(event === "SIGNED_OUT"){
         setUser(null);
         setAuth(false);
-        console.log('Singed Out')
       }
     });
     return () => {
@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ user, login  }}>
       {children}
     </AuthContext.Provider>
   );

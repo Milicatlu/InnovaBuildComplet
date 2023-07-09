@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
    StyleSheet,
@@ -21,7 +20,6 @@ const screenHeightPercentage = heightPercentageToDP('50%');
 
 export function Login({ navigation }) {
    const { login } = useAuth();
-   const [password, setPassword] = useState('');
    const [isPasswordVisible, setPasswordVisibility] = useState(false);
      const handlePasswordVisibility = () => {
       setPasswordVisibility(!isPasswordVisible);
@@ -96,11 +94,14 @@ export function Login({ navigation }) {
                      { backgroundColor: user.backgroundColor2 },
                      { width: screenWidthPercentage * 0.5 },
                   ]}
-                  value={password}
-                  onChangeText={(pwd) => setPassword(pwd)}
+                  onChangeText={((text) =>
+                     setUser({
+                        ...user,
+                        password: text
+                     }))}
                   secureTextEntry={!isPasswordVisible}
                   placeholder="Password"
-               />
+               >12345678Aa</TextInput>
 
             </View>
 
