@@ -97,97 +97,10 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-between"
   },
-  nuevaBolsa: {
-    width: "100%",
-    height: responsiveHeight(2.2),
-    backgroundColor: "#03B6E8",
-    color: "#fff",
-    borderRadius: responsiveHeight(1.1),
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: responsiveHeight(1),
-    fontSize: responsiveFontSize(1.8)
-  },
-  infobolsaC: {
-    flex: 0.8,
-    flexDirection: "row",
-    maxHeight: "20%",
-    backgroundColor: "#fff",
-    borderTopLeftRadius: responsiveHeight(4),
-    borderTopRightRadius: responsiveHeight(4),
-    marginTop: responsiveHeight(1)
-  },
-  infobolsa: {
-    flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  valor: {
-    flex: 0.9,
-    justifyContent: "center",
-    alignItems: "center"
-  },
   color: {
     width: "100%",
     flex: 0.1,
     backgroundColor: "red"
-  },
-  valorN: {
-    fontSize: responsiveFontSize(4)
-  },
-  magnitud: {
-    backgroundColor: "blue",
-    height: responsiveHeight(10)
-  },
-  text: {
-    color: "#03B6E8",
-    fontSize: responsiveFontSize(2.8),
-    marginBottom: responsiveHeight(2),
-    marginTop: responsiveHeight(1),
-    alignSelf: "center",
-    fontFamily: "Lato-Bold",
-  },
-  titulo: {
-    alignSelf: "center",
-    fontSize: responsiveFontSize(9.8),
-  },
-  editarnombre: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: responsiveHeight(1)
-  },
-  textedit: {
-    flex: 0.87,
-    color: "#04B6E8",
-    fontSize: responsiveFontSize(1.8),
-    fontFamily: "Roboto",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  icons: {
-    color: "#03B6E8",
-    margin: responsiveHeight(1),
-    fontSize: responsiveFontSize(3.2)
-  },
-  imagen2: {
-    flex: 1,
-    flexDirection: "column",
-    padding: responsiveHeight(2),
-    paddingTop: responsiveHeight(1)
-  },
-  btn: {
-    backgroundColor: "#04B6E8",
-    color: "#fff",
-    borderRadius: responsiveHeight(1.1),
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  contenedor: {
-    alignItems: "flex-start",
-    flexDirection: "row",
-    justifyContent: "space-around"
   },
   vacio: {
     marginBottom: responsiveHeight(2),
@@ -206,18 +119,6 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(2),
     fontSize: responsiveFontSize(1.8),
     color: "#03B6E8"
-  },
-  icons: {
-    flex: 0.1,
-    color: "#04B6E8",
-    height: "100%",
-    fontSize: responsiveFontSize(4)
-  },
-  subsubcont: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    margin: responsiveHeight(1),
-    height: responsiveHeight(6)
   },
   icono: {
     marginRight: responsiveWidth(0.5),
