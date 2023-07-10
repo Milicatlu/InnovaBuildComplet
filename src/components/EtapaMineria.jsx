@@ -67,12 +67,12 @@ export function EtapaMineria() {
                         <SwitchSelector style={styles.container2}
                            initial={0}
                            fontSize={12}
-                           backgroundColor={'#000000'}
+                           backgroundColor={'#FFF'}
                            bold={true}
                            textColor={"#FFFF"}
                            selectedColor={'#FFFF'}
                            buttonColor={"#FFFF"}
-                           borderColor={"#FFF"}
+                           borderColor={"#000"}
                            hasPadding options={[{ label: "Encendido", value: true, activeColor: "#1DB6E5" }, { label: "Apagado", value: false, activeColor: "#EB691A" }]}
                            valuePadding={3}
                            height={30}
@@ -88,12 +88,18 @@ export function EtapaMineria() {
 
 
                      <View style={{ marginLeft: "20%", flexDirection: "row", alignItems: "center" }}>
-                        <Image source={require("../../assets/icons/Temperatura.png")} style={{ width: 40, height: 45 }} />
-                        {showhide !== true ? <StyledText style={{ fontWeight: "bold", fontSize: 20, color: "#1DB6E5" }}>10°</StyledText>
-                           : <StyledText style={{ fontWeight: "bold", fontSize: 20, color: "#EB691A" }}>+40°</StyledText>}
-
-
-                     </View >
+                        {showhide !== true ? (
+                           <>
+                              <Image source={require("../../assets/icons/Temperatura.png")} style={{ width: 40, height: 45 }} />
+                              <StyledText style={{ fontWeight: "bold", fontSize: 20, color: "#1DB6E5" }}>10°</StyledText>
+                           </>
+                        ) : (
+                           <>
+                           <Image source={require("../../assets/images/TemperaturaAlta.png")} style={{ width: 40, height: 45 }} />  
+                           <StyledText style={{ fontWeight: "bold", fontSize: 20, color: "#EB691A" }}>+40°</StyledText>
+                           </>
+                        )}
+                     </View>
                   </View>
                   <View style={{ marginTop: 20 }} />
                </View>

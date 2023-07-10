@@ -1,21 +1,20 @@
-//RESPONSIVE
 import {
     ImageBackground,
-    Pressable,
     StyleSheet,
-    TouchableOpacity,
     View,
     Text,
-    Image,
+    TouchableOpacity,
   } from "react-native";
   import { jwt } from "../helpers/Config";
-  import { StyledButton2, StyledButton } from "./StyledButton";
   import { StyledText } from "./StyledText";
   import { AppBar } from "./AppBar";
+  import { LineChart } from "react-native-chart-kit";
   // import AsyncStorage from "@react-native-async-storage/async-storage"
   import { useState, useEffect } from "react";
+  import { ScrollView} from 'react-native';
+  import { StyledButton,StyledButton2 } from "./StyledButton";
+  import { Modal } from "react-native";
   import { InfluxDBHelper } from "../helpers/InfluxDB";
-
   const { width, height } = Dimensions.get("window");
   import { Dimensions } from "react-native";
   export function SiloMenu(props) {
@@ -33,6 +32,10 @@ import {
     const [reRenders, setReRenders] = useState(0)
     const [screenName, setScreenName] = useState("inicio")
     const [range, setRange] = useState("-30d")
+    const meses= ["1h.","2h.","3h.","4h.","5h.","6h.","7h.","8h."];
+    const [parametro1, setParametro1] = useState(meses)  
+    const [showDropdown, setShowDropdown] = useState(false);
+  
   
     useEffect(() => {
         InfluxDBHelper.getLastPoint({
@@ -241,85 +244,191 @@ import {
                                 Humedad
                             </StyledText>
                         </View>
-
                         <View style={styles.imagencontainer}>
-                        <ImageBackground
-                        source={require("../../assets/images/Tormometros.png")}
-                        style={{height:"100%"}}
-                        />
+                            <ImageBackground
+                                source={require("../../assets/images/palabra-02.png")}
+                                style={{ height: "100%" }}
+                            />   
                         </View>
-
-                        
-                        {CO2Array && temperaturaArray && humedadArray && (
-                            <TouchableOpacity
-                                onPress={() => {
-                                    setIsOpen(true)
+                  </View>
+                    
+                  <View style={{backgroundColor:"white",width:"82%" ,height: 200,left: "9%",top:-30}}>
+                  <ScrollView horizontal contentContainerStyle={styles.scrollView}>
+                      <View style={styles.item}>
+                       <StyledText style={{textAlign:"center",color:"#CCA500"}}>Temperatura</StyledText>   
+                      <LineChart  data={{
+                                  labels: parametro1,
+                                  datasets: [
+                                      {data: [25,17,20,11,19,29,7,10,9]}
+                                  ]
+                              }}
+                              width={315}
+                              height={170}
+                              yAxisSuffix='%'
+                              yAxisInterval={1}
+                              chartConfig={{
+                                  backgroundColor:"#FFF",
+                                  backgroundGradientFrom:"#FFF",
+                                  backgroundGradientTo:"#FFF",
+                                  decimalPlaces:2,
+                                  color:(opacity = 0) => `#CCA500`,
+                                  labelColor:(opacity = 0) => `rgba(0,0,0, ${opacity})`,
+                                  style:{
+                                      borderRadius:16
+                                  },
+                                  propsForDots:{
+                                      r:"4",
+                                      strokeWidth:"1",
+                                      stroke:"#CCA500"
+                                  },
+                              }}
+                              bezier
+                              style={{
+                                  marginVertical:8,
+                                  
+                              }}
+                  />
+        </View>
+  
+        <View style={styles.item}>
+          <StyledText style={{textAlign:"center",color:"#EB691A"}}>CO2</StyledText>   
+                      <LineChart  data={{
+                                  labels: parametro1,
+                                  datasets: [
+                                      {data: [24,28,10,15,22,10,11,8,6]}
+                                  ]
+                              }}
+                              width={315}
+                              height={170}
+                              yAxisSuffix='%'
+                              yAxisInterval={1}
+                              chartConfig={{
+                                  backgroundColor:"#FFF",
+                                  backgroundGradientFrom:"#FFF",
+                                  backgroundGradientTo:"#FFF",
+                                  decimalPlaces:2,
+                                  color:(opacity = 0) => `#EB691A`,
+                                  labelColor:(opacity = 0) => `rgba(0,0,0, ${opacity})`,
+                                  style:{
+                                      borderRadius:16
+                                  },
+                                  propsForDots:{
+                                      r:"4",
+                                      strokeWidth:"1",
+                                      stroke:"#EB691A"
+                                  },
+                              }}
+                              bezier
+                              style={{
+                                  marginVertical:8,
+                                  
+                              }}
+  
+                  />
+        </View>  
+        <View style={styles.item}>
+                  <StyledText style={{textAlign:"center",color:"#1DB6E5"}}>Humedad</StyledText>   
+                      <LineChart  data={{
+                                  labels: parametro1,
+                                  datasets: [
+                                      {data: [12,18,21,26,11,8,15,16,22]}
+                                  ]
+                              }}
+                              width={315}
+                              height={170}
+                              yAxisSuffix='%'
+                              yAxisInterval={1}
+                              chartConfig={{
+                                  backgroundColor:"#FFF",
+                                  backgroundGradientFrom:"#FFF",
+                                  backgroundGradientTo:"#FFF",
+                                  decimalPlaces:2,
+                                  color:(opacity = 0) => `#1DB6E5`,
+                                  labelColor:(opacity = 0) => `rgba(0,0,0, ${opacity})`,
+                                  style:{
+                                      borderRadius:16
+                                  },
+                                  propsForDots:{
+                                      r:"4",
+                                      strokeWidth:"1",
+                                      stroke:"#1DB6E5"
+                                  },
+                              }}
+                              bezier
+                              style={{
+                                  marginVertical:8,
+                                  
+                              }}/>
+              </View> 
+              </ScrollView>
+                  </View>
+                  {showDropdown && (
+                      <Modal
+                          visible={showDropdown}
+                          animationType="slide"
+                          transparent={true}
+                          onRequestClose={() => setShowDropdown(false)}
+                      >   
+                          <View style={styles.dropdown}>
+                              <View>
+                              <TouchableOpacity 
+                              style={styles.dropdownbuton}
+                              onPress={() => {
+                                  setShowDropdown(false);
                                 }}
-                                style={styles.nuevaBolsa}
-                            >
-                                <StyledText>Ver mas</StyledText>
-                            </TouchableOpacity>
-                        )}
-                    </View>
-  
+                              />
+                              </View>
+                              <StyledText fontWeight="bold" fontSize="subheading1" style={{ marginTop: 30, marginLeft: 25, color: "#1DB6E5" }}>
+                                  Rango de datos
+                              </StyledText>
+                              <View style={{ justifyContent: "center", alignItems: "center" }}>
+                                  <StyledText fontStyle="italic" color="terciary" style={{ marginTop: 20, marginLeft: -10, width: 296, height: 75, fontSize: 16, textAlign: "justify" }}>
+                                  Los siguientes datos son los niveles normales que debe tener la silo bolsa en cuanto a su temperatura, dióxido de carbono y humedad.
+                                  </StyledText>
+                              </View>
+                              <View style={{ flexDirection: "row", marginTop: 20 }}>
+                              <StyledText fontWeight="bold" style={styles.magnitudcont}>
+                              0° a 25°
+                              <StyledText style={styles.magnitudcont.magnitudcont2}> TEMPERATURA</StyledText>
+                              </StyledText>
+                              <StyledText fontWeight="bold" style={styles.magnitudcont}>
+                              1% a 18%
+                              <StyledText style={styles.magnitudcont.magnitudcont2}>        CO2</StyledText>
+                              </StyledText>
+                              <StyledText fontWeight="bold" style={styles.magnitudcont}>
+                              8% a 18%
+                              <StyledText style={styles.magnitudcont.magnitudcont2}> HUMEDAD</StyledText>
+                              </StyledText>
+                          </View>
+                          </View>
+                          
+                      </Modal>
+                  )}
+                  <View>
+                      <View>
+                          <TouchableOpacity 
+                              style={styles.dropdownbuton2}
+                              onPress={() =>setShowDropdown(true)}
+                          />                
+                          <View style={{ flexDirection: "row",padding: 5,backgroundColor:"white",top:50,borderTopLeftRadius: 20, borderTopRightRadius: 20}} {...props}>      
+                          <StyledButton
+                              onPress={() => {props.navigation.navigate("Grafico2");}}
+                              styleContainer={styles.lleno}
+                              style={{ fontSize: 20 }}
+                          >
+                          Grafico
+                          </StyledButton>
+                          <StyledButton2
+                          onPress={() => {props.navigation.navigate("GraficoView");}}
+                          styleContainer={{ flex: 1, margin: 10, padding: 5 }}
+                          style={{ fontSize: 20 ,color:"#1DB6E5"}}
+                          >
+                          Ubicacion
+                          </StyledButton2>
+                          </View>
+                      </View>
+                  </View>   
                 </ImageBackground>
-                <View style={styles.contenedor}>
-                    <StyledText fontWeight="bold" fontSize="subheading1" style={{ marginTop: 30, marginLeft:25 , color:"#1DB6E5"} }   >Rango de datos</StyledText>
-                    <View style={{justifyContent:"center",alignItems:"center"}}>
-                    <StyledText fontStyle="italic" color="terciary" style={{ marginTop: 20, marginLeft:-10, width:296,height:75,fontSize:16,textAlign:"justify" }} >
-                        Los siguientes datos son los niveles normales que debe tener la
-                        silo bolsa en cuanto a su temperatura, dióxido de carbono y
-                        humedad.
-                    </StyledText>
-                    </View>
-                    <View style={{ flexDirection: "row" , marginTop:20}}>
-                            <StyledText
-                                fontWeight="bold"
-                                style={styles.magnitudcont}
-                            >
-                                0° a 25°
-                                
-                                <StyledText style={styles.magnitudcont.magnitudcont2} >           TEMPERATURA</StyledText>
-                            </StyledText>
-                            <StyledText
-                                fontWeight="bold"
-                                style={styles.magnitudcont}
-                                
-                            >
-                                1% a 18%
-                                
-                                <StyledText style={styles.magnitudcont.magnitudcont2}>            CO2  </StyledText>
-                            </StyledText>
-                            <StyledText
-                                fontWeight="bold"
-                                style={styles.magnitudcont}
-                            >
-                                8% a 18%     
-                            
-                            <StyledText 
-                            style={styles.magnitudcont.magnitudcont2} > HUMEDAD </StyledText>
-                            </StyledText>
-                            
-                        </View>
-                        <View style={{ flexDirection: "row", marginTop: 15 ,padding: 5}} {...props}>
-                        <StyledButton
-                            onPress={() => {props.navigation.navigate("Grafico2");}}
-                            styleContainer={styles.lleno}
-                            style={{ fontSize: 20 }}
-                        >
-                        Grafico
-                        </StyledButton>
-                        <StyledButton2
-                        onPress={() => {props.navigation.navigate("GraficoView");}}
-                        styleContainer={{ flex: 1, margin: 10, padding: 5 }}
-                        style={{ fontSize: 20 ,color:"#1DB6E5"}}
-                        >
-                        Ubicacion
-                        </StyledButton2>
-                    </View>
-  
-                </View>
-                
             </View>
         </>
     )
@@ -359,7 +468,7 @@ import {
     infobolsaC: {
         flex: 10,
         flexDirection: "row",
-        maxHeight: "17%",
+        maxHeight: "16%",
         padding: 2,
         backgroundColor: "#fff",
         borderTopLeftRadius: 35,
@@ -449,6 +558,7 @@ import {
         maxWidth: 200,
         marginTop:10,
         color:"#1DB6E5",
+  
         magnitudcont2: {
             color:"#878789",
     
@@ -471,4 +581,58 @@ import {
     lleno:{
         backgroundColor:"rgb(3,182,232)",
     },
+    scrollView: {
+      flexDirection: 'row', // Asegura que los elementos estén en una fila horizontal
+    },
+    item: {
+      width: "33%", // Ancho de cada elemento
+      height: "99%", // Altura de cada elemento
+      margin: 1, // Espacio entre elementos
+    },
+    button: {
+      width: 100,
+      height: 14,
+      top: 694,
+      left: 156,
+      opacity: 0.4,
+      backgroundColor: 'blue',
+      borderRadius: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    buttonText: {
+      color: 'white',
+      fontSize: 12,
+    },
+    
+    dropdown: {
+      position: "absolute",
+      top: "60%",//64 // Ajusta la posición vertical del dropdown
+      left: "0%",
+      height:"32%", // Ajusta la posición horizontal del dropdown
+      width: "100%", // Ajusta el ancho del dropdown
+      borderTopLeftRadius: 30, // Agrega un borde en la esquina superior izquierda
+      borderTopRightRadius: 30,
+      backgroundColor: "white",
+      zIndex: 1,
+    },
+    dropdownbuton:{
+      width: 64,
+      height:11,
+      backgroundColor: 'grey',
+      borderRadius: 50,
+      border: 'none',
+      left:"42%",
+    },
+    dropdownbuton2:{
+      width: 64,
+      height:11,
+      backgroundColor: 'grey',
+      borderRadius: 50,
+      border: 'none',
+      left:"42%",
+      top:"65%",
+      zIndex:999
+    }
+  
   })

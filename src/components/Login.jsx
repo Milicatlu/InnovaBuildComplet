@@ -11,6 +11,7 @@ import {
    KeyboardAvoidingView,
    Dimensions,
 } from 'react-native';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import { widthPercentageToDP, heightPercentageToDP } from 'react-native-responsive-screen';
 import { useAuth } from '../../context/AuthProvider';
 const { width, height } = Dimensions.get('window');
@@ -140,44 +141,43 @@ export function Login({ navigation }) {
 
 
 const styles = StyleSheet.create({
-   subsubButtom: {
-
-   },
+  
    subcontText: {
       color: '#04B6E8',
-      fontSize: width * 0.055,
+      fontSize:responsiveFontSize(3),
       fontWeight: 'bold',
       fontFamily: 'Lato-Regular',
-      width: width * 3,
-      top: screenHeightPercentage - height * 0.3 * 1.80,
-      left: screenWidthPercentage - width * 0.535 * -1.35,
+      width:responsiveWidth(300),
+      bottom:responsiveHeight(3),
+      borderBottomLeftRadius: responsiveHeight(2),
+      left: responsiveWidth(120),
    },
    fuentebottom: {
       color: '#fff',
-      fontSize: 15,
+      fontSize: responsiveFontSize(1.8),
    },
    ingresar: {
-      fontSize: width * 0.04,
+      fontSize: responsiveHeight(2.5),
       color: '#fff',
       fontWeight: 'bold',
    },
    fotito: {
-      width: screenWidthPercentage + 20,
-      height: height * 0.3,
-      top: screenHeightPercentage - height * 0.3 * 1.85,
-      left: screenWidthPercentage - width * 0.535 * 0.91,
+      width: responsiveWidth(60),
+      height:responsiveHeight(30),
+      bottom: responsiveHeight(8),
+      left: responsiveWidth(0),
       tintColor: 'white',
    },
    textcomplet: {
-      fontSize: width * 0.05,
-      top: screenHeightPercentage - height * 0.3 * 1.70,
-      left: screenWidthPercentage - width * 0.535 * -1.35,
-      fontWeight: '600',
-      width: width * 0.6,
+      fontSize:responsiveFontSize(2.6),
+      top: responsiveHeight(1),
+      left:responsiveWidth(121),
+      fontWeight: responsiveFontSize(5),
+      width: responsiveWidth(60),
       textAlign: 'center',
       textAlignVertical: 'center',
-      lineHeight: width * 0.07,
-      letterSpacing: width * 0.0019,
+      lineHeight: responsiveFontSize(4.2),
+      letterSpacing: responsiveFontSize(0.1),
       color: 'white',
    },
    container: {
@@ -186,43 +186,43 @@ const styles = StyleSheet.create({
    subsubcont: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      marginVertical: height * 0.015,
-      top: screenHeightPercentage - height * 0.3 * 1.60,
-      left: screenWidthPercentage - width * 0.80 * -0.875,
-      width: screenWidthPercentage * 1.2,
+      marginVertical:responsiveHeight(1.5),
+      top:responsiveHeight(5),
+      left:responsiveWidth(121),
+      width: responsiveWidth(60),
    },
 
    TextView: {
       backgroundColor: '#C6C6C8',
       justifyContent: 'flex-end',
       flex: 0.92,
-      height: height * 0.045,
-      borderRadius: 8,
-      paddingLeft: width * 0.02,
+      height:responsiveHeight(4.5),
+      borderRadius: responsiveFontSize(1.1),
+      paddingLeft: responsiveWidth(2),
       alignItems: 'center',
    },
    icons: {
-      height: height * 0.040,
-      width: width * 0.12,
+      height: responsiveHeight(4),
+      width: responsiveWidth(12.5),
    },
    btn: {
-      top: screenHeightPercentage - height * 0.3 * 1.47,
-      left: screenWidthPercentage - width * 0.80 * -0.92,
+      top:responsiveHeight(10),
+      left:responsiveWidth(124),
       backgroundColor: '#03B6E8',
       color: '#fff',
       borderRadius: 8,
       justifyContent: 'center',
       alignItems: 'center',
-      height: height * 0.050,
-      width: screenWidthPercentage * 1.13,
+      height: responsiveHeight(6),
+      width: responsiveWidth(57),
    },
 
    RNC: {
       flexDirection: 'row',
       color: '#fff',
       fontSize: 6,
-      top: screenHeightPercentage - height * 0.3 * 1.35,
-      left: screenWidthPercentage - width * 0.80 * -0.93,
+      top: responsiveHeight(13.5),
+      left:responsiveWidth(127),
    },
    image: {
       flex: 1,

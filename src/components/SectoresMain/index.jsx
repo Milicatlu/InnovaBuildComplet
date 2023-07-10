@@ -1,23 +1,14 @@
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Dimensions,
-  ImageBackground,
-  Text,
-  Image,
-} from 'react-native';
-import { StyledText } from '../StyledText';
-import { theme } from '../../theme';
+import React, { useEffect } from 'react';
+import { View, StyleSheet, ImageBackground, Image, Text } from 'react-native';
 import { Link } from '@react-navigation/native';
 import { AppBar } from '../AppBar';
 import { useAuth } from '../../../context/AuthProvider';
-import { useEffect } from 'react';
 import { getUserName } from '../../lib/supabaseHandler';
 import { updateUserConstant } from '../../Constants/userConstants';
+import { responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
+import { StyledText } from '../StyledText';
+import { theme } from '../../theme';
 import { supabase } from '../../lib/supabase';
-
-const { width, height } = Dimensions.get('window');
 
 export function SectoresMain() {
   const { user } = useAuth();
@@ -34,11 +25,11 @@ export function SectoresMain() {
       await console.log('response data: ', response.data[0]);
     } catch (error) {
       const response = await getUserName(responsse.data.session.user.email);    
-    await updateUserConstant(
-      response.data[0].name,
-      response.data[0].email,
-      response.data[0].uuid
-    );
+      await updateUserConstant(
+        response.data[0].name,
+        response.data[0].email,
+        response.data[0].uuid
+      );
     }
   };
 
@@ -48,82 +39,61 @@ export function SectoresMain() {
 
   return (
     <ImageBackground
-      source={require('../../../assets/images/Fondo-06.jpg')} resizeMode="cover" style={styles.image}
-    
-      imageStyle={{
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
+      source={require('../../../assets/images/Fondo-06.jpg')}
+      resizeMode="cover"
+      style={styles.image}
     >
       <AppBar />
 
       <StyledText
-        fontSize="subheading3"
+        fontSize={responsiveHeight(5)}
         color="secondary"
         align="center"
         style={styles.titulo}
       >
         APLICACIONES
       </StyledText>
-      <View
-        style={{
-          width: Dimensions.get('window').width / 100 * 80,
-          marginRight: Dimensions.get('window').width / 100 * 10,
-          marginLeft: Dimensions.get('window').width / 100 * 10,
-
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Link style={{ margin: 10 }} to={{ screen: 'Mineria' }}>
+      <View style={styles.containerWrapper}>
+        <Link style={styles.link} to={{ screen: 'Mineria' }}>
           <ImageBackground
             source={require('../../../assets/images/Mineria.png')}
             style={styles.container}
-            imageStyle={{ borderRadius: 15 }}
+            imageStyle={styles.containerImage}
           >
             <View style={styles.containerDark} />
-            <StyledText
-              fontSize="subheading2"
-              fontWeight="bold"
-              color="primary"
-              align="center"
+            <Text
+              style={styles.text}
             >
               MINERIA
-            </StyledText>
+            </Text>
           </ImageBackground>
         </Link>
-        <Link style={{ margin: 10 }} to={{ screen: 'PetroleoCategoria' }}>
+        <Link style={styles.link} to={{ screen: 'PetroleoCategoria' }}>
           <ImageBackground
             source={require('../../../assets/images/Petroleo.png')}
-            style={styles.container}
-            imageStyle={{ borderRadius: 15 }}
+            style={[styles.container, styles.containerLarge]}
+            imageStyle={styles.containerImage}
           >
             <View style={styles.containerDark} />
-            <StyledText
-              fontSize="subheading2"
-              fontWeight="bold"
-              color="primary"
-              align="center"
+            <Text
+              style={styles.textLarge}
             >
               PETROLEO
-            </StyledText>
+            </Text>
           </ImageBackground>
         </Link>
-        <Link style={{ margin: 10 }} to={{ screen: 'AgriculturaMenu' }}>
+        <Link style={styles.link} to={{ screen: 'AgriculturaMenu' }}>
           <ImageBackground
             source={require('../../../assets/images/Agricultura.png')}
             style={styles.container}
-            imageStyle={{ borderRadius: 15 }}
+            imageStyle={styles.containerImage}
           >
             <View style={styles.containerDark} />
-            <StyledText
-              fontSize="subheading2"
-              fontWeight="bold"
-              color="primary"
-              align="center"
+            <Text
+              style={styles.text}
             >
               AGRICULTURA
-            </StyledText>
+            </Text>
           </ImageBackground>
         </Link>
       </View>
@@ -136,40 +106,65 @@ export function SectoresMain() {
 }
 
 const styles = StyleSheet.create({
-  image:{
-    flex:1,
-  }
-,  satelitechic: {
+  image: {
+    flex: 1,
+  },
+  satelitechic: {
     position: 'absolute',
-    left: width * 0.60,
-    top: width / 6,
-    width: Dimensions.get('window').width - 150,
-    height: Dimensions.get('window').height - 500,
+    left: responsiveWidth(55),
+    top: responsiveWidth(18),
+    width: responsiveWidth(65),
+    height: responsiveHeight(35),
     resizeMode: 'contain',
   },
+  containerWrapper: {
+    width: responsiveWidth(80),
+    marginRight: responsiveWidth(10),
+    marginLeft: responsiveWidth(10),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
-    margin: 10,
+    marginVertical: responsiveHeight(2),
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.colors.primaryBackgroundColor,
-    height: Dimensions.get('window').height / 5,
-    width: Dimensions.get('window').width / 100 * 70,
+    height: responsiveHeight(22),
+    width: responsiveWidth(70),
+    borderRadius: 15,
+  },
+  containerImage: {
     borderRadius: 15,
   },
   containerDark: {
+    position: 'absolute',
     borderRadius: 15,
     backgroundColor: 'rgba(0,0,0,0.27)',
-    width: '100%',
-    height: '100%',
-    maxWidth: '100%',
-    position: 'absolute',
+    width: responsiveWidth(70),
+    height: responsiveHeight(22),
   },
   titulo: {
-    margin: 40,
-    fontSize:  Dimensions.get('window').height /20,
+    marginVertical: responsiveHeight(4),
+    fontSize: responsiveHeight(5),
     fontWeight: 'bold',
-    fontWeight: '900',
     fontFamily: 'Lato-Bold',
+  },
+  link: {
+    marginVertical: responsiveHeight(2),
+  },
+  text: {
+    fontSize: responsiveHeight(3.5),
+    fontWeight: 'bold',
+    color: theme.colors.primary,
+    textAlign: 'center',
+    marginTop: responsiveHeight(1),
+  },
+  textLarge: {
+    fontSize: responsiveHeight(3.5),
+    fontWeight: 'bold',
+    color: theme.colors.primary,
+    textAlign: 'center',
+    marginTop: responsiveHeight(2),
   },
 });

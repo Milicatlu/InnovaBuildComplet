@@ -60,12 +60,12 @@ export function EtapaPetroleo() {
                         <SwitchSelector style={styles.container2}
                            initial={0}
                            fontSize={12}
-                           backgroundColor={'#000000'}
+                           backgroundColor={'#FFFF'}
                            bold={true}
                            textColor={"#FFFF"}
                            selectedColor={'#FFFF'}
                            buttonColor={"#FFFF"}
-                           borderColor={"#FFF"}
+                           borderColor={"#000000"}
                            hasPadding options={[{ label: "Encendido", value: true, activeColor: "#1DB6E5" }, { label: "Apagado", value: false, activeColor: "#EB691A" }]}
                            valuePadding={3}
                            height={30}
@@ -82,12 +82,12 @@ export function EtapaPetroleo() {
                         <SwitchSelector style={styles.container2}
                            initial={0}
                            fontSize={12}
-                           backgroundColor={'#000000'}
+                           backgroundColor={'#FFFF'}
                            bold={true}
                            textColor={"#FFFF"}
                            selectedColor={'#FFFF'}
                            buttonColor={"#FFFF"}
-                           borderColor={"#FFF"}
+                           borderColor={"#000000"}
                            hasPadding options={[{ label: "Encendido", value: true, activeColor: "#1DB6E5" }, { label: "Apagado", value: true, activeColor: "#EB691A" }]}
                            valuePadding={3}
                            onPress={(value) => setShowHide2(value)}

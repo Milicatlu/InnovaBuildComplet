@@ -14,6 +14,7 @@ import { StyledText } from "./StyledText";
 import { StyledButton } from "./StyledButton";
 import { AppBar } from "./AppBar";
 import { useState } from "react";
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { supabase } from "../lib/supabase";
 const { width, height } = Dimensions.get("window");
@@ -75,7 +76,7 @@ export function RegistroAle({ navigation }) {
 
          <View style={styles.datosC}>
             <View style={styles.datos}>
-               <StyledText fontSize={height * 0.04} style={styles.label}>
+               <StyledText fontSize={responsiveFontSize(0)} style={styles.label}>
                   Nombre completo
                </StyledText>
                <View
@@ -102,7 +103,7 @@ export function RegistroAle({ navigation }) {
                ></View>
             </View>
             <View style={styles.datos}>
-               <StyledText fontSize={height * 0.04} style={styles.label}>
+               <StyledText fontSize={responsiveFontSize(0)} style={styles.label}>
                   E-mail
                </StyledText>
                <View
@@ -129,7 +130,7 @@ export function RegistroAle({ navigation }) {
             </View>
 
             <View style={styles.datos}>
-               <StyledText fontSize={height * 0.1} style={styles.label}>
+               <StyledText fontSize={responsiveFontSize(0)} style={styles.label}>
                   Contraseña
                </StyledText>
                <View
@@ -261,15 +262,15 @@ export function RegistroAle({ navigation }) {
 export default RegistroAle;
 const styles = StyleSheet.create({
    nover2: {
-      left: screenWidthPercentage - width * 0.8 * 0.55,
-      top: screenHeightPercentage - height * 0.8 * 0.51,
-      width: screenWidthPercentage - width * 0.8 * 0.55,
-      height: screenHeightPercentage - height * 0.8 * 0.58,
+      left: responsiveWidth(2),
+      top: responsiveHeight(2),
+      width: responsiveWidth(2),
+      height:responsiveHeight(2),
    },
    nover: {
-      top: screenHeightPercentage - height * 0.8 * 0.62,
-      width: screenWidthPercentage - width * 0.8 * 0.55,
-      height: screenHeightPercentage - height * 0.8 * 0.58,
+      top:responsiveHeight(1),
+      width: responsiveWidth(7),
+      height:responsiveHeight(3.5),
    },
    image: {
       flex: 1,
@@ -282,20 +283,19 @@ const styles = StyleSheet.create({
    },
    modalViewM: {
       backgroundColor: "white",
-      borderRadius: 20,
-      padding: 10,
-      width: Dimensions.get("window").width - 110,
+      borderRadius: responsiveFontSize(2),
+      padding: responsiveWidth(2),
+      width: responsiveWidth(80), 
       alignItems: "center",
-      elevation: 0
    },
    modalTextM: {
-      fontSize: Dimensions.get("window").width - 390,
+      fontSize: responsiveFontSize(3),
       color: "#03B6E8",
       marginTop: 10,
       fontWeight: "bold"
    },
    modalDescription: {
-      fontSize: 16,
+      fontSize: responsiveFontSize(2),
       color: "#58656B",
       marginTop: 5,
       width: "80%",
@@ -304,10 +304,10 @@ const styles = StyleSheet.create({
    modalButton: {
       alignItems: "center",
       justifyContent: "center",
-      width: width * 0.35,
+      width:responsiveWidth(40),
       marginTop: width * 0.03,
-      height: height * 0.025
-   },
+      height:responsiveHeight(4)
+,   },
 
    modalButtonText: {
       color: "#03B6E8",
@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
    },
    modalButtonTextO: {
       color: "#EB691A",
-      fontSize: 15,
+      fontSize: responsiveFontSize(4),
       fontWeight: "bold",
       textAlign: "center"
    },
@@ -325,66 +325,65 @@ const styles = StyleSheet.create({
    buttonTextBlue: {
       color: "#03B6E8",
       fontWeight: "bold",
-      fontSize: height * 0.02
+      fontSize:responsiveFontSize(2),
    },
    guardarButton: {
       backgroundColor: "#03B6E8",
-      borderRadius: width * 0.03,
+      borderRadius: responsiveFontSize(1),
       alignItems: "center",
       justifyContent: "center",
-      width: width * 0.38,
-      height: height * 0.056
+      width: responsiveWidth(40),
+      height: responsiveHeight(6),
    },
    cancelarButton: {
       backgroundColor: "transparent",
-      borderRadius: width * 0.03,
+      borderRadius: responsiveFontSize(1),
       alignItems: "center",
       justifyContent: "center",
-      width: width * 0.38,
-      height: height * 0.056,
-      borderWidth: width * 0.006,
+      width: responsiveWidth(40),
+      height: responsiveHeight(6),
+      borderWidth:responsiveFontSize(0.3),
       borderColor: "#03B6E8"
    },
    buttonText: {
       color: "white",
       fontWeight: "bold",
-      fontSize: height * 0.02
+      fontSize:responsiveFontSize(2),
    },
    container: {
       flex: 1
    },
    text: {
       color: "#03B6E8",
-      fontSize: width * 0.09,
-      lineHeight: width * 0.1,
-      letterSpacing: width * 0.0010,
-      top: screenHeightPercentage - height * 0.3 * 1.10,
-      left: screenWidthPercentage - width * 0.8 * 0.31,
+      fontSize: responsiveFontSize(5),
+      lineHeight: responsiveHeight(8),
+      letterSpacing: responsiveFontSize(0.2),
+      top: responsiveHeight(17),
+      left: responsiveWidth(22),
       fontFamily: "Lato-Bold",
       fontWeight: "bold"
    },
    datosC: {
-      height: height * 100,
-      width: width * 1,
-      bottom: 0,
-      top: height * -0.18,
+      height: responsiveHeight(55),
+      width: responsiveWidth(100),
+      bottom: responsiveHeight(18),
       backgroundColor: '#fff',
-      paddingTop: height * 0.02,
-      borderTopEndRadius: height * 0.025,
-      borderTopStartRadius: height * 0.025
+      paddingTop: responsiveHeight(4),
+      borderTopEndRadius: responsiveFontSize(2.5),
+      borderTopStartRadius: responsiveFontSize(2.5)
    },
    datos: {
       alignSelf: "center",
-      width: width * 0.8,
-      paddingBottom: height * 0.015
+      width: responsiveWidth(80),
+      paddingBottom:responsiveHeight(1.5),
    },
    label: {
       color: "#878789",
       fontFamily: "Lato-Regular"
    },
    textarea: {
-      height: height * 0.05,
-      fontSize: width * 0.04,
+      height: responsiveHeight(5),
+      fontSize: responsiveFontSize(2),
       color: "black",
       fontWeight: "bold",
       flex: 1
@@ -392,22 +391,22 @@ const styles = StyleSheet.create({
    tinyLogo: {
       alignItems: "center",
       justifyContent: "center",
-      width: height * 0.15,
-      height: height * 0.11,
-      top: screenHeightPercentage - height * 0.3 * 1.26,
-      left: screenWidthPercentage - width * 0.8 * 0.2
+      width:responsiveWidth(30),
+      height: responsiveHeight(10),
+      top:responsiveHeight(12.5),
+      left: responsiveWidth(35)
    },
    complete: {
       fontStyle: "normal",
-      fontSize: width * 0.05,
-      lineHeight: width * 0.02,
+      fontSize: responsiveFontSize(2.9),
+      lineHeight: responsiveFontSize(2),
       textAlign: "center",
-      letterSpacing: width * 0.002,
+      letterSpacing: responsiveFontSize(0),
       color: "#FFFFFF",
-      height: height * 0.11,
-      left: screenWidthPercentage - width * 0.8 * 0.62,
+      height: responsiveHeight(10),
+      left: responsiveWidth(0.2),
       fontFamily: "Lato-Regular",
-      top: height * 0.17,
+      top: responsiveHeight(17),
    },
    container: {
       width: "100%",
@@ -415,14 +414,18 @@ const styles = StyleSheet.create({
    },
    secondText: {
       fontStyle: "normal",
-      fontSize: width * 0.05,
-      lineHeight: width * 0.02,
+    
       fontFamily: "Lato-Regular",
       textAlign: "center",
-      letterSpacing: width * 0.002,
       color: "#FFFFFF",
-      height: height * 0.11,
-      top: height * 0.10,
-      left: screenWidthPercentage - width * 0.8 * 0.62,
+      fontSize: responsiveFontSize(2.9),
+      lineHeight: responsiveFontSize(2),
+      textAlign: "center",
+      letterSpacing: responsiveFontSize(0),
+      color: "#FFFFFF",
+      height: responsiveHeight(10),
+      left: responsiveWidth(0.2),
+      fontFamily: "Lato-Regular",
+      top: responsiveHeight(12),
    }
 });
