@@ -11,6 +11,7 @@ import {
 } from "react-native-responsive-screen";
 const screenWidthPercentage = widthPercentageToDP("50%");
 const screenHeightPercentage = heightPercentageToDP("50%");
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 export function Terminos({ navigation, props }) {
    const handleDownloadPDF = () => {
       const fileURL = "https://www.africau.edu/images/default/sample.pdf"

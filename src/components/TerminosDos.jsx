@@ -6,6 +6,7 @@ import { StyledButton } from './StyledButton'
 import { View, Image, Text } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 const {height, width, fontScale, scale} = Dimensions.get("window")
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 export function TerminosDos(){
     const handleDownloadPDF = () => {
@@ -17,7 +18,7 @@ export function TerminosDos(){
         <>
             <ImageBackground 
                 source={ require("../../assets/images/Fondo-06.jpg")}
-                style={{ paddingTop: height / 100, height: height}}
+                style={{ paddingTop: responsiveHeight(1), height: responsiveHeight(105)}}
                 imageStyle={{ justifyContent: "center", alignItems: "center" }}
             >   
             <AppBar/>
@@ -25,7 +26,7 @@ export function TerminosDos(){
             <StyledText
                 color="secondary"
                 align="center"
-                style={{ margin: scale, fontSize : fontScale * 46, height:height / 12}}
+                style={{fontSize:responsiveFontSize(6), height:responsiveHeight(15)}}
             >
                 <Text style={{fontWeight:"700"}}>
                     POLÍTICAS
@@ -36,7 +37,7 @@ export function TerminosDos(){
                 fontWeight="bold"
                 color="#FFF"
                 align="center"
-                style={{ margin: scale * 3, fontSize: fontScale * 26 }}   
+                style={{fontSize: responsiveFontSize(2.7) }}   
             >
                 <Text style={{fontFamily:"Lato-Bold"}}>
                     Bases y condiciones
@@ -63,7 +64,7 @@ export function TerminosDos(){
                             <StyledText></StyledText>
                         </ScrollView>
                     </View>
-                    <View style={{height:height / 30}}></View>
+                    <View style={{height:responsiveHeight(4)}}></View>
                     <View style={{justifyContent:"center"}}>
                         <StyledButton styleContainer={styles.vacio} onPress={handleDownloadPDF} styledProps={{fontSize:'subheading1'}}><Text style={{color:"#03B6E8",fontFamily:"Lato-Bold"}}>Descargar PDF</Text></StyledButton>
                     </View>

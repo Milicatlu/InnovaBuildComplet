@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
       width:responsiveWidth(300),
       bottom:responsiveHeight(3),
       borderBottomLeftRadius: responsiveHeight(2),
-      left: responsiveWidth(120),
+      left: responsiveWidth(115),
    },
    fuentebottom: {
       color: '#fff',

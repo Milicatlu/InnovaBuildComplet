@@ -1,104 +1,102 @@
-import { View,Text,ImageBackground,StyleSheet,TouchableOpacity,Dimensions,Image} from "react-native"
-import { AppBar } from "./AppBar"
+import React from 'react';
+import { View, Text, ImageBackground, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { AppBar } from './AppBar';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
-const { height, width,} = Dimensions.get("window")
 export function PetroleoCategoria(props) {
-   return (
-      <>
-         <ImageBackground
-            source={require("../../assets/images/Fondo-06.jpg")}
-            style={styles.imagen}
-         >
-            <AppBar />
+  return (
+    <>
+      <ImageBackground
+        source={require('../../assets/images/Fondo-06.jpg')}
+        style={styles.imagen}
+      >
+        <AppBar />
 
-            <View style={styles.subcontainer}>
-               <Text style={styles.titulo}>EXTRACCION</Text>
-               <Text style={styles.titulo}>DE PETROLEO</Text>
+        <View style={styles.subcontainer}>
+          <Text style={styles.titulo}>EXTRACCIÓN</Text>
+          <Text style={styles.titulo}>DE PETRÓLEO</Text>
 
-               <Text style={styles.subtitulo}>Seleccione la etapa</Text>
+          <Text style={styles.subtitulo}>Seleccione la etapa</Text>
 
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              props.navigation.navigate('PetroleoMenu');
+            }}>
+            <Text style={styles.text}>UPSTREAM</Text>
+          </TouchableOpacity>
 
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.text}>MIDSTREAM</Text>
+          </TouchableOpacity>
 
-               <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                     props.navigation.navigate("PetroleoMenu")
-                  }}>
-                  <Text style={styles.text}>UPSTREAM</Text>
-               </TouchableOpacity>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.text}>DOWNSTREAM</Text>
+          </TouchableOpacity>
+        </View>
+        <Image
+          source={require('../../assets/images/SateliteHd.png')}
+          style={styles.sate}
+        />
 
-               <TouchableOpacity
-                  style={styles.button}>
-                  <Text style={styles.text}>MIDSTREAM</Text>
-               </TouchableOpacity>
-
-               <TouchableOpacity
-                  style={styles.button}>
-                  <Text style={styles.text}>DOWNSTREAM</Text>
-               </TouchableOpacity>
-            </View>
-            <Image
-               source={require('../../assets/images/SateliteHd.png')}
-               style={styles.sate}
-            />
-
-         </ImageBackground>
-      </>
-   )
+      </ImageBackground>
+    </>
+  )
 }
 
 const styles = StyleSheet.create({
-   sate: {
-      width: width / 1.5,
-      height: height / 4,
-      left: width / 2.2,
-      bottom: height / 20
-   },
-
-   imagen: {
-      height: height + height / 15,
-   },
-   subcontainer: {
-      flex: 1,
-      justifyContent: "flex-start",
-      alignItems: "center",
-   },
-   subcontainerT: {
-      flex: 1,
-      justifyContent: "flex-start",
-      alignItems: "center",
-   },
-   text: {
-      fontSize: 26,
-      fontFamily: "Lato-Bold",
-      fontWeight: "bold",
-      color: "white"
-   },
-   titulo: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      fontSize: 40,
-      fontFamily: "Lato-Bold",
-      alignSelf: "center",
-      color: "#03B6E8",
-      top: height / 30,
-      fontWeight: "bold"
-   },
-   subtitulo: {
-      fontSize: 20,
-      fontFamily: "Lato-Bold",
-      alignSelf: "center",
-      color: "#FFF",
-      top: height / 14
-   },
-   button: {
-      marginBottom: height / 20,
-      top: height / 7,
-      borderColor: "#03B6E8",
-      borderWidth: 2,
-      padding: height / 40,
-      width: width / 1.7,
-      borderRadius: height / 60,
-      alignItems: "center"
-   }
-})
+  sate: {
+    width: responsiveWidth(50),
+    height: responsiveHeight(15),
+    left: responsiveWidth(55),
+    bottom: responsiveHeight(15)
+  },
+  imagen: {
+    height: responsiveHeight(115),
+  },
+  subcontainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  subcontainerT: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: responsiveFontSize(3.5),
+    fontFamily: 'Lato-Bold',
+    fontWeight: 'bold',
+    color: 'white',
+    top: responsiveHeight(1),
+  },
+  titulo: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: responsiveFontSize(5.3),
+    fontFamily: 'Lato-Bold',
+    alignSelf: 'center',
+    color: '#03B6E8',
+    top: responsiveHeight(2),
+    fontWeight: 'bold'
+  },
+  subtitulo: {
+    fontSize: responsiveFontSize(3),
+    fontFamily: 'Lato-Bold',
+    alignSelf: 'center',
+    color: '#FFF',
+    top: responsiveHeight(6)
+  },
+  button: {
+    marginBottom: responsiveHeight(4),
+    top: responsiveHeight(17),
+    borderColor: '#03B6E8',
+    borderWidth: 2,
+    padding: responsiveHeight(1.5),
+    width: responsiveWidth(63),
+    height: responsiveHeight(10.5),
+    borderRadius: responsiveHeight(1),
+    alignItems: 'center',
+  }
+});

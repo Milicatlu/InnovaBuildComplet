@@ -18,6 +18,8 @@ import {
   TouchableOpacity,
   Image
 } from "react-native";
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+
 import { supabase } from "../lib/supabase";
 import { StyledText } from "./StyledText";
 import { Dimensions } from "react-native";
@@ -319,17 +321,17 @@ export function Perfil({ navigation }) {
             </Text>
             <View
               style={{
-                top: 10,
-                height: 1.2,
+                top: 6,
+                height:responsiveHeight(0.2),
                 backgroundColor: '#d9d9d9',
-                width: '108%',
+                width: responsiveWidth(80),
               }}
             ></View>
             <View
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-around',
-                margin: 40,
+                margin: responsiveHeight(4),
               }}
             >
               <TouchableOpacity
@@ -362,48 +364,48 @@ const styles = StyleSheet.create({
   },
   modalViewM: {
     backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 10,
-    width: Dimensions.get('window').width - 110,
+    borderRadius: responsiveFontSize(2),
+    padding: responsiveWidth(1),
+    width:responsiveWidth(80),
     alignItems: 'center',
     elevation: 0,
   },
   modalTextM: {
-    fontSize: Dimensions.get('window').width - 375,
+    fontSize:responsiveFontSize(3.5),
     color: '#03B6E8',
-    marginTop: 10,
+    marginTop: responsiveWidth(1),
     fontWeight: 'bold',
   },
   modalDescription: {
-    fontSize: 16,
+    fontSize: responsiveFontSize(2),
     color: '#58656B',
-    marginTop: 5,
-    width: '80%',
+    marginTop:responsiveHeight(1.5),
+    width: responsiveWidth(50),
     textAlign: 'center',
   },
   modalButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: width * 0.35,
-    marginTop: width * 0.035,
-    height: height * 0.025,
+    width: responsiveWidth(40),
+    marginTop:responsiveHeight(-2),
+    height: responsiveHeight(2),
   },
 
   modalButtonText: {
     color: '#03B6E8',
-    fontSize: 15,
+    fontSize:responsiveFontSize(1.5),
     fontWeight: 'bold',
     textAlign: 'center',
   },
   modalButtonTextO: {
     color: '#EB691A',
-    fontSize: 15,
+    fontSize:responsiveFontSize(1.5),
     fontWeight: 'bold',
     textAlign: 'center',
   },
   muro: {
-    width: '100%',
-    height: '100%',
+    width: responsiveWidth(100),
+    height: responsiveHeight(100),
     opacity: 0.5,
     backgroundColor: 'black',
     position: 'absolute',
@@ -435,17 +437,16 @@ const styles = StyleSheet.create({
   },
   centeredView: {
     flex: 1,
-    left: width * 0.22,
-    top: width * (0.72),
+    left:responsiveWidth(19),
+    top: responsiveHeight(33),
     opacity: 1,
-
     position: 'absolute',
   },
   modalView: {
     backgroundColor: 'white',
-    borderRadius: 20,
-    width: Dimensions.get('window').width - 170,
-    height: Dimensions.get('window').height - 610,
+    borderRadius: responsiveFontSize(2),
+    width: responsiveWidth(60),
+    height: responsiveHeight(20),
     elevation: 4,
   },
   button: {
@@ -522,9 +523,9 @@ const styles = StyleSheet.create({
     fontSize: width * 0.08,
     color: '#03B6E8',
     position: 'absolute',
-    top: width - 70,
+    top: responsiveHeight(40),
     alignContent: 'center',
-    left:Dimensions.get('window').width /2.8,
+    left:responsiveWidth(33.5),
   },
 
   container: {
@@ -574,15 +575,15 @@ const styles = StyleSheet.create({
   },
   fotoPerfill: {
     margin: 10,
-    borderRadius: width * 0.3,
+    borderRadius: responsiveFontSize(4),
     position: 'absolute',
-    top: screenHeightPercentage - height * 0.3 * 1.25,
-    left: screenWidthPercentage - width * 0.80 * 0.375,
-    height: height * 0.27,
-    width: screenWidthPercentage * 1.09,
+    top: responsiveHeight(12),
+    left:responsiveWidth(22.5),
+    height:responsiveHeight(25),
+    width: responsiveWidth(50),
   },
   fotoPerfilll: {
-    borderRadius: width * 0.3,
+    borderRadius:responsiveFontSize(4),
     left: screenWidthPercentage - width * 0.80 * 0.375,
     height: height * 0.08,
     width: screenWidthPercentage * 1.0,

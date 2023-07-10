@@ -4,6 +4,7 @@ import { Image, View, Text, Animated, Dimensions } from "react-native"
 import { userConstant } from "../Constants/userConstants";
 const { height, width, fontScale, scale } = Dimensions.get("window")
 import {singOut} from '../hooks/useSingOut.jsx'
+import { useNavigation, CommonActions } from "@react-navigation/native";
 export function CustomDrawerContent(props) {
    //Estado para controlar la visibilidad del modal
    const [opcionVisible, setOpcionVisible] = useState(false);
@@ -15,6 +16,8 @@ export function CustomDrawerContent(props) {
    const toggleOpcionVisible = () => {
       setOpcionVisible(!opcionVisible)
    }
+
+   const navegacion = useNavigation()
 
    //Animacion de la altura del contenedor
    Animated.timing(animatedContainerHeight, {
@@ -314,7 +317,12 @@ export function CustomDrawerContent(props) {
             label="Cerrar Sesion"
             onPress={() => {
                singOut()
-               props.navigation.navigate("Login")
+               navegacion.dispatch(
+                  CommonActions.reset({
+                     index:0,
+                     routes:[{name:"Login"}]
+                  })
+               )
             }}
          />
       </DrawerContentScrollView>

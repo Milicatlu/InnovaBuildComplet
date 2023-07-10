@@ -100,8 +100,8 @@ const styles = StyleSheet.create({
    tituloBien: {
       position: 'absolute',
       top:  responsiveHeight(55),
-      left: responsiveHeight(9),
-      width: responsiveWidth(65),
+      left: responsiveHeight(3),
+      width: responsiveWidth(90),
       color: '#03B6E8',
       fontStyle: 'normal',
       fontSize:responsiveFontSize(2.8),
@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
    bienvenidaT: {
       position: 'absolute',
       top: responsiveHeight(15),
-      left:responsiveWidth(22.1),
-      width:responsiveWidth(57),
+      left:responsiveWidth(15),
+      width:responsiveWidth(70),
       fontSize: responsiveFontSize(2.42),
       lineHeight:responsiveFontSize(4),
       textAlign: 'center',

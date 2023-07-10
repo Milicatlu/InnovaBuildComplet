@@ -11,6 +11,7 @@ import {
 } from "react-native"
 import SwitchSelector from "react-native-switch-selector";
 import { MaterialIcons } from "@expo/vector-icons";
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 import { StyledText } from "./StyledText"
 import { AppBar } from "./AppBar"
@@ -46,8 +47,8 @@ export function EtapaMineria() {
 
                   <View style={styles.imagencontainer}>
 
-                     {showhide !== true ? <ImageBackground source={require("../../assets/images/MenorGrado.png")} style={{ height: "90%" }} />
-                        : <ImageBackground source={require("../../assets/images/MayorGrado.png")} style={{ height: "90%" }} />}
+                     {showhide !== true ? <ImageBackground source={require("../../assets/images/MenorGrado.png")} style={{ height:responsiveHeight(30) }} />
+                        : <ImageBackground source={require("../../assets/images/MayorGrado.png")} style={{ height:responsiveHeight(30) }} />}
 
 
                   </View>
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
    },
    nuevaBolsa: {
       width: "100%",
-      height: 30,
+      height: 0,
       backgroundColor: "#03B6E8",
       color: "#fff",
       borderRadius: 15,
@@ -225,19 +226,19 @@ const styles = StyleSheet.create({
       flex: 5,
       fontSize: 15,
       textAlign: "center",
-      marginTop: 20
+      marginTop: 2
    },
 
    imagencontainer: {
       flex: 0.8,
-      maxHeight: "100%",
+      maxHeight: responsiveHeight(50),
    },
    contenedor: {
       flexDirection: "column",
-      borderTopLeftRadius: 35,
-      borderTopRightRadius: 35,
+      borderTopLeftRadius: responsiveFontSize(3),
+      borderTopRightRadius: responsiveFontSize(3),
       backgroundColor: "white",
-      marginTop: -100
+      marginTop: responsiveHeight(-100),
 
    },
 
@@ -246,8 +247,8 @@ const styles = StyleSheet.create({
    },
 
    container2: {
-      width: 140,
-      height: 10,
+      width: responsiveWidth(35),
+      height: responsiveHeight(5),
 
    },
    option1: {

@@ -157,7 +157,7 @@ export function Main({ navigation }) {
           }}
         >
           <Drawer.Screen name="Inicio" component={SectoresMain} />
-          <Drawer.Screen name="Login" component={Login} />
+          <Drawer.Screen name="Login" component={Login} options={{headerShown:false}}/>
           <Drawer.Screen name="Mineria" component={Mineria} />
           <Drawer.Screen name="Agricultura" component={SiloMenu} />
           <Drawer.Screen name="Petroleo" component={PetroleoMenu} />
@@ -175,7 +175,7 @@ export function Main({ navigation }) {
           <Drawer.Screen name="EtapaPetroleo" component={EtapaPetroleo} />
           <Drawer.Screen name="EtapaMineria" component={EtapaMineria} />
           <Drawer.Screen name="Mapa" component={MapScreen} />
-
+      
 
         </Drawer.Navigator>
         <Modal

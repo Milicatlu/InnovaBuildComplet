@@ -359,7 +359,7 @@ const styles = StyleSheet.create({
       lineHeight: responsiveHeight(8),
       letterSpacing: responsiveFontSize(0.2),
       top: responsiveHeight(17),
-      left: responsiveWidth(22),
+      left: responsiveWidth(17),
       fontFamily: "Lato-Bold",
       fontWeight: "bold"
    },

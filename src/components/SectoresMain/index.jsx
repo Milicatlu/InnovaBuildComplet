@@ -64,7 +64,7 @@ export function SectoresMain() {
             <Text
               style={styles.text}
             >
-              MINERIA
+              MINERÍA
             </Text>
           </ImageBackground>
         </Link>
@@ -78,7 +78,7 @@ export function SectoresMain() {
             <Text
               style={styles.textLarge}
             >
-              PETROLEO
+              PETRÓLEO
             </Text>
           </ImageBackground>
         </Link>

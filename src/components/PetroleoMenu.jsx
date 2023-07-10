@@ -1,246 +1,236 @@
-//RESPONSIVE
-import {
-    ImageBackground,
-    Pressable,
-    StyleSheet,
-    View,
-    Dimensions
-  } from "react-native";
-  import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
-  import { StyledButton } from "./StyledButton";
-  import { StyledText } from "./StyledText";
-  import { AppBar } from "./AppBar";
-  import { useState, useEffect } from "react";
-  import { StyledButtonAgri } from "./StyledButton";
-  import { MaterialIcons } from "@expo/vector-icons";
-  
-  
-  
-  export function PetroleoMenu(props) {
-    const [siloBolsas, setSiloBolsas] = useState([]);
-  
-    const handleAddSiloBolsa = () => {
-      setSiloBolsas([...siloBolsas, siloBolsas.length + 1]);
-    };
-  
-    const renderSiloBolsa = () => {
-      const grupos = [];
-      const totalSiloBolsas = siloBolsas.length;
-  
-      for (let i = 0; i < totalSiloBolsas; i += 2) {
-        const grupo = siloBolsas.slice(i, i + 2);
-        grupos.push(grupo);
-      }
-  
-      return grupos.map((grupo, index) => (
-        <View key={index} style={styles.SiloContainer}>
-          {grupo.map((siloBolsa) => (
-            <StyledButtonAgri
-              style={{ color: "#FFF" }}
-              key={siloBolsa}
-              styleContainer={styles.vacio}
-              onPress={() => {
-                props.navigation.navigate("EtapaPetroleo");
-              }}
-            >
-              Petroleo {siloBolsa}
-            </StyledButtonAgri>
-          ))}
-        </View>
-      ));
-    };
-    return (
-      <>
-        <View style={styles.container} {...props}>
-          <ImageBackground
-            source={require("../../assets/images/Fondo-06.jpg")}
-            style={styles.imagen}
+import React, { useState } from 'react';
+import { View, Text, ImageBackground, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
+import { AppBar } from './AppBar';
+import { StyledButtonAgri } from './StyledButton';
+import { StyledButton } from './StyledButton';
+import { StyledText } from './StyledText';
+import { MaterialIcons } from '@expo/vector-icons';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+
+export function PetroleoMenu(props) {
+  const [siloBolsas, setSiloBolsas] = useState([]);
+
+  const handleAddSiloBolsa = () => {
+    setSiloBolsas([...siloBolsas, siloBolsas.length + 1]);
+  };
+
+  const renderSiloBolsa = () => {
+    const grupos = [];
+    const totalSiloBolsas = siloBolsas.length;
+
+    for (let i = 0; i < totalSiloBolsas; i += 2) {
+      const grupo = siloBolsas.slice(i, i + 2);
+      grupos.push(grupo);
+    }
+
+    return grupos.map((grupo, index) => (
+      <View key={index} style={styles.SiloContainer}>
+        {grupo.map((siloBolsa) => (
+          <StyledButtonAgri
+            style={{ color: "#FFF" }}
+            key={siloBolsa}
+            styleContainer={styles.vacio}
+            onPress={() => {
+              props.navigation.navigate("EtapaPetroleo");
+            }}
           >
-            <AppBar />
-            <View style={styles.subcontainer}>
-              <StyledText
-                align="center"
-                fontSize="subheading2"
-                fontWeight="bold"
-                color="secondary"
+            Petroleo {siloBolsa}
+          </StyledButtonAgri>
+        ))}
+      </View>
+    ));
+  };
+
+  return (
+    <>
+      <View style={styles.container} {...props}>
+        <ImageBackground
+          source={require("../../assets/images/Fondo-06.jpg")}
+          style={styles.imagen}
+        >
+          <AppBar />
+          <View style={styles.subcontainer}>
+          <Text style={styles.petroleoText}>Petróleo</Text>
+            <StyledText align="center" fontSize="subheading1" fontWeight="bold">
+              Etapa de: Upstream
+            </StyledText>
+
+            <View style={{ marginTop: responsiveHeight(1) }}>
+              <ScrollView>{renderSiloBolsa()}</ScrollView>
+              <StyledButton
+                styleContainer={styles.lleno}
+                styledProps={{ fontSize: "subheading1" }}
+                onPress={handleAddSiloBolsa}
               >
-                Petroleo
-              </StyledText>
-              <StyledText align="center" fontSize="subheading1" fontWeight="bold">
-                Etapa de: Upstream
-              </StyledText>
-  
-              <View style={{ marginTop: 10 }}>
-                <ScrollView>{renderSiloBolsa()}</ScrollView>
-                  <StyledButton
-                    styleContainer={styles.lleno}
-                    styledProps={{ fontSize: "subheading1" }}
-                    onPress={handleAddSiloBolsa}
-                  >
-                    <MaterialIcons name="add" size={22} color={"white"} /> NUEVO
-                    PETROLEO
-                  </StyledButton>
-                  <View style={{ marginTop: 10 }}>
-                    <MaterialIcons name="create" size={18} style={styles.icono}>
-                      <StyledText style={styles.texto}>
-                        {" "}
-                        Editar nombre del petroleo
-                      </StyledText>
-                    </MaterialIcons>
-                  </View>
-                
+                <MaterialIcons name="add" size={responsiveFontSize(2.2)} color={"white"} /> NUEVO PETRÓLEO
+              </StyledButton>
+              <View style={{ marginTop: responsiveHeight(1) }}>
+                <MaterialIcons name="create" size={responsiveFontSize(1.8)} style={styles.icono}>
+                  <StyledText style={styles.texto}>
+                    Editar nombre del petroleo
+                  </StyledText>
+                </MaterialIcons>
               </View>
             </View>
-          </ImageBackground>
-        </View>
-      </>
-    );
+          </View>
+        </ImageBackground>
+      </View>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  imagen: {
+    flex: 1,
+    flexDirection: "column",
+    paddingTop: responsiveHeight(0.9)
+  },
+  subcontainer: {
+    flex: 0.8,
+    padding: responsiveHeight(1.8)
+  },
+  SiloContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between"
+  },
+  nuevaBolsa: {
+    width: "100%",
+    height: responsiveHeight(2.2),
+    backgroundColor: "#03B6E8",
+    color: "#fff",
+    borderRadius: responsiveHeight(1.1),
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: responsiveHeight(1),
+    fontSize: responsiveFontSize(1.8)
+  },
+  infobolsaC: {
+    flex: 0.8,
+    flexDirection: "row",
+    maxHeight: "20%",
+    backgroundColor: "#fff",
+    borderTopLeftRadius: responsiveHeight(4),
+    borderTopRightRadius: responsiveHeight(4),
+    marginTop: responsiveHeight(1)
+  },
+  infobolsa: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  valor: {
+    flex: 0.9,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  color: {
+    width: "100%",
+    flex: 0.1,
+    backgroundColor: "red"
+  },
+  valorN: {
+    fontSize: responsiveFontSize(4)
+  },
+  magnitud: {
+    backgroundColor: "blue",
+    height: responsiveHeight(10)
+  },
+  text: {
+    color: "#03B6E8",
+    fontSize: responsiveFontSize(2.8),
+    marginBottom: responsiveHeight(2),
+    marginTop: responsiveHeight(1),
+    alignSelf: "center",
+    fontFamily: "Lato-Bold",
+  },
+  titulo: {
+    alignSelf: "center",
+    fontSize: responsiveFontSize(9.8),
+  },
+  editarnombre: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: responsiveHeight(1)
+  },
+  textedit: {
+    flex: 0.87,
+    color: "#04B6E8",
+    fontSize: responsiveFontSize(1.8),
+    fontFamily: "Roboto",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  icons: {
+    color: "#03B6E8",
+    margin: responsiveHeight(1),
+    fontSize: responsiveFontSize(3.2)
+  },
+  imagen2: {
+    flex: 1,
+    flexDirection: "column",
+    padding: responsiveHeight(2),
+    paddingTop: responsiveHeight(1)
+  },
+  btn: {
+    backgroundColor: "#04B6E8",
+    color: "#fff",
+    borderRadius: responsiveHeight(1.1),
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  contenedor: {
+    alignItems: "flex-start",
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
+  vacio: {
+    marginBottom: responsiveHeight(2),
+    marginTop: responsiveHeight(1),
+    margin: responsiveHeight(2),
+    width: responsiveWidth(32)
+  },
+  lleno: {
+    height: responsiveHeight(6.5),
+    backgroundColor: "#03B6E8",
+    width: "100%",
+    marginTop: responsiveHeight(0.6)
+  },
+  texto: {
+    textAlign: "center",
+    marginTop: responsiveHeight(2),
+    fontSize: responsiveFontSize(1.8),
+    color: "#03B6E8"
+  },
+  icons: {
+    flex: 0.1,
+    color: "#04B6E8",
+    height: "100%",
+    fontSize: responsiveFontSize(4)
+  },
+  subsubcont: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: responsiveHeight(1),
+    height: responsiveHeight(6)
+  },
+  icono: {
+    marginRight: responsiveWidth(0.5),
+    color: "#03B6E8",
+    marginTop: -responsiveHeight(1.5),
+    textAlign: "center"
+  },
+  petroleoText: {
+    textAlign: "center",
+    fontSize: responsiveFontSize(5.3),
+    fontWeight: "bold",
+    color: "#03B6E8",
+    marginBottom: responsiveHeight(1),
   }
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1
-    },
-    imagen: {
-      flex: 1,
-      flexDirection: "column",
-      paddingTop: 10
-    },
-    subcontainer: {
-      flex: 0.8,
-      padding: 20
-    },
-    SiloContainer: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "space-between"
-    },
   
-    nuevaBolsa: {
-      width: "100%",
-      height: 30,
-      backgroundColor: "#03B6E8",
-      color: "#fff",
-      borderRadius: 15,
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: 10,
-      fontSize: 18
-    },
-    infobolsaC: {
-      flex: 0.8,
-      flexDirection: "row",
-      maxHeight: "20%",
-      backgroundColor: "#fff",
-      borderTopLeftRadius: 40,
-      borderTopRightRadius: 40,
-      marginTop: 10
-    },
-    infobolsa: {
-      flex: 1,
-      justifyContent: "space-between",
-      alignItems: "center"
-    },
-    valor: {
-      flex: 0.9,
-      justifyContent: "center",
-      alignItems: "center"
-    },
-    color: {
-      width: "100%",
-      flex: 0.1,
-      backgroundColor: "red"
-    },
-    valorN: {
-      fontSize: 40
-    },
-    magnitud: {
-      backgroundColor: "blue",
-      height: 100
-    },
-    text: {
-      color: "#03B6E8",
-      fontSize: 28,
-      marginBottom: 20,
-      marginTop: 10,
-      alignSelf: "center",
-      fontFamily: "Lato-Bold",
-    },
-    titulo: {
-      alignSelf: "center",
-      fontSize: 50
-    },
-    editarnombre: {
-      flex: 1,
-      flexDirection: "row",
-      justifyContent: "center",
-      marginTop: 10
-    },
-    textedit: {
-      flex: 0.87,
-      color: "#04B6E8",
-      fontSize: 18,
-      fontFamily: "Roboto",
-      justifyContent: "center",
-      alignItems: "center"
-    },
-    icons: {
-      color: "#03B6E8",
-      margin: 10,
-      fontSize: 32
-    },
-    imagen2: {
-      flex: 1,
-      flexDirection: "column",
-      padding: 20,
-      paddingTop: 10
-    },
-    btn: {
-      backgroundColor: "#04B6E8",
-      color: "#fff",
-      borderRadius: 15,
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center"
-    },
-    contenedor: {
-      alignItems: "flex-start",
-      flexDirection: "row",
-      justifyContent: "space-around"
-    },
-    vacio: {
-      marginBottom: 20,
-      marginTop: 10,
-      margin: 20,
-      width: Dimensions.get("window").width / 3
-    },
-    lleno: {
-      height: 50,
-      backgroundColor: "#03B6E8",
-      width: "100%",
-      marginTop: 6
-    },
-    texto: {
-      textAlign: "center",
-      marginTop: 20,
-      fontSize: 18,
-      color:"#03B6E8"
-    },
-    icons: {
-      flex: 0.1,
-      color: "#04B6E8",
-      height: "100%",
-      fontSize: 40
-    },
-    subsubcont: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      margin: 10,
-      height: 50
-    },
-    icono: {
-      marginRight: 1,
-      color: "#03B6E8",
-      marginTop: -15,
-      textAlign: "center"
-    }
-  });
+});
