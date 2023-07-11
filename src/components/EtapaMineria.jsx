@@ -54,33 +54,34 @@ export function EtapaMineria() {
 
             </ImageBackground>
             <View style={styles.contenedor}>
-               <StyledText fontWeight="bold" fontSize="subheading1" style={{ marginTop: 20, marginLeft: 30, color: "#1DB6E5" }}   >Datos del motor:</StyledText>
-               <View style={{ alignItems: "center", marginLeft: 20 }}>
-                  {showhide !== true ? <StyledText fontStyle="italic" color="terciary" style={{ marginTop: 20, marginLeft: -50, width: 296, fontSize: 16 }}>El funcionamiento del motor , se encuentra en modo apagado con una temperatura baja de 10° grados</StyledText>
-                     : <StyledText fontStyle="italic" color="terciary" style={{ marginTop: 20, marginLeft: -50, width: 296, fontSize: 16 }}>El funcionamiento del motor , se encuentra en modo encendido con una temperatura mayor a 40° grados</StyledText>}
+               <StyledText fontWeight="bold" fontSize="subheading1" style={{ marginTop: responsiveHeight(5),fontSize:responsiveFontSize(2.5), marginLeft: responsiveWidth(10), color: "#1DB6E5" }}>Datos del motor:</StyledText>
+               <View style={{ alignItems: "center", marginLeft: 1 }}>
+                  {showhide !== true ? <StyledText fontStyle="italic" color="terciary" style={{ marginTop: responsiveHeight(3), marginLeft: responsiveWidth(-6), width: responsiveWidth(79), fontSize: responsiveFontSize(2.2) }}>El funcionamiento del motor , se encuentra en modo apagado con una temperatura baja de 10° grados</StyledText>
+                     : <StyledText fontStyle="italic" color="terciary" style={{  marginTop: responsiveHeight(3), marginLeft: responsiveWidth(-16), width: responsiveWidth(70), fontSize: responsiveFontSize(2.2) }}>El funcionamiento del motor , se encuentra en modo encendido con una temperatura mayor a 40° grados</StyledText>}
                </View>
-               <View style={{ marginTop: 20, marginLeft: 10 }}>
+               <View style={{ marginTop: responsiveHeight(5), marginLeft: responsiveWidth(5) }}>
                   <View style={{ flexDirection: "row" }}>
-                     <StyledText fontWeight="bold" color="terciary" style={{ marginLeft: 20, marginTop: 5 }} fontSize={14}>Funcionamiento del motor</StyledText>
-                     <View style={{ marginLeft: 20 }}>
-                        <SwitchSelector style={styles.container2}
-                           initial={0}
-                           fontSize={12}
-                           backgroundColor={'#FFF'}
-                           bold={true}
-                           textColor={"#FFFF"}
-                           selectedColor={'#FFFF'}
-                           buttonColor={"#FFFF"}
-                           borderColor={"#000"}
-                           hasPadding options={[{ label: "Encendido", value: true, activeColor: "#1DB6E5" }, { label: "Apagado", value: false, activeColor: "#EB691A" }]}
-                           valuePadding={responsiveHeight(-1)}
-                           height={30}
-                           onPress={(value) => setShowHide(value)}
-                           trackColor={{ false: "red", true: "blue" }}
-                           testID="gender-switch-selector"
-                           accessibilityLabel="gender-switch-selector"
-                        />
-                     </View>
+                     <StyledText fontWeight="bold" color="terciary" style={{ marginLeft: responsiveWidth(5), marginTop: responsiveHeight(0.5), fontSize:responsiveFontSize(1.9) }} >Funcionamiento del motor</StyledText>
+                     <View style={{backgroundColor: showhide ? '#1DB6E5' : '#EB691A'}}>
+    <SwitchSelector 
+        style={styles.container2}
+        initial={0}
+        fontSize={12}
+        bold={true}
+        hasPadding 
+        options={[
+            { label: "Encendido", value: "true", activeColor: '#1DB6E5' }, 
+            { label: "Apagado", value: "false", activeColor: '#EB691A' }
+        ]}
+        valuePadding={responsiveHeight(-0.02)}
+        height={30}
+        onPress={(value) => setShowHide(value === "true")}
+        trackColor={{ false: "#EB691A", true: "#1DB6E5" }}
+        testID="gender-switch-selector"
+        accessibilityLabel="gender-switch-selector"
+    />
+</View>
+
                   </View>
                   <View style={{ flexDirection: "row", alignItems: "stretch", marginTop: 10 }}>
                      <StyledText fontWeight="bold" color="terciary" style={{ marginLeft: 20, marginTop: 5 }} fontSize={14}>Temperatura del motor</StyledText>
@@ -110,6 +111,7 @@ export function EtapaMineria() {
 }
 
 const styles = StyleSheet.create({
+
    container: {
       flex: 1,
    },
@@ -153,6 +155,7 @@ const styles = StyleSheet.create({
       maxHeight: responsiveHeight(50),
    },
    contenedor: {
+      height:responsiveHeight(40),
       flexDirection: "column",
       borderTopLeftRadius: responsiveFontSize(3),
       borderTopRightRadius: responsiveFontSize(3),
@@ -163,8 +166,8 @@ const styles = StyleSheet.create({
 
 
    container2: {
-      width: responsiveWidth(35),
-      height: responsiveHeight(5),
+      width: responsiveWidth(30),
+      height: responsiveHeight(3.9),
 
    },
   

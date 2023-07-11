@@ -4,6 +4,8 @@ import SwitchSelector from "react-native-switch-selector";
 import { StyledText } from "./StyledText"
 import { AppBar } from "./AppBar"
 import { useState } from "react"
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+
 export function EtapaPetroleo() {
    const options = [
       { label: "01:00", value: "1" },
@@ -28,7 +30,7 @@ export function EtapaPetroleo() {
             >
                <AppBar />
                <View style={styles.subcontainer}>
-                  <Text style={styles.titulo}>Petroleo</Text>
+                  <Text style={styles.titulo}>Petróleo</Text>
                   <StyledText
                      align="center"
                      fontSize="subheading1"
@@ -36,27 +38,43 @@ export function EtapaPetroleo() {
                      color="primary"
                      style={{ paddingBottom: 40, fontSize: 22 }}
                   >
-                     Etapa de Petroleo
+                     Etapa de Petróleo
                   </StyledText>
 
                   <View style={styles.imagencontainer}>
-                     {showhide !== true ? <ImageBackground source={require("../../assets/images/MenorGrado.png")} style={{ height: "90%" }} /> : <ImageBackground source={require("../../assets/images/MayorGrado.png")} style={{ height: "90%" }} />}
-
-
+                     {showhide !== true ? <ImageBackground source={require("../../assets/images/MenorGrado.png")} style={styles.imagen2} /> : <ImageBackground source={require("../../assets/images/MayorGrado.png")} style={styles.imagen2} />}
+                     <StyledText
+                     align="center"
+                     fontSize="subheading1"
+                     fontWeight="bold"
+                     color="primary"
+                     style={styles.porcent}
+                  >
+                     0º
+                  </StyledText>
+                  <StyledText
+                     align="center"
+                     fontSize="subheading1"
+                     fontWeight="bold"
+                     color="primary"
+                     style={styles.porcent2}
+                  >
+                     35º
+                  </StyledText>
                   </View>
                </View>
 
             </ImageBackground>
             <View style={styles.contenedor}>
-               <StyledText fontWeight="bold" fontSize="subheading1" style={{ marginTop: 20, marginLeft: 30, color: "#1DB6E5" }}   >Datos del motor:</StyledText>
-               <View style={{ alignItems: "center", marginLeft: 20 }}>
-                  {showhide !== true ? <StyledText fontStyle="italic" color="terciary" style={{ marginTop: 20, marginLeft: -50, width: 296, fontSize: 16 }} >El funcionamiento del motor , se encuentra en modo apagado con una baja temperatura de 10º grados</StyledText> :
-                     <StyledText fontStyle="italic" color="terciary" style={{ marginTop: 20, marginLeft: -50, width: 296, fontSize: 16 }}>El funcionamiento del motor , se encuentra en modo encendido con una temperatura alta de 26º grados</StyledText>}
+               <StyledText fontWeight="bold" fontSize="subheading1" style={{ marginTop: responsiveHeight(5), marginLeft: responsiveWidth(10), color: "#1DB6E5" , ontSize:responsiveFontSize(2.5),}}>Datos del motor:</StyledText>
+               <View style={{ alignItems: "center", marginLeft: 1 }}>
+                  {showhide !== true ? <StyledText fontStyle="italic" color="terciary" style={{ marginTop: responsiveHeight(3),  marginLeft: responsiveWidth(-6), width: responsiveWidth(75), fontSize: responsiveFontSize(2.2) }} >El funcionamiento del motor , se encuentra en modo apagado con una baja temperatura de 10º grados.</StyledText> :
+                     <StyledText fontStyle="italic" color="terciary" style={{ marginTop: responsiveHeight(3), marginLeft: responsiveWidth(-16), width: responsiveWidth(70), fontSize: responsiveFontSize(2.2) }}>El funcionamiento del motor , se encuentra en modo encendido con una temperatura alta de 26º grados</StyledText>}
                </View>
-               <View style={{ marginTop: 20, marginLeft: 10 }}>
+               <View style={{  marginTop: responsiveHeight(5), marginLeft: responsiveWidth(5) }}>
                   <View style={{ flexDirection: "row", alignItems: "stretch" }}>
-                     <StyledText fontWeight="bold" color="terciary" style={{ marginLeft: 20, marginTop: 5 }} fontSize={14}>Funcionamiento del motor</StyledText>
-                     <View style={{ marginLeft: 20 }}>
+                     <StyledText fontWeight="bold" color="terciary" style={{  marginLeft: responsiveWidth(5), marginTop: responsiveHeight(0.5), fontSize:responsiveFontSize(1.9)  }} >Funcionamiento del motor</StyledText>
+                     <View style={{ marginLeft:responsiveWidth(5)}}>
                         <SwitchSelector style={styles.container2}
                            initial={0}
                            fontSize={12}
@@ -123,53 +141,6 @@ const styles = StyleSheet.create({
       flexDirection: "column",
       marginBottom: 10,
    },
-   SiloContainer: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "space-between",
-   },
-   nuevaBolsa: {
-      width: "100%",
-      height: 30,
-      backgroundColor: "#03B6E8",
-      color: "#fff",
-      borderRadius: 15,
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: 10,
-      fontSize: 18,
-   },
-   infobolsaC: {
-      flex: 10,
-      flexDirection: "row",
-      maxHeight: "20%",
-      padding: 13,
-      backgroundColor: "#fff",
-      borderTopLeftRadius: 35,
-      borderTopRightRadius: 35,
-      marginTop: 10,
-      marginBottom: 10,
-      maxWidth: "150%",
-   },
-   infobolsa: {
-      flex: 1,
-      justifyContent: "space-between",
-      alignItems: "center",
-
-   },
-   valor: {
-      flex: 0.9,
-      justifyContent: "center",
-      alignItems: "center",
-   },
-   color: {
-      width: "100%",
-      flex: 0.1,
-      backgroundColor: "red",
-   },
-   valorN: {
-      fontSize: 35,
-   },
    text: {
       color: "#03B6E8",
       fontSize: 28,
@@ -185,72 +156,34 @@ const styles = StyleSheet.create({
       color: "#03B6E8",
 
    },
-   editarnombre: {
-      flex: 1,
-      flexDirection: "row",
-      justifyContent: "center",
-      marginTop: 10,
-   },
-   textedit: {
-      flex: 0.87,
-      color: "#04B6E8",
-      fontSize: 18,
-      fontFamily: "Roboto",
-      justifyContent: "center",
-      alignItems: "center",
-   },
-   icons: {
-      color: "#04B6E8",
-      margin: 10,
-      fontSize: 32,
-   },
    imagen2: {
-      flex: 1,
-      flexDirection: "column",
-      padding: 20,
-      paddingTop: 10,
-   },
-   btn: {
-      backgroundColor: "#04B6E8",
-      color: "#fff",
-      borderRadius: 15,
-      flex: 1,
-      justifyContent: "center",
       alignItems: "center",
+      justifyContent: "center",
+      height: responsiveHeight(30),
    },
-   magnitud: {
-      flex: 5,
-      fontSize: 15,
-      textAlign: "center",
-      marginTop: 20
-   },
-
    imagencontainer: {
       flex: 0.8,
-      maxHeight: "100%",
+      height: responsiveHeight(15),
    },
    contenedor: {
+      height:responsiveHeight(40),
       flexDirection: "column",
-      borderTopLeftRadius: 35,
-      borderTopRightRadius: 35,
-      backgroundColor: "white",
-      marginTop: -100
-
+      borderTopLeftRadius: responsiveFontSize(3),
+      borderTopRightRadius: responsiveFontSize(3),
+      backgroundColor: "#fff",
+      marginTop: responsiveHeight(-100),
    },
-
-   lleno: {
-      backgroundColor: "rgb(3,182,232)",
-   },
-
    container2: {
-      width: 140,
-      height: 10,
-
+      width: responsiveWidth(30),
+      height: responsiveHeight(5),
    },
-   option1: {
-      backgroundColor: 'blue', // Estilo para la opción 'Encendido'
+   porcent:{
+      fontSize: responsiveFontSize(3),
+      right: responsiveWidth(33)
    },
-   option2: {
-      backgroundColor: 'red', // Estilo para la opción 'Apagado'
-   },
+   porcent2:{
+      fontSize: responsiveFontSize(3),
+      left: responsiveWidth(33)
+      
+   }
 })

@@ -3,6 +3,7 @@ import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer"
 import { Image, View, Text, Animated, Dimensions } from "react-native"
 import { userConstant } from "../Constants/userConstants";
 const { height, width, fontScale, scale } = Dimensions.get("window")
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import {singOut} from '../hooks/useSingOut.jsx'
 import { useNavigation, CommonActions } from "@react-navigation/native";
 export function CustomDrawerContent(props) {
@@ -31,17 +32,17 @@ export function CustomDrawerContent(props) {
          <View style={{
             flexDirection: "column",
             alignItems: "center",
-            marginTop:30,
+            marginTop:responsiveHeight(4.1),
          }}>
 
             <Image
-               style={{ width: width / 3, height: height / 6 }}
+               style={{ width: responsiveWidth(33), height: responsiveHeight(16) }}
                source={require("../../assets/images/Iso-12.png")}
             />
             <Text style={{
-               fontSize: fontScale * 25,
+               fontSize: responsiveFontSize(3),
                fontWeight: "bold", color: "#03B6E8",
-               height: height / 20
+               height: responsiveHeight(5)
             }}>
 
                {userConstant.name}
@@ -50,25 +51,25 @@ export function CustomDrawerContent(props) {
 
          <DrawerItem
             style={{
-               width: width / 1.7,
+               width: responsiveWidth(59),
                alignSelf: "flex-start",
-               height: height / 22
+               height: responsiveHeight(4.5)
             }}
             icon={() => (
                <Image
                   source={require("../../assets/icons/Home.png")}
                   style={{
-                     width: width / 12,
-                     height: height / 24,
+                     width: responsiveWidth(8.3),
+                     height: responsiveHeight(4.1),
                      alignSelf: "auto",
-                     marginLeft: width / 100
+                     marginLeft: responsiveWidth(1)
                   }}
                />
             )}
             labelStyle={{
-               fontSize: fontScale * 23,
+               fontSize: responsiveFontSize(2.7),
                color: "black",
-               width: width / 2.91,
+               width: responsiveWidth(34.7),
                alignSelf: "flex-end",
                fontFamily: "Lato-Bold"
             }}
@@ -80,22 +81,23 @@ export function CustomDrawerContent(props) {
 
          <DrawerItem
             style={{
-               width: width / 1.7,
-               height: height / 20,
+               width: responsiveWidth(58.8),
+               height: responsiveHeight(5),
                alignSelf: "flex-start"
             }}
             icon={() => (
                <Image
                   source={require("../../assets/icons/Petroleo_Icon.png")}
                   style={{
-                     width: width / 10,
-                     height: height / 21
+                     width: responsiveWidth(10),
+                     height: responsiveHeight(4.7)
                   }}
                />
             )}
             labelStyle={{
-               fontSize: fontScale * 23,
-               color: "black", width: width / 2.91,
+               fontSize: responsiveFontSize(2.7),
+               color: "black", 
+               width: responsiveWidth(34.4),
                alignSelf: "flex-end",
                fontFamily: "Lato-Bold"
             }}
@@ -107,23 +109,23 @@ export function CustomDrawerContent(props) {
 
          <DrawerItem
             style={{
-               width: width / 1.7,
-               height: height / 19,
+               width: responsiveWidth(58.8),
+               height: responsiveHeight(5.3),
                alignSelf: "flex-start"
             }}
             icon={() => (
                <Image
                   source={require("../../assets/icons/Agricultura_Icon.png")}
                   style={{
-                     width: width / 10,
-                     height: height / 21
+                     width: responsiveWidth(10),
+                     height: responsiveHeight(4.7)
                   }}
                />
             )}
             labelStyle={{
-               fontSize: fontScale * 23,
+               fontSize: responsiveFontSize(2.7),
                color: "black",
-               width: width / 2.91,
+               width: responsiveWidth(34.4),
                alignSelf: "flex-end",
                fontFamily: "Lato-Bold"
             }}
@@ -135,23 +137,23 @@ export function CustomDrawerContent(props) {
 
          <DrawerItem
             style={{
-               width: width / 1.7,
-               height: height / 15,
+               width: responsiveWidth(58),
+               height: responsiveHeight(6.6),
                alignSelf: "flex-start"
             }}
             icon={() => (
                <Image
                   source={require("../../assets/icons/Mineria_Icon.png")}
                   style={{
-                     width: width / 10,
-                     height: height / 21
+                     width: responsiveWidth(10),
+                     height: responsiveHeight(4.7)
                   }}
                />
             )}
             labelStyle={{
-               fontSize: fontScale * 23,
+               fontSize: responsiveFontSize(2.7),
                color: "black",
-               width: width / 2.91,
+               width: responsiveWidth(33.3),
                alignSelf: "flex-end",
                fontFamily: "Lato-Bold"
             }}
@@ -164,30 +166,30 @@ export function CustomDrawerContent(props) {
          <View style={{
             height: 1,
             backgroundColor: "#d9d9d9",
-            width: width / 1.72,
+            width: responsiveWidth(58.5),
             alignSelf: "center"
          }} />
 
          <DrawerItem
             style={{
-               width: width / 1.7,
+               width: responsiveWidth(58.5),
                alignSelf: "flex-start",
-               height: height / 21
+               height: responsiveHeight(4.8)
             }}
             icon={() => (
                <Image
                   source={require("../../assets/icons/Perfil.png")}
                   style={{
-                     width: width / 10.8,
-                     height: height / 22,
-                     marginLeft: width / 300
+                     width: responsiveWidth(9.2),
+                     height: responsiveHeight(4.5),
+                     marginLeft: responsiveWidth(0.3)
                   }}
                />
             )}
             labelStyle={{
-               fontSize: fontScale * 23,
+               fontSize: responsiveFontSize(2.7),
                color: "black",
-               width: width / 2.91,
+               width: responsiveWidth(34),
                alignSelf: "flex-end",
                fontFamily: "Lato-Bold"
             }}
@@ -199,23 +201,23 @@ export function CustomDrawerContent(props) {
 
          <DrawerItem
             style={{
-               width: width / 1.7,
+               width: responsiveWidth(58),
                alignSelf: "flex-start"
             }}
             icon={() => (
                <Image
                   source={require("../../assets/icons/Ajustes.png")}
                   style={{
-                     width: width / 10,
-                     height: height / 22,
+                     width: responsiveWidth(10),
+                     height: responsiveHeight(4.5),
                      tintColor: opcionVisible ? "#03B6E8" : "#737373"
                   }}
                />
             )}
             labelStyle={{
-               fontSize: fontScale * 23,
+               fontSize: responsiveFontSize(2.7),
                color: "black",
-               width: width / 2.91,
+               width: responsiveWidth(33.3),
                alignSelf: "flex-end",
                fontFamily: "Lato-Bold"
             }}
@@ -231,11 +233,11 @@ export function CustomDrawerContent(props) {
                      style={{
                         width: width,
                         alignSelf: "center",
-                        maxWidth: width / 1.79,
+                        maxWidth: responsiveWidth(55.8),
                         marginBottom: 0,
-                        marginLeft: width / -80,
-                        borderTopRightRadius: scale * 10,
-                        borderTopLeftRadius: scale * 10,
+                        marginLeft: responsiveWidth(-1.25),
+                        borderTopRightRadius: responsiveHeight(2),
+                        borderTopLeftRadius: responsiveHeight(2),
                         borderBottomEndRadius: 0,
                         borderBottomStartRadius: 0
                      }}
@@ -244,16 +246,16 @@ export function CustomDrawerContent(props) {
                            color="#FFF"
                            source={require("../../assets/icons/Notificaciones.png")}
                            style={{
-                              width: width / 13,
-                              height: height / 23
+                              width: responsiveWidth(7.6),
+                              height: responsiveHeight(4.4)
                            }}
                         />
                      )}
                      inactiveBackgroundColor="#03B6E8"
                      labelStyle={{
-                        fontSize: fontScale * 22,
+                        fontSize: responsiveFontSize(2.7),
                         color: "#FFF",
-                        width: width / 2.8,
+                        width: responsiveWidth(35.7),
                         alignSelf: "center",
                         fontFamily: "Lato-Bold"
                      }}
@@ -265,13 +267,14 @@ export function CustomDrawerContent(props) {
 
                   <DrawerItem
                      style={{
-                        width: width,
+                        width: responsiveWidth(100),
                         alignSelf: "center",
-                        maxWidth: width / 1.79,
-                        backgroundColor: "#03B6E8", marginTop: 0,
-                        marginLeft: width / -80,
-                        borderBottomEndRadius: scale * 10,
-                        borderBottomStartRadius: scale * 10,
+                        maxWidth: responsiveWidth(55.8),
+                        backgroundColor: "#03B6E8", 
+                        marginTop: responsiveHeight(0),
+                        marginLeft: responsiveWidth(-1.25),
+                        borderBottomEndRadius: responsiveHeight(2),
+                        borderBottomStartRadius: responsiveHeight(2),
                         borderTopEndRadius: 0,
                         borderTopStartRadius: 0
                      }}
@@ -280,15 +283,15 @@ export function CustomDrawerContent(props) {
                            color="#FFF"
                            source={require("../../assets/icons/Terminos.png")}
                            style={{
-                              width: width / 13,
-                              height: height / 22
+                              width: responsiveWidth(7.6),
+                              height: responsiveHeight(4.5)
                            }}
                         />
                      )}
                      labelStyle={{
-                        fontSize: fontScale * 22,
+                        fontSize: responsiveFontSize(2.7),
                         color: "#FFF",
-                        width: width / 2.8,
+                        width: responsiveWidth(35.7),
                         alignSelf: "center",
                         fontFamily: "Lato-Bold"
                      }}
@@ -303,15 +306,15 @@ export function CustomDrawerContent(props) {
 
          <DrawerItem
             style={{
-               width: width / 2.4,
+               width: responsiveWidth(41.6),
                alignSelf: "center",
-               marginTop: height / 100
+               marginTop: responsiveHeight(1)
             }}
             labelStyle={{
-               fontSize: fontScale * 22,
+               fontSize: responsiveFontSize(2.7),
                color: "#03B6E8",
-               width: width / 2,
-               marginLeft: width / 39,
+               width: responsiveWidth(50),
+               marginLeft: responsiveWidth(2.5),
                fontFamily: "Lato-Bold"
             }}
             label="Cerrar Sesion"

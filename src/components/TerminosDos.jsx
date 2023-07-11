@@ -46,7 +46,7 @@ export function TerminosDos(){
                 
             <View style={styles.datosC}>
                 <View style={styles.datos}>
-                    <Image 
+                    <Image  
                         source={require("../../assets/icons/Logo.png")} 
                         style={{width:width / 2,height:height/ 14,alignSelf:"center",tintColor:"#e8e8e8"}}
                     />
