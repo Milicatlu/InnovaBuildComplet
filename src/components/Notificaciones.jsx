@@ -5,6 +5,7 @@ import { StyledText } from "./StyledText"
 import { AppBar } from "./AppBar"
 import { supabase } from "../lib/supabase"
 import { getUser } from "../lib/supabaseHandler"
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions'
 const {height, width, fontScale, scale} = Dimensions.get("window")
 
 export function Notificaciones(props){
@@ -216,7 +217,7 @@ const styles = StyleSheet.create({
         width: width,
         position:"absolute",
         bottom: 0,
-        paddingTop: height / 100,
+        paddingTop: responsiveHeight(1),
         backgroundColor:"#fff",
         borderTopEndRadius: height / 40,
         borderTopStartRadius:height / 40
@@ -306,8 +307,8 @@ const styles = StyleSheet.create({
         fontSize: fontScale * 19,
         textAlign:"left",
         color:"#03B6E8",
-        marginRight: width / 10,
-        marginLeft: width / 10,
+        marginRight: responsiveWidth(10),
+        marginLeft: responsiveWidth(10),
         bottom: height / 29,
         textAlign: "left",
     },
@@ -322,7 +323,7 @@ const styles = StyleSheet.create({
     notificacionTitulo:{
         fontSize: fontScale * 26,
         fontFamily: "Lato-Bold",
-        left: width / 10, 
+        left: responsiveWidth(10), 
         textAlign: "left",
         bottom: height / 62,
         marginRight: width / 7
@@ -330,10 +331,10 @@ const styles = StyleSheet.create({
     notificationMessage: {
         textAlign: "left",
         fontSize: fontScale * 19,
-        marginLeft: width / 10,
+        marginLeft: responsiveWidth(10),
         fontFamily: "Lato-Regular",
         bottom: height / 180,
-        marginRight: width / 10
+        marginRight: responsiveWidth(10)
     },
     relleno:{
         height: height / 70
@@ -344,18 +345,18 @@ const styles = StyleSheet.create({
     textButtons:{
         fontFamily:"Lato-Bold",
         fontSize: fontScale * 18,
-        top: height / 200
+        top: responsiveHeight(0.5)
     },
     closeButton:{
         height: height / 27,
         width: width / 12,
         right: width / 46,
-        bottom: height / 100,
+        bottom: responsiveHeight(1),
     },
     noNotificacion:{
         fontFamily:"Lato-Bold",
         alignSelf:"center",
-        marginTop: height / 25,
+        marginTop: responsiveHeight(4),
         fontSize: fontScale * 20
     },
 })

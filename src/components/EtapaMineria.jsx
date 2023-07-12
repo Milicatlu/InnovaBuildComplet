@@ -18,12 +18,32 @@ import { AppBar } from "./AppBar"
 import { useState } from "react"
 export function EtapaMineria() {
 
-
+   const [selectedValue, setSelectedValue] = useState('true');
+  const [textColor, setTextColor] = useState('#ffff');
+  const [color, setColor] = useState('#EB691A');
+  const [color2, setColor2] = useState('#1DB6E5');
+  const [color3, setColor3] = useState('#1DB6E5');
+  const options = [
+   { label: 'ENCENDIDO', value: 'true', activeColor: '#ffff', activeFontColor: '#ffff' },
+   { label: '', value: 'false',  activeColor: '#ffff', activeFontColor: '#fff' },
+ ];
+ const onValueChange = (value) => {
+   setSelectedValue(value);
+   
+   // Actualizar el color del texto basado en el valor seleccionado
+   if (value === 'true') {
+     setTextColor('#ffff'); // Blanco para 'true'
+   } else {
+     setTextColor('#ffff'); // Naranja para 'false'
+   }
+ };
    const [isEnabled, setIsEnabled] = useState(true);
    const togleSwitch = () => {
       setIsEnabled(previousState => !previousState)
    }
    const [showhide, setShowHide] = useState(false);
+
+   
    return (
       <>
 
@@ -34,13 +54,12 @@ export function EtapaMineria() {
             >
                <AppBar />
                <View style={styles.subcontainer}>
-                  <Text style={styles.titulo}>Mineria</Text>
+                  <Text style={styles.titulo}>MINERÍA</Text>
                   <StyledText
                      align="center"
                      fontSize="subheading1"
-                     fontWeight="bold"
                      color="primary"
-                     style={{ paddingBottom: 40, fontSize: 22 }}
+                     style={{ paddingBottom: responsiveHeight(2), fontSize: responsiveFontSize(2.7) }}
                   >
                      Bomba de la varilla
                   </StyledText>
@@ -62,25 +81,30 @@ export function EtapaMineria() {
                <View style={{ marginTop: responsiveHeight(5), marginLeft: responsiveWidth(5) }}>
                   <View style={{ flexDirection: "row" }}>
                      <StyledText fontWeight="bold" color="terciary" style={{ marginLeft: responsiveWidth(5), marginTop: responsiveHeight(0.5), fontSize:responsiveFontSize(1.9) }} >Funcionamiento del motor</StyledText>
-                     <View style={{backgroundColor: showhide ? '#1DB6E5' : '#EB691A'}}>
-    <SwitchSelector 
-        style={styles.container2}
-        initial={0}
-        fontSize={12}
-        bold={true}
-        hasPadding 
-        options={[
-            { label: "Encendido", value: "true", activeColor: '#1DB6E5' }, 
-            { label: "Apagado", value: "false", activeColor: '#EB691A' }
-        ]}
-        valuePadding={responsiveHeight(-0.02)}
-        height={30}
-        onPress={(value) => setShowHide(value === "true")}
-        trackColor={{ false: "#EB691A", true: "#1DB6E5" }}
-        testID="gender-switch-selector"
-        accessibilityLabel="gender-switch-selector"
-    />
-</View>
+                     <View style={styles.container2}>
+                  
+         <SwitchSelector style={styles.container2}
+                           initial={0}
+                           fontSize={responsiveFontSize(1.25)}
+                           backgroundColor={color3}
+                           bold={true}
+                           textColor={"#FFFF"}
+                           selectedColor={'#FFFF'}
+                           buttonColor={"#FFFF"}
+                           borderColor={"#FFF"}
+                           hasPadding options={[{ label: " ENCENDIDO", value: true, activeColor: "#FFF" }, { label: "APAGADO", value: false, activeColor: "#FFF" }]}
+                           valuePadding={6}
+                           height={30}
+                           onPress={(value) => {
+                              setColor(value ? '#1DB6E5' : '#EB691A');
+                              setColor3(value ?  '#EB691A' : '#1DB6E5');
+                              setShowHide(value);
+                            }}
+                           testID="gender-switch-selector"
+                           accessibilityLabel="gender-switch-selector"
+                        />
+    </View>
+ 
 
                   </View>
                   <View style={{ flexDirection: "row", alignItems: "stretch", marginTop: 10 }}>
@@ -129,7 +153,8 @@ const styles = StyleSheet.create({
    },
    titulo: {
       alignSelf: "center",
-      fontSize: 40,
+      paddingBottom: responsiveHeight(3),
+      fontSize: responsiveFontSize(5),
       fontWeight: "bold",
       color: "#03B6E8",
 
@@ -148,8 +173,11 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignItems: "center",
    },
-  
 
+   container: {
+      flex: 1,
+      justifyContent: 'center',
+    },
    imagencontainer: {
       flex: 0.8,
       maxHeight: responsiveHeight(50),
@@ -163,12 +191,32 @@ const styles = StyleSheet.create({
       marginTop: responsiveHeight(-100),
 
    },
-
-
    container2: {
-      width: responsiveWidth(30),
-      height: responsiveHeight(3.9),
+      width: responsiveWidth(33),
+      height: responsiveHeight(3.5),
 
    },
   
-})
+}) 
+/*
+<View style={{backgroundColor: showhide ? '#1DB6E5' : '#EB691A'}}>
+<SwitchSelector 
+    style={[styles.container2, {backgroundColor: showhide ? '#1DB6E5' : '#EB691A'}]}
+    initial={0}
+    fontSize={12}
+    bold={true}
+    hasPadding 
+    options={[
+        { label: "Encendido", value: "true", activeColor: '#1DB6E5' }, 
+        { label: "Apagado", value: "false", activeColor: '#EB691A' }
+    ]}
+    valuePadding={responsiveHeight(-0.02)}
+    height={30}
+    onPress={(value) => setShowHide(value === "true")}
+    trackColor={{ false: "#EB691A", true: "#1DB6E5" }}
+    testID="gender-switch-selector"
+    accessibilityLabel="gender-switch-selector"
+/>
+</View>
+
+*/

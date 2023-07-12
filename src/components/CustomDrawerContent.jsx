@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer"
-import { Image, View, Text, Animated, Dimensions } from "react-native"
+import { Image, View, Text, Animated } from "react-native"
 import { userConstant } from "../Constants/userConstants";
-const { height, width, fontScale, scale } = Dimensions.get("window")
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import {singOut} from '../hooks/useSingOut.jsx'
 import { useNavigation, CommonActions } from "@react-navigation/native";
@@ -231,7 +230,7 @@ export function CustomDrawerContent(props) {
                <>
                   <DrawerItem
                      style={{
-                        width: width,
+                        width: responsiveWidth(100),
                         alignSelf: "center",
                         maxWidth: responsiveWidth(55.8),
                         marginBottom: 0,
