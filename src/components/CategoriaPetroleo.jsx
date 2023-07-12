@@ -46,10 +46,10 @@ export function PetroleoCategoria(props) {
 
 const styles = StyleSheet.create({
   sate: {
-    width: responsiveWidth(50),
-    height: responsiveHeight(15),
+    width: responsiveWidth(55),
+    height: responsiveHeight(20),
     left: responsiveWidth(55),
-    bottom: responsiveHeight(15)
+    bottom: responsiveHeight(10)
   },
   imagen: {
     height: responsiveHeight(115),
@@ -90,13 +90,13 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom: responsiveHeight(4),
-    top: responsiveHeight(17),
+    top: responsiveHeight(15),
     borderColor: '#03B6E8',
     borderWidth: 2,
     padding: responsiveHeight(1.5),
     width: responsiveWidth(63),
-    height: responsiveHeight(10.5),
-    borderRadius: responsiveHeight(1),
+    height: responsiveHeight(11),
+    borderRadius: responsiveHeight(2),
     alignItems: 'center',
   }
 });

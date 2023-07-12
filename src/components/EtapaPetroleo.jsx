@@ -24,7 +24,9 @@ export function EtapaPetroleo() {
    const togleSwitch = () => {
       setIsEnabled(previousState => !previousState)
    }
-   const [showhide, setShowHide] = useState(false);
+   const [showHide, setShowHide] = useState(false);
+   const [showhide, setShowhide] = useState(false);
+
    return (
       <>
          <View style={styles.container}>
@@ -83,25 +85,22 @@ export function EtapaPetroleo() {
                                     yAxisSuffix='°'
                                     yAxisInterval={1}
                                     chartConfig={{
-                                        backgroundColor: "red",
-                                        backgroundGradientFrom: color,
+                                        backgroundGradientFrom: "rgba(0, 0, 0, 0)",
                                         backgroundGradientTo: "rgba(0, 0, 0, 0)",
                                         decimalPlaces: 2,
-                                        color: (opacity = 0) => `#CCA500`,
-                                        labelColor: (opacity = 0) => `rgba(0,0,0, ${opacity})`,
+                                        color: (opacity = 0) => color,
+                                        labelColor: (opacity = 0) => `#FFF`,
                                         style: {
-                                            borderRadius: 16
+                                            borderRadius: 16,
+                                            textColor:"red"
                                         },
                                         propsForDots: {
                                             r: "4",
                                             strokeWidth: "1",
-                                            stroke: "#CCA500"
+                                            stroke: color
                                         },
                                     }}
                                     bezier
-                                    style={{
-                                        marginVertical: 8,
-                                    }}
                                 />
                             </View>
                      </ScrollView>
@@ -109,33 +108,57 @@ export function EtapaPetroleo() {
                </View>
             </ImageBackground>
             <View style={styles.contenedor}>
-               <StyledText fontWeight="bold" fontSize="subheading1" style={{ marginTop: 20, marginLeft: 30, color: "#1DB6E5" }}   >Datos del motor:</StyledText>
+               <StyledText fontWeight="bold" fontSize="subheading1" style={{ marginTop: responsiveHeight(5), marginLeft: responsiveWidth(10), color: "#1DB6E5" , fontSize:responsiveFontSize(2.5)}}   >Datos del motor:</StyledText>
                <View style={{ alignItems: "center", marginLeft: 20 }}>
-                  {showhide !== true ? <StyledText fontStyle="italic" color="terciary" style={{ marginTop: 20, marginLeft: -50, width: 296, fontSize: 16 }}>El funcionamiento del motor , se encuentra en modo apagado con una temperatura baja de 10° grados</StyledText>
-                     : <StyledText fontStyle="italic" color="terciary" style={{ marginTop: 20, marginLeft: -50, width: 296, fontSize: 16 }}>El funcionamiento del motor , se encuentra en modo encendido con una temperatura mayor a 40° grados</StyledText>}
+                  {showhide !== true ? <StyledText fontStyle="italic" color="terciary" style={{ marginTop: responsiveHeight(3),  marginRight: responsiveWidth(15), width: responsiveWidth(70), fontSize: responsiveFontSize(2.2) }}>El funcionamiento del motor , se encuentra en modo apagado con una temperatura baja de 10° grados</StyledText>
+                     : <StyledText fontStyle="italic" color="terciary" style={{ marginTop: responsiveHeight(3), marginRight: responsiveWidth(14), width: responsiveWidth(70), fontSize: responsiveFontSize(2.2) }}>El funcionamiento del motor , se encuentra en modo encendido con una temperatura mayor a 40° grados</StyledText>}
                </View>
-               <View style={{ marginTop: 20, marginLeft: 10 }}>
+               <View style={{ marginTop: responsiveHeight(5), marginLeft: responsiveWidth(3) }}>
                   <View style={{ flexDirection: "row" }}>
                      <StyledText fontWeight="bold" color="terciary" style={{ marginLeft: 20, marginTop: 5 }} fontSize={14}>Funcionamiento del motor</StyledText>
                      <View style={{ marginLeft: 20 }}>
-                        <SwitchSelector style={styles.container2}
-                           initial={0}
-                           fontSize={12}
+                     <SwitchSelector
+                           style={styles.container2}
+                           initial={1}
+                           fontSize={responsiveFontSize(1.25)}
                            backgroundColor={color3}
                            bold={true}
                            textColor={"#FFFF"}
-                           selectedColor={'#FFFF'}
+                           selectedColor={"#FFFF"}
                            buttonColor={"#FFFF"}
+                           circleStyle={{
+                              width: responsiveWidth(1),
+                              height: responsiveWidth(1),
+                           }}
                            borderColor={"#FFF"}
-                           hasPadding options={[{ label: "Encendido", value: true, activeColor: "#FFF" }, { label: "Apagado", value: false, activeColor: "#FFF" }]}
-                           valuePadding={3}
+                           valuePadding={responsiveWidth(1.8)}
+                           hasPadding
+                           options={
+                              showHide
+                                 ? [
+                                    { label: "", value: true, activeColor: "#FFF" },
+                                    {
+                                       label: "APAGADO",
+                                       value: false,
+                                       activeColor: "#FFF",
+                                    },
+                                 ]
+                                 : [
+                                    {
+                                       label: "ENCENDIDO",
+                                       value: true,
+                                       activeColor: "#FFF",
+                                       valuePadding: 2,
+                                    },
+                                    { label: "", value: false, activeColor: "#FFF" },
+                                 ]
+                           }
                            height={30}
                            onPress={(value) => {
-                              setColor(value ? '#1DB6E5' : '#EB691A');
-                              setColor3(value ?  '#EB691A' : '#1DB6E5');
+                              setColor(value ? "#1DB6E5" : "#EB691A");
+                              setColor3(value ? "#EB691A" : "#1DB6E5");
                               setShowHide(value);
-                            }}
-                           trackColor={{ false: "red", true: "blue" }}
+                           }}
                            testID="gender-switch-selector"
                            accessibilityLabel="gender-switch-selector"
                         />
@@ -146,7 +169,7 @@ export function EtapaPetroleo() {
                      <View style={{ marginLeft: 20 }}>
                         <SwitchSelector style={styles.container2}
                            initial={0}
-                           fontSize={12}
+                           fontSize={responsiveFontSize(1.25)}
                            backgroundColor={color2}
                            bold={true}
                            textColor={"#FFFF"}
@@ -154,8 +177,8 @@ export function EtapaPetroleo() {
                            buttonColor={"#FFFF"}
                            borderColor={"#FFF"}
                            hasPadding options={[{ label: "Encendido", value: true, activeColor: "#FFF" }, { label: "Apagado", value: false, activeColor: "#FFF" }]}
-                           valuePadding={3}
-                           height={30}
+                           valuePadding={responsiveWidth(0.7)}
+                           height={responsiveHeight(3.5)}
                            onPress={(value) => {
                               setColor2(value ?  '#EB691A' : '#1DB6E5');
                             }}
@@ -203,45 +226,6 @@ const styles = StyleSheet.create({
       color: "#03B6E8",
       paddingBottom: responsiveHeight(3)
    },
-   editarnombre: {
-      flex: 1,
-      flexDirection: "row",
-      justifyContent: "center",
-      marginTop: 10,
-   },
-   textedit: {
-      flex: 0.87,
-      color: "#04B6E8",
-      fontSize: 18,
-      fontFamily: "Roboto",
-      justifyContent: "center",
-      alignItems: "center",
-   },
-   icons: {
-      color: "#04B6E8",
-      margin: 10,
-      fontSize: 32,
-   },
-   imagen2: {
-      flex: 1,
-      flexDirection: "column",
-      padding: 20,
-      paddingTop: 10,
-   },
-   btn: {
-      backgroundColor: "#04B6E8",
-      color: "#fff",
-      borderRadius: 15,
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-   },
-   magnitud: {
-      flex: 5,
-      fontSize: 15,
-      textAlign: "center",
-      marginTop: 2
-   },
    imagencontainer: {
       flex: 0.8,
       maxHeight: responsiveHeight(50),
@@ -256,21 +240,23 @@ const styles = StyleSheet.create({
       backgroundColor: "#fff",
       marginTop: responsiveHeight(-100),
    },
-   lleno: {
-      backgroundColor: "rgb(3,182,232)",
-   },
    container2: {
-      width: responsiveWidth(35),
-      height: responsiveHeight(5),
+      width: responsiveWidth(33),
+      height: responsiveHeight(3.5),
+      paddingHorizontal: responsiveWidth(1.5),
+      marginHorizontal: responsiveWidth(3),
    },
    porcent:{
-      fontSize: responsiveFontSize(3),
-      right: responsiveWidth(33),
-      bottom: responsiveHeight(3.9)      
+      fontSize: responsiveFontSize(2.5),
+      right: responsiveWidth(34.7),
+      bottom: responsiveHeight(4)      
    },
    porcent2:{
-      fontSize: responsiveFontSize(3),
-      left: responsiveWidth(33),
+      fontSize: responsiveFontSize(2.5),
+      left: responsiveWidth(33.5),
       bottom: responsiveHeight(8)
+   },
+   switchSelector: {
+      valueMargin: 20,
    }
 })

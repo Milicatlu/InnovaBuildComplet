@@ -17,6 +17,7 @@ import { Modal } from "react-native";
 import { InfluxDBHelper } from "../helpers/InfluxDB";
 const { width, height } = Dimensions.get("window");
 import { Dimensions } from "react-native";
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions";
 export function SiloMenu(props) {
     const [isOpen, setIsOpen] = useState(false)
     const [temperatura, setTemperatura] = useState(25)
@@ -142,11 +143,10 @@ export function SiloMenu(props) {
                         <StyledText
                             align="center"
                             fontSize="subheading1"
-                            fontWeight="bold"
                             color="primary"
-                            style={{ paddingBottom: 40, fontSize: 22 }}
+                            style={{ paddingBottom: responsiveHeight(8), fontSize: responsiveFontSize(2.7) }}
                         >
-                            Informacion de la Silo bolsa
+                            Silo bolsa 1 de soja
                         </StyledText>
                         <View style={styles.infobolsaC}>
                             <View style={styles.infobolsa}>
@@ -222,7 +222,6 @@ export function SiloMenu(props) {
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <StyledText
-                                fontWeight="bold"
                                 style={styles.magnitud}
                                 color="primary"
 
@@ -230,14 +229,12 @@ export function SiloMenu(props) {
                                 Temperatura
                             </StyledText>
                             <StyledText
-                                fontWeight="bold"
                                 style={styles.magnitud}
                                 color="primary"
                             >
                                 CO2
                             </StyledText>
                             <StyledText
-                                fontWeight="bold"
                                 style={styles.magnitud}
                                 color="primary"
                             >
@@ -468,14 +465,13 @@ const styles = StyleSheet.create({
     infobolsaC: {
         flex: 10,
         flexDirection: "row",
-        maxHeight: "19%",
-        padding: 2,
+        maxHeight: responsiveHeight(8),
+        padding: responsiveHeight(0.5),
         backgroundColor: "#fff",
-        borderTopLeftRadius: 35,
-        borderTopRightRadius: 35,
-        marginTop: 10,
-        marginBottom: 10,
-        maxWidth: "100%",
+        borderTopLeftRadius: responsiveHeight(5),
+        borderTopRightRadius:responsiveHeight(5),
+        marginBottom: responsiveHeight(5),
+        maxWidth: responsiveWidth(100),
     },
     infobolsa: {
         flex: 1,
@@ -496,6 +492,7 @@ const styles = StyleSheet.create({
     },
     valorN: {
         fontSize: 35,
+        fontWeight:'bold'
     },
     text: {
         color: "#03B6E8",
@@ -507,8 +504,10 @@ const styles = StyleSheet.create({
     },
     titulo: {
         alignSelf: "center",
-        fontSize: 40,
+        fontSize: responsiveFontSize(4.5),
         fontWeight: "bold",
+        paddingTop:responsiveHeight(5),
+        paddingBottom:responsiveHeight(2),
         color: "#03B6E8",
 
     },
@@ -547,9 +546,9 @@ const styles = StyleSheet.create({
     },
     magnitud: {
         flex: 5,
-        fontSize: 14,
+        fontSize: responsiveFontSize(2),
         textAlign: "center",
-        marginTop: 10
+        marginBottom: responsiveHeight(3),
     },
 
     magnitudcont: {
