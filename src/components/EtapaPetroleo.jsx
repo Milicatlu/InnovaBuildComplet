@@ -206,18 +206,10 @@ const styles = StyleSheet.create({
    },
    subcontainer: {
       flex: 0.9,
-      padding: 40,
-      paddingTop: 20,
+      padding: responsiveWidth(10),
+      paddingTop: responsiveHeight(6),
       flexDirection: "column",
       marginBottom: 10,
-   },
-   text: {
-      color: "#03B6E8",
-      fontSize: 28,
-      marginBottom: 20,
-      marginTop: 10,
-      alignSelf: "center",
-      fontFamily: "Lato-Bold",
    },
    titulo: {
       alignSelf: "center",

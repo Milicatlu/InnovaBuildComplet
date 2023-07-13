@@ -6,7 +6,6 @@ import { AppBar } from "./AppBar"
 import { supabase } from "../lib/supabase"
 import { getUser } from "../lib/supabaseHandler"
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions'
-const {height, width, fontScale, scale} = Dimensions.get("window")
 
 export function Notificaciones(props){
     //Estado para almacenar el tipo seleccionado
@@ -131,7 +130,7 @@ export function Notificaciones(props){
         <>
             <ImageBackground 
                 source={ require("../../assets/images/Fondo-06.jpg")}
-                style={{ paddingTop: height / 100, height: height + height / 20}}
+                style={{ paddingTop: responsiveHeight(1), height: responsiveHeight(105)}}
                 imageStyle={{ justifyContent: "center", alignItems: "center" }}
             >   
                 <AppBar/>
@@ -139,35 +138,33 @@ export function Notificaciones(props){
                 <StyledText
                     color="secondary"
                     align="center"
-                    style={{margin: scale, 
-                            fontSize : fontScale * 42, 
-                            height:height / 7}}
+                    style={{ fontSize : responsiveFontSize(5.4), height:responsiveHeight(14)}}
                 >
                     <Text style={{fontFamily:"Lato-Bold"}}>
                         NOTIFICACIONES
                     </Text>
-
+                        
                 </StyledText>
                 
             <View style={styles.datosCButtons}>
             
                 <TouchableOpacity style={styles.containerButtons} onPress={() => handleButtonPress("Minería")}>
                     <Image  source={require("../../assets/icons/Mineria_Icon.png")}         
-                            style={[styles.imageButtons, {marginRight: width / 30,left: width / 50, tintColor: selectedType === "Minería" ? "#03B6E8" : "#C6C6C8"}]}/>
+                            style={[styles.imageButtons, {marginRight: responsiveWidth(3.3),left: responsiveWidth(2), tintColor: selectedType === "Minería" ? "#03B6E8" : "#C6C6C8"}]}/>
                         <Text style={[styles.textButtons, {color: selectedType === "Minería" ? "#03B6E8" : "#C6C6C8"}]}>Minería</Text>
                 </TouchableOpacity>
                 
                 <TouchableOpacity style={styles.containerButtons} onPress={() => handleButtonPress("Agricultura")}>
                     <Image  source={require("../../assets/icons/Agricultura_Icon.png")}      
-                            style={[styles.imageButtons, {marginLeft: width / 30, tintColor: selectedType === "Agricultura" ? "#03B6E8" : "#C6C6C8"}]}/>
+                            style={[styles.imageButtons, {marginLeft: responsiveWidth(3.3), tintColor: selectedType === "Agricultura" ? "#03B6E8" : "#C6C6C8"}]}/>
                         <Text style={[styles.textButtons, {color: selectedType === "Agricultura" ? "#03B6E8" : "#C6C6C8"}]}>Agricultura</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.containerButtons} onPress={() => handleButtonPress("Petróleo")}>
                     <Image  source={require("../../assets/icons/Petroleo_Icon.png")}         
-                            style={[styles.imageButtons, {marginHorizontal: width / 30, tintColor: selectedType === "Petróleo" ? "#03B6E8" : "#C6C6C8"}]}/>
-                        <Text style={[styles.textButtons, {color: selectedType === "Petróleo" ? "#03B6E8" : "#C6C6C8",left: width / -40}]}>Petróleo</Text>
-                </TouchableOpacity>
+                            style={[styles.imageButtons, {marginHorizontal: responsiveWidth(3.3), tintColor: selectedType === "Petróleo" ? "#03B6E8" : "#C6C6C8"}]}/>
+                        <Text style={[styles.textButtons, {color: selectedType === "Petróleo" ? "#03B6E8" : "#C6C6C8",left: responsiveWidth(-2.5)}]}>Petróleo</Text>
+                </TouchableOpacity> 
             </View>
             
             <View style={styles.datosC} >
@@ -213,47 +210,41 @@ export function Notificaciones(props){
 
 const styles = StyleSheet.create({
     datosC:{
-        height:height / 1.4,
-        width: width,
+        height:responsiveHeight(71.5),
+        width: responsiveWidth(100),
         position:"absolute",
         bottom: 0,
         paddingTop: responsiveHeight(1),
         backgroundColor:"#fff",
-        borderTopEndRadius: height / 40,
-        borderTopStartRadius:height / 40
+        borderTopEndRadius: responsiveHeight(2.5),
+        borderTopStartRadius: responsiveHeight(2.5)
     },
     datosCButtons:{
-        height:height / 16,
-        width: width,
+        height:responsiveHeight(6.25),
+        width: responsiveWidth(100),
         alignSelf:"center",
         position:"absolute",
-        bottom: height/ 1.35,
+        bottom: responsiveHeight(74),
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"center",
     },
     imageButtons:{
-        width:width / 11, 
-        height: height / 30,
+        width:responsiveWidth(9), 
+        height: responsiveHeight(3.3),
         tintColor:"black",
     },
     datos:{
         alignSelf:"center",
-        width:width / 1.05,
+        width:responsiveWidth(95),
     },
     label:{
         flexDirection:"row",
-        height: height / 12,
-    },
-    line:{
-        height:1, 
-        backgroundColor:"#d9d9d9", 
-        width:width , 
-        alignSelf:"center"
+        height: responsiveHeight(8.3),
     },
     image:{
-        width:width / 10, 
-        height: height / 22,
+        width:responsiveWidth(10), 
+        height: responsiveHeight(4.5),
         tintColor:"black",
         alignSelf: "center"
     },
@@ -261,16 +252,12 @@ const styles = StyleSheet.create({
         fontFamily:"Lato-Bold",
         alignSelf: "center",
         textAlign: "center",
-        left: width / 100,
-        width: width / 1.26
+        left: responsiveWidth(1),
+        width: responsiveWidth(1)
     },
-    hora:{
-        left:-20, 
-        color:"#87847a",
-        top:2, 
-    },notificationContainer: {
+    notificationContainer: {
         borderBottomColor: "#d9d9d9",
-        paddingVertical: height / 40,
+        paddingVertical: responsiveHeight(2.5),
         shadowColor: "#87847a",
         shadowOffset: {
             width: 0,
@@ -279,24 +266,24 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.01,    
         shadowRadius: 3.84,
         elevation:2,
-        marginLeft: 10,
-        marginRight:10,
+        marginLeft: responsiveWidth(2.3),
+        marginRight:responsiveWidth(2.3),
     },notificationContainerFirst: {
+        marginTop:responsiveHeight(2),
         borderBottomColor: "#d9d9d9",
-        paddingVertical: height / 40,
+        paddingVertical: responsiveHeight(2.5),
         shadowColor: "#87847a",
         shadowOffset: {
             width: 0,
             height: 1,
         },
-        marginLeft: 10,
-        marginRight:10,
+        marginLeft: responsiveWidth(2.3),
+        marginRight:responsiveWidth(2.3),
         shadowOpacity: 0.01,
         shadowRadius: 3.84,
         elevation:2,
-        margin: 10,
         borderLeftColor: "#03B6E8",
-        borderLeftWidth: 5,
+        borderLeftWidth: responsiveWidth(1),
     },
     notificationContent: {
         justifyContent: "flex-end",
@@ -304,59 +291,1073 @@ const styles = StyleSheet.create({
     },
     notificationType: {
         fontFamily: "Lato-Bold",
-        fontSize: fontScale * 19,
+        fontSize: responsiveFontSize(2.3),
         textAlign:"left",
         color:"#03B6E8",
         marginRight: responsiveWidth(10),
         marginLeft: responsiveWidth(10),
-        bottom: height / 29,
+        bottom: responsiveHeight(3.4),
         textAlign: "left",
     },
     notificationTime: {
         color: "#a7a7a8",
-        fontSize: fontScale * 19,
-        left: width / 9.9, 
-        top: width / - 20,
+        fontSize: responsiveFontSize(2.3),
+        left:responsiveWidth(10), 
+        top: responsiveHeight(-2.5),
         fontFamily:"Lato-Bold",
         textAlign: "left",
     },
     notificacionTitulo:{
-        fontSize: fontScale * 26,
+        fontSize: responsiveFontSize(3.2),
         fontFamily: "Lato-Bold",
         left: responsiveWidth(10), 
         textAlign: "left",
-        bottom: height / 62,
-        marginRight: width / 7
+        bottom: responsiveHeight(1.6),
+        marginRight: responsiveWidth(14)
     },
     notificationMessage: {
         textAlign: "left",
-        fontSize: fontScale * 19,
+        fontSize: responsiveFontSize(2.3),
         marginLeft: responsiveWidth(10),
         fontFamily: "Lato-Regular",
-        bottom: height / 180,
+        bottom: responsiveHeight(0.5),
         marginRight: responsiveWidth(10)
     },
     relleno:{
-        height: height / 70
+        height: responsiveHeight(1.4)
     },
     containerButtons:{
         flexDirection:"row",
     },
     textButtons:{
         fontFamily:"Lato-Bold",
-        fontSize: fontScale * 18,
+        fontSize: responsiveFontSize(2.2),
         top: responsiveHeight(0.5)
     },
     closeButton:{
-        height: height / 27,
-        width: width / 12,
-        right: width / 46,
+        height: responsiveHeight(3.7),
+        width: responsiveWidth(8.3),
+        right: responsiveWidth(2.1),
         bottom: responsiveHeight(1),
     },
     noNotificacion:{
         fontFamily:"Lato-Bold",
         alignSelf:"center",
         marginTop: responsiveHeight(4),
-        fontSize: fontScale * 20
+        fontSize: responsiveFontSize(2.4)
     },
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  //363

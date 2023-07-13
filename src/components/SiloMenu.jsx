@@ -244,12 +244,12 @@ export function SiloMenu(props) {
                         <View style={styles.imagencontainer}>
                             <ImageBackground
                                 source={require("../../assets/images/Termometros.png")}
-                                style={{ height: "120%" }}
+                                style={{ height: responsiveHeight(4), width:responsiveWidth(85),left:responsiveWidth(8) }}
                             />
                         </View>
                     </View>
 
-                    <View style={{ backgroundColor: "white", width: "82%", height: 200, left: "9%", top: -30 }}>
+                    <View style={{ backgroundColor: "white", width: responsiveWidth(80), height: responsiveHeight(25), left: responsiveWidth(9), top: responsiveHeight(5) }}>
                         <ScrollView horizontal contentContainerStyle={styles.scrollView}>
                             <View style={styles.item}>
                                 <StyledText style={{ textAlign: "center", color: "#CCA500" }}>Temperatura</StyledText>
@@ -383,19 +383,21 @@ export function SiloMenu(props) {
                                         Los siguientes datos son los niveles normales que debe tener la silo bolsa en cuanto a su temperatura, dióxido de carbono y humedad.
                                     </StyledText>
                                 </View>
-                                <View style={{ flexDirection: "row", marginTop: 20 }}>
+                                <View style={{ flexDirection: "row", marginTop: 25, marginHorizontal: responsiveWidth(9), }}>
                                     <StyledText fontWeight="bold" style={styles.magnitudcont}>
                                         0° a 25°
-                                        <StyledText style={styles.magnitudcont.magnitudcont2}> TEMPERATURA</StyledText>
                                     </StyledText>
                                     <StyledText fontWeight="bold" style={styles.magnitudcont}>
                                         1% a 18%
-                                        <StyledText style={styles.magnitudcont.magnitudcont2}>        CO2</StyledText>
                                     </StyledText>
                                     <StyledText fontWeight="bold" style={styles.magnitudcont}>
                                         8% a 18%
-                                        <StyledText style={styles.magnitudcont.magnitudcont2}> HUMEDAD</StyledText>
                                     </StyledText>
+                                </View>
+                                <View style={{ flexDirection: "row", marginHorizontal: responsiveWidth(9),  }}>
+                                    <StyledText style={styles.magnitudcont2}>Temperatura</StyledText>
+                                    <StyledText style={styles.magnitudcont2}>CO2</StyledText>
+                                    <StyledText style={styles.magnitudcont2}>Humedad</StyledText>
                                 </View>
                             </View>
 
@@ -438,30 +440,13 @@ const styles = StyleSheet.create({
     imagen: {
         flex: 1,
         flexDirection: "column",
-        paddingTop: 10,
     },
     subcontainer: {
         flex: 0.9,
-        padding: 12,
-        paddingTop: 20,
+        paddingTop: responsiveHeight(2),
         flexDirection: "column",
     },
-    SiloContainer: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-    },
-    nuevaBolsa: {
-        width: "100%",
-        height: 30,
-        backgroundColor: "#03B6E8",
-        color: "#fff",
-        borderRadius: 20,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 10,
-        fontSize: 18,
-    },
+
     infobolsaC: {
         flex: 10,
         flexDirection: "row",
@@ -469,9 +454,10 @@ const styles = StyleSheet.create({
         padding: responsiveHeight(0.5),
         backgroundColor: "#fff",
         borderTopLeftRadius: responsiveHeight(5),
-        borderTopRightRadius:responsiveHeight(5),
+        borderTopRightRadius: responsiveHeight(5),
         marginBottom: responsiveHeight(5),
-        maxWidth: responsiveWidth(100),
+        width: responsiveWidth(90),
+        left:responsiveWidth(5)
     },
     infobolsa: {
         flex: 1,
@@ -483,101 +469,53 @@ const styles = StyleSheet.create({
         flex: 0.9,
         justifyContent: "center",
         alignItems: "center",
-        
+
     },
     color: {
-        width: "100%",
-        flex: 0.1,
-        backgroundColor: "red",
+        top: 9,
+        width: responsiveWidth(32.65),
+        flex: 0.2,
+        height: responsiveHeight(5),
     },
     valorN: {
         fontSize: 35,
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
-    text: {
-        color: "#03B6E8",
-        fontSize: 28,
-        marginBottom: 20,
-        marginTop: 10,
-        alignSelf: "center",
-        fontFamily: "Lato-Bold",
-    },
+
     titulo: {
         alignSelf: "center",
         fontSize: responsiveFontSize(4.5),
         fontWeight: "bold",
-        paddingTop:responsiveHeight(5),
-        paddingBottom:responsiveHeight(2),
+        paddingTop: responsiveHeight(5),
+        paddingBottom: responsiveHeight(2),
         color: "#03B6E8",
-
-    },
-    editarnombre: {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "center",
-        marginTop: 10,
-    },
-    textedit: {
-        flex: 0.87,
-        color: "#04B6E8",
-        fontSize: 18,
-        fontFamily: "Roboto",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    icons: {
-        color: "#04B6E8",
-        margin: 10,
-        fontSize: 32,
-    },
-    imagen2: {
-        flex: 1,
-        flexDirection: "column",
-        padding: 20,
-        paddingTop: 10,
-    },
-    btn: {
-        backgroundColor: "#04B6E8",
-        color: "#fff",
-        borderRadius: 15,
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
     },
     magnitud: {
         flex: 5,
         fontSize: responsiveFontSize(2),
         textAlign: "center",
-        marginBottom: responsiveHeight(3),
+        bottom:responsiveHeight(3),
     },
 
     magnitudcont: {
         flex: 3,
-        fontSize: 18,
+        fontSize: responsiveFontSize(3),
         textAlign: "center",
-        maxWidth: 200,
-        marginTop: 10,
         color: "#1DB6E5",
-
-        magnitudcont2: {
-            color: "#878789",
-
-        },
-
+       
+    },
+    magnitudcont2: {
+        color: "#87878F",
+        opacity:0.5,
+        textAlign: "center",
+        fontSize: responsiveFontSize(1.5),
+        flex: 3,
+        fontWeight:"bold",
     },
     imagencontainer: {
         flex: 0.1,
-        maxHeight: "10%",
+        maxHeight: responsiveHeight(20),
     },
-    contenedor: {
-        flexDirection: "column",
-        borderTopLeftRadius: 35,
-        borderTopRightRadius: 35,
-        backgroundColor: "white",
-        marginTop: -100
-
-    },
-
     lleno: {
         backgroundColor: "rgb(3,182,232)",
     },
@@ -585,53 +523,35 @@ const styles = StyleSheet.create({
         flexDirection: 'row', // Asegura que los elementos estén en una fila horizontal
     },
     item: {
-        width: "33%", // Ancho de cada elemento
-        height: "99%", // Altura de cada elemento
+        width: responsiveWidth(80), // Ancho de cada elemento
+        height: responsiveHeight(99), // Altura de cada elemento
         margin: 1, // Espacio entre elementos
     },
-    button: {
-        width: 100,
-        height: 14,
-        top: 694,
-        left: 156,
-        opacity: 0.4,
-        backgroundColor: 'blue',
-        borderRadius: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 12,
-    },
-
     dropdown: {
         position: "absolute",
-        top: "60%",//64 // Ajusta la posición vertical del dropdown
-        
-        height: "32%", // Ajusta la posición horizontal del dropdown
-        width: "100%", // Ajusta el ancho del dropdown
-        borderTopLeftRadius: 30, // Agrega un borde en la esquina superior izquierda
-        borderTopRightRadius: 30,
+        top: responsiveHeight(60),//64 // Ajusta la posición vertical del dropdown
+        height: responsiveHeight(33), // Ajusta la posición horizontal del dropdown
+        width: responsiveWidth(100), // Ajusta el ancho del dropdown
+        borderTopLeftRadius: responsiveFontSize(5), // Agrega un borde en la esquina superior izquierda
+        borderTopRightRadius:responsiveFontSize(5),
         backgroundColor: "white",
         zIndex: 1,
     },
     dropdownbuton: {
-        width: 64,
-        height: 11,
+        width: responsiveWidth(17),
+        height: responsiveHeight(1),
         backgroundColor: '#CCCCCC',
-        borderRadius: 50,
-        border: 'none',
-        left: "42%",
+        borderRadius: responsiveFontSize(20),
+        left: responsiveWidth(41),
     },
     dropdownbuton2: {
-        width: 64,
-        height: 11,
+        width: responsiveWidth(17),
+        height: responsiveHeight(1),
         backgroundColor: '#CCCCCC',
-        borderRadius: 50,
+        borderRadius: responsiveFontSize(20),
         border: 'none',
-        left: "42%",
-        top: "65%",
+        left: responsiveWidth(41),
+        top: responsiveHeight(7.5),
         zIndex: 999
     }
 

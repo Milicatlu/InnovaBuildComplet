@@ -1,14 +1,15 @@
 import React from 'react'
-import { ImageBackground, StyleSheet, Dimensions, Linking } from 'react-native'
+import { ImageBackground, StyleSheet, Linking } from 'react-native'
 import { StyledText } from './StyledText'
 import { AppBar } from './AppBar'
 import { StyledButton } from './StyledButton'
 import { View, Image, Text } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-const {height, width, fontScale, scale} = Dimensions.get("window")
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 export function TerminosDos(){
+    
+    //Constante para guardar el link hacia el pdf para su descarga
     const handleDownloadPDF = () => {
         const fileURL = "https://www.africau.edu/images/default/sample.pdf"
         Linking.openURL(fileURL)
@@ -48,9 +49,9 @@ export function TerminosDos(){
                 <View style={styles.datos}>
                     <Image  
                         source={require("../../assets/icons/Logo.png")} 
-                        style={{width:width / 2,height:height/ 14,alignSelf:"center",tintColor:"#e8e8e8"}}
+                        style={{width:responsiveWidth(50),height:responsiveHeight(7),alignSelf:"center",tintColor:"#e8e8e8"}}
                     />
-                    <StyledText style={{ height:height / 45}}/>
+                    <StyledText style={{ height:responsiveHeight(2.2)}}/>
                     <StyledText style={styles.label}><Text style={{fontFamily:"Lato-Bold"}}>Te contamos las condiciones y</Text></StyledText>
                     <StyledText style={styles.label}><Text style={{fontFamily:"Lato-Bold"}}>nuestra politica de privacidad</Text></StyledText>
                     <StyledText></StyledText>
@@ -78,45 +79,45 @@ export function TerminosDos(){
 
 const styles = StyleSheet.create({
     datosC:{
-        height:height / 1.45,
-        width: width,
+        height:responsiveHeight(69),
+        width: responsiveWidth(100),
         position:'absolute',
         bottom: 0,
-        paddingTop: height / 20,
+        paddingTop: responsiveHeight(5),
         backgroundColor:'#fff',
-        borderTopEndRadius: height / 40,
-        borderTopStartRadius:height / 40
+        borderTopEndRadius: responsiveHeight(2.5),
+        borderTopStartRadius: responsiveHeight(2.5)
     },
     datos:{
         alignSelf:'center',
-        width:width / 1.2,
-        paddingBottom:height / 10,
+        width:responsiveWidth(83),
+        paddingBottom:responsiveHeight(10),
     },
     label:{
         color:'black',   
         textAlign:"center",
-        height:height / 28,
-        fontSize: fontScale * 21,
+        height:responsiveHeight(3.5),
+        fontSize: responsiveFontSize(2.4),
         fontWeight:"700",
     },
     label2:{
         color:'#9e9e9e',   
         textAlign:"center",
-        height:height / 25,
-        fontSize:fontScale * 20,
+        height:responsiveHeight(4),
+        fontSize:responsiveFontSize(2.2),
         fontWeight:"700",
     },
     label3:{
         color:'#000000',   
         textAlign:"center",
-        height: height / 13,
-        fontSize: fontScale * 17,
+        height: responsiveHeight(7.6),
+        fontSize: responsiveFontSize(2),
         fontWeight:"500",
-        lineHeight: height / 33
+        lineHeight: responsiveHeight(3.2)
     },
     vacio:{
-        height: height / 16,
-        width: width / 2.5,
+        height: responsiveHeight(6.25),
+        width: responsiveWidth(40),
         alignSelf:"center",
         color:'red',
     }

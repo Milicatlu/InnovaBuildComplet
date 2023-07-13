@@ -1,13 +1,4 @@
-import {
-  StyleSheet,
-  Dimensions,
-  ImageBackground,
-  View,
-  TouchableOpacity,
-  Image,
-  Modal,
-  Text,
-} from "react-native"
+import {StyleSheet,Dimensions,ImageBackground,View,TouchableOpacity,Image,Modal,Text} from "react-native"
 import { SectoresMain } from "./SectoresMain/index"
 import { Login } from "./Login.jsx"
 import { createDrawerNavigator } from "@react-navigation/drawer"
@@ -32,15 +23,23 @@ import { supabase } from "../lib/supabase"
 import { getUser } from "../lib/supabaseHandler"
 import MapScreen from "./MapScreen"
 const { height, width, fontScale, scale } = Dimensions.get("window")
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 const Drawer = createDrawerNavigator()
 
 export function Main({ navigation }) {
+  
+  //estado para almacenar la visibilidad del modal
   const [modalVisible, setModalVisible] = useState(false)
 
-    const [notificacion, setNotificacion] = useState([])
+  //estado para almacenar la notificacion
+  const [notificacion, setNotificacion] = useState([])
 
+
+    //useEffect con la llamada a notificaciones y sondeo
     useEffect(() => {
-    const fetchnotificacion = async () => {
+    
+      //llamada a notificaciones
+      const fetchnotificacion = async () => {
         const response = await getUser()
         try {
         const { data, error } = await supabase
@@ -60,7 +59,8 @@ export function Main({ navigation }) {
         console.error("Error al obtener la última notificación:", error)
       }
     }
-
+    
+    //sondeo
     const pollSupabase = async () => {
       await fetchnotificacion()
 
@@ -77,12 +77,12 @@ export function Main({ navigation }) {
 
   }, [])
 
-
+  //funcion para cambiar el modal
   const toggleModal = () => {
     setModalVisible(!modalVisible)
   }
 
-  //funcion para poner hora y fecha ordenado
+  //funcion para poner hora y fecha ordenada
   const formatDateTime = (dateTime) => {
     const date = new Date(dateTime)
     const formattedDate = formatDate(date)
@@ -125,7 +125,7 @@ export function Main({ navigation }) {
             },
             headerTransparent: true,
             headerTitle: "",
-            headerStatusBarHeight: height / 25,
+            headerStatusBarHeight: responsiveHeight(4),
             headerRight: () => (
               <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
@@ -189,15 +189,15 @@ export function Main({ navigation }) {
               <TouchableOpacity
                 onPress={toggleModal}
                 style={{
-                  left: width / 3.3,
-                  bottom: height / 15
+                  left: responsiveWidth(30.6),
+                  bottom: responsiveHeight(6.2)
                 }}
               >
                 <Image
                   source={require("../../assets/icons/Notificaciones.png")}
                   style={{
-                    height: height / 28,
-                    width: width / 14,
+                    height: responsiveHeight(3.5),
+                    width: responsiveWidth(7),
                   }}
                 />
               </TouchableOpacity>
@@ -238,42 +238,35 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    marginTop: height / -3.12,
-    width: width,
+    marginTop:responsiveHeight(-32),
+    width: responsiveWidth(100),
     
   },
   modalContainer: {
     backgroundColor: "#fff",
-    paddingLeft: width / 60,
-    paddingRight: width / 60,
-    paddingBottom: height / 20,
-    paddingTop: height / 90,
-    borderRadius: scale * 11,
-    height: height / 5.4,
-    width: width / 1.25,
-    bottom: height / 20
+    paddingLeft: responsiveWidth(1.6),
+    paddingRight: responsiveWidth(1.6),
+    paddingBottom: responsiveHeight(5),
+    paddingTop: responsiveHeight(1.1),
+    borderRadius: responsiveHeight(2),
+    height: responsiveHeight(18.5),
+    width: responsiveWidth(80),
+    bottom: responsiveHeight(5)
   },
   label: {
     flexDirection: "row",
-    height: height / 1,
-    width: width / 1.7,
+    height: responsiveHeight(100),
+    width: responsiveWidth(58),
   },
   image: {
-    width: width / 10,
-    height: height / 22,
+    width: responsiveWidth(10),
+    height: responsiveHeight(4.5),
     tintColor: "black",
     alignSelf: "center",
   },
-  text: {
-    fontFamily: "Lato-Bold",
-    alignSelf: "center",
-    textAlign: "center",
-    fontSize: fontScale * 15,
-    width: width / 1.9,
-  },
   ButtonInicio: {
-    width: width / 9,
-    height: height / 19,
+    width: responsiveWidth(11.1),
+    height: responsiveHeight(5.2),
     right: "55%",
     position: "absolute",
     top: "9%",
@@ -282,54 +275,89 @@ const styles = StyleSheet.create({
   },
   ButtonP: {
     position: "absolute",
-    width: width / 9,
+    width: responsiveWidth(11.1),
     right: "5%",
-    marginTop:height*-0.011,
-    height: height / 19,
+    marginTop:responsiveHeight(-1.1),
+    height: responsiveHeight(5.2),
     flex: 1,
   },
   notificationButton: {
-    left: width / - 6.2,
-    top: height / 104,
+    left: responsiveWidth(-16.1),
+    top: responsiveHeight(1),
   },
   notificationIcon: {
-    height: height / 30,
-    width: width / 14,
-    bottom: height / 90
+    height: responsiveHeight(3.5),
+    width: responsiveWidth(7),
+    bottom: responsiveHeight(1.1)
   },
   notificationContainer: {
     borderBottomColor: "#d9d9d9",
-    margin: scale * 6.4,
+    margin: responsiveHeight(1.5),
   },
   notificationType: {
     fontFamily: "Lato-Bold",
-    fontSize: fontScale * 18,
+    fontSize: responsiveFontSize(2.3),
     textAlign: "left",
     color: "#03B6E8",
   },
   notificationTime: {
     color: "#878789",
-    fontSize: fontScale * 18,
+    fontSize: responsiveFontSize(2) ,
     alignSelf: "flex-end",
-    bottom: height / 38,
+    bottom: responsiveHeight(2.4),
     fontFamily: "Lato-Bold",
   },
   notificacionTitulo: {
-    fontSize: fontScale * 22,
+    fontSize:  responsiveFontSize(2.7),
     fontFamily: "Lato-Bold",
-    bottom: height / 70,
+    bottom: responsiveHeight(1.4),
   },
   notificationMessage: {
     textAlign: "left",
-    fontSize: fontScale * 18,
+    fontSize: responsiveFontSize(2.3),
     fontFamily: "Lato-Regular",
-    lineHeight: height / 35,
+    lineHeight: responsiveHeight(2.8),
   },
   noNotificaciones: {
     textAlign: "left",
-    fontSize: fontScale * 18,
+    fontSize: responsiveFontSize(2.3),
     fontFamily: "Lato-Bold",
-    lineHeight: height / 35,
+    lineHeight: responsiveHeight(2.8),
   }
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    //363

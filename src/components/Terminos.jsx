@@ -1,18 +1,14 @@
 import React from 'react'
-import { ImageBackground, StyleSheet, Dimensions, Linking } from 'react-native'
+import { ImageBackground, StyleSheet, Linking } from 'react-native'
 import { StyledText } from './StyledText'
 import { StyledButton } from './StyledButton'
 import { View, Image, Text } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-const { height, width, fontScale, scale } = Dimensions.get("window")
-import {
-   widthPercentageToDP,
-   heightPercentageToDP
-} from "react-native-responsive-screen";
-const screenWidthPercentage = widthPercentageToDP("50%");
-const screenHeightPercentage = heightPercentageToDP("50%");
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+
 export function Terminos({ navigation, props }) {
+   
+   //Constante para guardar el link hacia el pdf para su descarga
    const handleDownloadPDF = () => {
       const fileURL = "https://www.africau.edu/images/default/sample.pdf"
       Linking.openURL(fileURL)
@@ -22,14 +18,8 @@ export function Terminos({ navigation, props }) {
       <>
          <ImageBackground
             source={require("../../assets/images/Fondo-06.jpg")}
-            style={{
-               paddingTop: height / 100,
-               height: height + height / 20
-            }}
-            imageStyle={{
-               justifyContent: "center",
-               alignItems: "center"
-            }}
+            style={{ paddingTop: responsiveHeight(1), height: responsiveHeight(105) }}
+            imageStyle={{ justifyContent: "center", alignItems: "center"}}
          >
             <Image
                style={styles.tinyLogo}
@@ -42,7 +32,7 @@ export function Terminos({ navigation, props }) {
             <StyledText
                color="#FFF"
                align="center"
-               style={{ top: width * 0.36, left: width * 0.01, margin: scale + 0, fontSize: fontScale * 20 }}
+               style={{ top: responsiveHeight(18), left: responsiveWidth(1), fontSize: responsiveFontSize(3) }}
             >
                <Text style={{ fontFamily: "Lato-Bold" }}>
                   Bases y condiciones
@@ -53,9 +43,9 @@ export function Terminos({ navigation, props }) {
                <View style={styles.datos}>
                   <Image
                      source={require("../../assets/icons/Logo.png")}
-                     style={{ width: width / 2.2, height: height / 14, top: width * -0.02, alignSelf: "center", tintColor: "#e8e8e8" }}
+                     style={{ width: responsiveWidth(45), height: responsiveHeight(7), top: responsiveHeight(-1), alignSelf: "center", tintColor: "#e8e8e8" }}
                   />
-                  <StyledText style={{ height: height / 45 }} />
+                  <StyledText style={{ height: responsiveHeight(2.2) }} />
                   <StyledText style={styles.label}><Text style={{ fontFamily: "Lato-Bold" }}>Te contamos las condiciones y</Text></StyledText>
                   <StyledText style={styles.label}><Text style={{ fontFamily: "Lato-Bold" }}>nuestra politica de privacidad</Text></StyledText>
                   <StyledText></StyledText>
@@ -69,10 +59,10 @@ export function Terminos({ navigation, props }) {
                         <StyledText></StyledText>
                      </ScrollView>
                   </View>
-                  <View style={{ height: height / 60 }}></View>
+                  <View style={{ height: responsiveHeight(1.6) }}></View>
                   <View style={{ flexDirection: "row", justifyContent: "space-between" }} >
-                     <StyledButton styleContainer={styles.lleno} onPress={() => { navigation.navigate("inicio2") }}><Text style={{ fontFamily: "Lato-Bold", fontSize: width * 0.04 }}>Aceptar</Text></StyledButton>
-                     <StyledButton styleContainer={styles.vacio} onPress={handleDownloadPDF} ><Text style={{ color: "#03B6E8", fontFamily: "Lato-Bold", fontSize: width * 0.04 }}>Descargar PDF</Text></StyledButton>
+                     <StyledButton styleContainer={styles.lleno} onPress={() => { navigation.navigate("inicio2") }}><Text style={{ fontFamily: "Lato-Bold", fontSize: responsiveFontSize(2) }}>Aceptar</Text></StyledButton>
+                     <StyledButton styleContainer={styles.vacio} onPress={handleDownloadPDF} ><Text style={{ color: "#03B6E8", fontFamily: "Lato-Bold", fontSize: responsiveFontSize(2) }}>Descargar PDF</Text></StyledButton>
                   </View>
                </View>
             </View>
@@ -83,69 +73,69 @@ export function Terminos({ navigation, props }) {
 
 const styles = StyleSheet.create({
    textpolitica: {
-      top: screenHeightPercentage - height * 0.3 * 1.20,
-      left: screenWidthPercentage - width * 0.80 * 0.33,
-      height: height * 0.065,
-      fontSize: width * 0.11,
-      fontWeight: 'bold',
+      top: responsiveHeight(14),
+      left: responsiveWidth(22.8),
+      height: responsiveHeight(6.5),
+      fontSize: responsiveFontSize(5.5),
+      fontWeight: "700",
       color: '#03B6E8',
    },
    tinyLogo: {
       position: "absolute",
       alignItems: "center",
       justifyContent: "center",
-      top: screenHeightPercentage - height * 0.3 * 1.47,
-      left: screenWidthPercentage - width * 0.80 * 0.10,
-      height: height * 0.065,
-      width: screenWidthPercentage * 0.35,
+      top: responsiveHeight(6),
+      left: responsiveWidth(41.4),
+      height: responsiveHeight(6.5),
+      width: responsiveWidth(17.9),
    },
    datosC: {
-      height: height / 1.42,
-      width: width,
+      height: responsiveHeight(70.4),
+      width: responsiveWidth(100),
       position: 'absolute',
       bottom: 0,
-      paddingTop: height / 20,
+      paddingTop: responsiveHeight(5),
       backgroundColor: '#fff',
-      borderTopEndRadius: height / 40,
-      borderTopStartRadius: height / 40
+      borderTopEndRadius: responsiveHeight(2.5),
+      borderTopStartRadius:  responsiveHeight(2.5)
    },
    datos: {
       alignSelf: 'center',
-      width: width / 1.2,
+      width: responsiveWidth(83.3),
    },
    label: {
       color: 'black',
       textAlign: "center",
-      height: height / 28,
-      fontSize: fontScale * 21,
+      height: responsiveHeight(3.5),
+      fontSize: responsiveFontSize(2.4),
       fontWeight: "700",
    },
    label2: {
-      color: '#9e9e9e',
-      textAlign: "center",
-      height: height / 25,
-      fontSize: fontScale * 20,
-      fontWeight: "700",
+      color:'#9e9e9e',   
+        textAlign:"center",
+        height:responsiveHeight(4),
+        fontSize:responsiveFontSize(2.2),
+        fontWeight:"700",
    },
    label3: {
-      color: '#000000',
-      textAlign: "center",
-      height: height / 13,
-      fontSize: fontScale * 17,
-      fontWeight: "500",
-      lineHeight: height / 33
+      color:'#000000',   
+        textAlign:"center",
+        height: responsiveHeight(7.6),
+        fontSize: responsiveFontSize(2),
+        fontWeight:"500",
+        lineHeight: responsiveHeight(3.2)
    },
    vacio: {
-      height: height / 16,
-      width: width / 2.5,
-      alignSelf: "center",
-      bottom: height / 300,
+      height: responsiveHeight(6.25),
+      width: responsiveWidth(40),
+      alignSelf:"center",
+      color:'red',
    },
    lleno: {
-      height: height / 16,
-      width: width / 2.5,
+      height: responsiveHeight(6,25),
+      width: responsiveWidth(40),
       alignSelf: "flex-end",
       backgroundColor: '#03B6E8',
-      bottom: height / 300,
+      
    },
 })
