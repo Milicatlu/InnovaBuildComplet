@@ -1,9 +1,7 @@
 //RESPONSIVE
 import {
    ImageBackground,
-   Pressable,
    StyleSheet,
-   TouchableOpacity,
    View,
    Text,
 } from "react-native"

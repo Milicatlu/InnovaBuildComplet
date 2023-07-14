@@ -1,11 +1,3 @@
-
-/*  top: screenHeightPercentage - height * 0.3 * 1.47,
-      left: screenWidthPercentage - width * 0.80 * -0.92,
-      height:height*0.050,
-      width: screenWidthPercentage * 1.13,*/
-
-
-
 import {
   ImageBackground,
   Alert,
@@ -363,7 +355,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalViewM: {
-    backgroundColor: 'white',
+    backgroundColor: "#fff",
     borderRadius: responsiveFontSize(2),
     padding: responsiveWidth(1),
     width:responsiveWidth(80),

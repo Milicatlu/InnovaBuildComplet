@@ -375,7 +375,7 @@ export function SiloMenu(props) {
                                         }}
                                     />
                                 </View>
-                                <StyledText fontWeight="bold" fontSize="subheading1" style={{ marginTop: 30, marginLeft: 25, color: "#1DB6E5" }}>
+                                <StyledText fontWeight="bold" fontSize="subheading1" style={{ marginTop: responsiveHeight(5), marginLeft: responsiveWidth(12), color: "#1DB6E5" }}>
                                     Rango de datos
                                 </StyledText>
                                 <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -409,18 +409,18 @@ export function SiloMenu(props) {
                                 style={styles.dropdownbuton2}
                                 onPress={() => setShowDropdown(true)}
                             />
-                            <View style={{ flexDirection: "row", padding: 5, backgroundColor: "white", top: 50, borderTopLeftRadius: 20, borderTopRightRadius: 20 }} {...props}>
+                            <View style={{ flexDirection: "row", padding: responsiveHeight(1),paddingHorizontal:responsiveWidth(5), backgroundColor: "white", top: responsiveHeight(6), borderTopLeftRadius: responsiveFontSize(2), borderTopRightRadius: responsiveFontSize(2) }} {...props}>
                                 <StyledButton
                                     onPress={() => { props.navigation.navigate("Grafico2"); }}
                                     styleContainer={styles.lleno}
-                                    style={{ fontSize: 20 }}
+                                    style={{ fontSize: responsiveFontSize(2), fontWeight:"bold" }}
                                 >
                                     Grafico
                                 </StyledButton>
                                 <StyledButton2
                                     onPress={() => { props.navigation.navigate("GraficoView"); }}
-                                    styleContainer={{ flex: 1, margin: 10, padding: 5 }}
-                                    style={{ fontSize: 20, color: "#1DB6E5" }}
+                                    styleContainer={{ flex: 1, margin: responsiveHeight(1), padding: responsiveHeight(1) }}
+                                    style={{  fontSize: responsiveFontSize(2), fontWeight:"bold", color: "#1DB6E5" }}
                                 >
                                     Ubicacion
                                 </StyledButton2>
@@ -473,7 +473,7 @@ const styles = StyleSheet.create({
     },
     color: {
         top: 9,
-        width: responsiveWidth(32.65),
+        width: responsiveWidth(31.25),
         flex: 0.2,
         height: responsiveHeight(5),
     },
@@ -518,6 +518,7 @@ const styles = StyleSheet.create({
     },
     lleno: {
         backgroundColor: "rgb(3,182,232)",
+        flex: 1, margin: responsiveHeight(2), padding: responsiveHeight(1) 
     },
     scrollView: {
         flexDirection: 'row', // Asegura que los elementos estén en una fila horizontal
@@ -530,7 +531,7 @@ const styles = StyleSheet.create({
     dropdown: {
         position: "absolute",
         top: responsiveHeight(60),//64 // Ajusta la posición vertical del dropdown
-        height: responsiveHeight(33), // Ajusta la posición horizontal del dropdown
+        height: responsiveHeight(32), // Ajusta la posición horizontal del dropdown
         width: responsiveWidth(100), // Ajusta el ancho del dropdown
         borderTopLeftRadius: responsiveFontSize(5), // Agrega un borde en la esquina superior izquierda
         borderTopRightRadius:responsiveFontSize(5),
@@ -541,6 +542,7 @@ const styles = StyleSheet.create({
         width: responsiveWidth(17),
         height: responsiveHeight(1),
         backgroundColor: '#CCCCCC',
+        top:responsiveHeight(1),
         borderRadius: responsiveFontSize(20),
         left: responsiveWidth(41),
     },

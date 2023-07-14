@@ -56,6 +56,7 @@ export function StyledButton2({
 export function StyledButtonAgri({
     styledProps,
     onPress,
+    onLongPress,
     style,
     children,
     styleContainer,
@@ -63,6 +64,7 @@ export function StyledButtonAgri({
     return (
         <TouchableOpacity
             onPress={onPress}
+            onLongPress={onLongPress}
             style={[styles.bolsas, styleContainer]}
         >
             <StyledText

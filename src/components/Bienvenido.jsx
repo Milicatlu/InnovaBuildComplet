@@ -2,15 +2,7 @@
 import { ImageBackground, StyleSheet, Text, View, Image } from 'react-native';
 import React, { useRef } from 'react';
 import { PanResponder, TouchableWithoutFeedback } from 'react-native';
-const { width, height } = Dimensions.get('window');
-import { Dimensions } from 'react-native';
-import {
-   widthPercentageToDP,
-   heightPercentageToDP
-} from "react-native-responsive-screen";
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
-const screenWidthPercentage = widthPercentageToDP("50%");
-const screenHeightPercentage = heightPercentageToDP("50%");
 function Bienvenido({ navigation }) {
    const panResponder = useRef(
       PanResponder.create({

@@ -14,9 +14,8 @@ import {
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import { widthPercentageToDP, heightPercentageToDP } from 'react-native-responsive-screen';
 import { useAuth } from '../../context/AuthProvider';
-const { width, height } = Dimensions.get('window');
 const screenWidthPercentage = widthPercentageToDP('50%');
-const screenHeightPercentage = heightPercentageToDP('50%');
+
 
 
 export function Login({ navigation }) {

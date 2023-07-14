@@ -206,7 +206,7 @@ export function EtapaMineria() {
                      <View style={styles.container2}>
                         <SwitchSelector
                            style={styles.switchSelector}
-                           initial={1}
+                           initial={0}
                            fontSize={responsiveFontSize(1.25)}
                            backgroundColor={color3}
                            bold={true}

@@ -1,4 +1,4 @@
-import {StyleSheet,Dimensions,ImageBackground,View,TouchableOpacity,Image,Modal,Text} from "react-native"
+import {StyleSheet,ImageBackground,View,TouchableOpacity,Image,Modal,Text} from "react-native"
 import { SectoresMain } from "./SectoresMain/index"
 import { Login } from "./Login.jsx"
 import { createDrawerNavigator } from "@react-navigation/drawer"
@@ -22,7 +22,6 @@ import { AgriculturaSilo } from "./AgriculturaSilo"
 import { supabase } from "../lib/supabase"
 import { getUser } from "../lib/supabaseHandler"
 import MapScreen from "./MapScreen"
-const { height, width, fontScale, scale } = Dimensions.get("window")
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 const Drawer = createDrawerNavigator()
 
@@ -190,7 +189,7 @@ export function Main({ navigation }) {
                 onPress={toggleModal}
                 style={{
                   left: responsiveWidth(30.6),
-                  bottom: responsiveHeight(6.2)
+                  bottom: responsiveHeight(6.4)
                 }}
               >
                 <Image
@@ -201,7 +200,8 @@ export function Main({ navigation }) {
                   }}
                 />
               </TouchableOpacity>
-
+                  
+                  {/* Si no hay una notificacion, muestra view de no notificacion, si la hay, muestra la ultima notificacion */}
               {!notificacion ? (
               <View style={styles.modalContainer}>
                 <View style={styles.notificationContainer}>

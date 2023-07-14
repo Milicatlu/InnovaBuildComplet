@@ -5,12 +5,6 @@ import { PanResponder } from 'react-native';
 import { Dimensions } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 const { width, height } = Dimensions.get('window');
-import {
-   widthPercentageToDP,
-   heightPercentageToDP
-} from "react-native-responsive-screen";
-const screenWidthPercentage = widthPercentageToDP("50%");
-const screenHeightPercentage = heightPercentageToDP("50%");
 
 function Bienvenido({ navigation }) {
    const panResponder = useRef(
