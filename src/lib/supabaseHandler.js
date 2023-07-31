@@ -1,7 +1,8 @@
 import { supabase } from "./supabase";
-
+//Tabla que vamos a usar en supabase, para propositos practicos lo ponemos aca pero deberia ir aparte
 const TABLE_USER = "Items";
 
+//No utilizado, para registrar un usuario
 export const singUpEmail = async (user) => {
   const response = await supabase.auth.signUp({
     email: user.email,
@@ -24,7 +25,7 @@ export const singUpEmail = async (user) => {
     console.log(responseInsert);
   }
 };
-
+//No utilizado, para iniciar sesion
 export const singInEmail = async (user) => {
   const response = await supabase.auth.signInWithPassword({
     email: user.email,
@@ -33,7 +34,7 @@ export const singInEmail = async (user) => {
 
   console.log(response);
 };
-
+//Para buscar un usuario
 export const fetchUser = async (user) => {
   const fUser = await supabase
     .from(TABLE_USER)
@@ -51,18 +52,20 @@ export const fetchUser = async (user) => {
   return false;
 };
 
+//Para obtener un usuario
 export const getUser = async () => {
   const {
     data: { user },
   } = await supabase.auth.getUser();
   return user;
 };
-
+//Para conseguir informacion de alguna columna
 export const fetchData = async (data) => {
   const response = await supabase.from(TABLE_DATA).select(data);
   return response;
 };
 
+//Eliminar usuario
 export const deleteUser = async (user) => {
   const response = await supabase
     .from(TABLE_USER)
@@ -71,6 +74,7 @@ export const deleteUser = async (user) => {
   return response;
 };
 
+//Actualizar usuario con otros parametros
 export const updateUserName = async (data) => {
   const response = await supabase
     .from(TABLE_USER)
@@ -79,6 +83,7 @@ export const updateUserName = async (data) => {
   return response;
 };
 
+//Lo mismo que informacion de usuario
 export const getUserData = async (id) => {
   const response = await supabase
     .from(TABLE_USER)
@@ -87,13 +92,14 @@ export const getUserData = async (id) => {
     .single();
   return response;
 };
-
+//Obtener nombre de usuario
 export const getUserName = async (email) => {
   const response = await supabase.from("users").select().eq("email", email);
 
   return response;
 };
 
+//Resetear la contraseña
 export const resetPass = async (navigation,email) =>{
   const response = await supabase.auth.resetPasswordForEmail(email);
   console.log(response)

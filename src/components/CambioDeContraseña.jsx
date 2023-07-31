@@ -28,16 +28,20 @@ import {
   const screenHeightPercentage = heightPercentageToDP("50%");
   
   export function CambioDeContraseña({ navigation }) {
+    //Estado que guarda la contraseña
     const [password, setPassword] = useState("")
+    //Estado que guarda la confirmacion de la contraseña
     const [confirmPass, setConfirmPass] = useState("");
+    //Estado que maneja el modal
     const [modalVisible, setModalVisible] = useState(false);
+    //Estado que maneja si las contraseñas son iguales o no, para en caso de que sea falso mostrar una notificacion pertinente al usuario
     const [condition, setCondition] = useState(true)
+    //Estado que maneja si el boton para confirmar los cambios pueda ser pulsado por el usuario o no
     const [disable, setDisable] = useState(false)
-    const handleEnviar = () => {
-      
-      setModalVisible(true);
-    };
-
+    //Funcoin para mostrar el modal
+    const handleEnviar = () => setModalVisible(true);
+  
+    //Ordenes que se ejecutan al entrar a la pantalla
     useEffect(()=>{
       if (password == confirmPass) {
         setCondition(true);
@@ -48,14 +52,15 @@ import {
       }
     },[password, confirmPass])
 
-    
+    //Funcion para establecer la confirmacion de la contraseña y comparar las mismas
     const handleChangeConfirmPass =  text => {
        setConfirmPass(text);
-      handleCompare();
+      //handleCompare(); No implementado
     };
+    //Funcion para establecer la contraseña y comparar las mismas
     const handleChangePassword =  text => {
        setPassword(text);
-      handleCompare();
+      //handleCompare(); No implementado
     };
   
     return (
@@ -170,6 +175,7 @@ import {
               setModalVisible(false);
             }}
           >
+            {/*MODAL*/}
             <View style={styles.modalContainer}>
               <View style={styles.modalView}>
                 <Text style={styles.modalText}>CAMBIO DE CONTRASEÑA</Text>
@@ -197,6 +203,7 @@ import {
       
     );
   }
+  // Estilos para diversos componentes y elementos
   const styles = StyleSheet.create({
     image:{
       flex:1,

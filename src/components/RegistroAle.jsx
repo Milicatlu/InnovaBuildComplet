@@ -1,15 +1,4 @@
-import {
-   ImageBackground,
-   Pressable,
-   StyleSheet,
-   Text,
-   TextInput,
-   View,
-   Image,
-   TouchableOpacity,
-   Modal, Dimensions,
-   calc
-} from "react-native";
+import { ImageBackground,Pressable,StyleSheet,Text,TextInput,View,Image,TouchableOpacity,Modal, Dimensions,calc } from "react-native";
 import { StyledText } from "./StyledText";
 import { StyledButton } from "./StyledButton";
 import { AppBar } from "./AppBar";
@@ -25,18 +14,24 @@ import {
 const screenWidthPercentage = widthPercentageToDP("50%");
 const screenHeightPercentage = heightPercentageToDP("50%");
 
+
 export function RegistroAle({ navigation }) {
+
+   //Estado usuario para guardar las credenciales para registrarse
    const [user, setUser] = useState({
       name: "",
       email: "",
       password: ""
    });
+   //Estados para mostrar y ocultar el campo contraseña del formulario
    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
    const [isPasswordVisibleDown, setIsPasswordVisibleDown] = useState(false);
-
+   //Estapo para la confirmacion de la contraseña
    const [confirmPass, setConfirmPass] = useState("");
+   //Estados para mostrar y ocultar el modal
    const [modalVisibleBoton, setModalVisibleBoton] = useState(false);
 
+   //Funcion que se encarga de registrar al usuario
    async function singUpWithAnEmail() {
       if (user.password == confirmPass) {
          singUpEmail(user.name, user.email, user.password);
@@ -44,9 +39,10 @@ export function RegistroAle({ navigation }) {
          alert("Tus contraseñas son diferentes!");
       }
    }
+
+   //Funcion que registra y muestra un modal
    const handleEnviar = () => {
       singUpWithAnEmail();
-
       setModalVisibleBoton(true);
    };
 
@@ -260,6 +256,7 @@ export function RegistroAle({ navigation }) {
    );
 }
 export default RegistroAle;
+// Estilos para diversos componentes y elementos
 const styles = StyleSheet.create({
    nover2: {
       left: responsiveWidth(2),

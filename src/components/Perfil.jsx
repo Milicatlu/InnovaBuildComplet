@@ -24,29 +24,40 @@ import { updateUserConstant } from "../Constants/userConstants";
 import { useRoute } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 const { width, height } = Dimensions.get("window");
+
 import {
   widthPercentageToDP,
   heightPercentageToDP
 } from "react-native-responsive-screen";
+//definición de dimensiones para utilizar en el renderizado visual de la aplicación
 const screenWidthPercentage = widthPercentageToDP("50%");
 const screenHeightPercentage = heightPercentageToDP("50%");
 
 export function Perfil({ navigation }) {
+
   const [modalVisible, setModalVisible] = useState(false);
+  //constante en donde se guarda y se cambia el nombre del perfil o telefono del perfil
   const [credentials, setCredentials] = useState({
     name: "",
     phone: ""
   });
+
+  //constantes de los modales de camara y de foto de perfil
   const [modalVisiblePhoto, setModalVisiblePhoto] = useState(false);
   const [modalVisibleBoton, setModalVisibleBoton] = useState(false);
+
+  //constante para cambiar foto del perfil
   const [fotoPerfil, setFotoPerfil] = useState(null);
   const route = useRoute();
-  const [avatarUpdated, setAvatarUpdated] = useState(false);
+
+  //se obtiene la imagen dada por camara.js
   const { image } = route.params || {};
 
   const handleUpdateCredentials = (name, phone) => {
     updateUserConstant(name, phone);
   };
+
+  //logica no utilizada para poder subir imagen del usuario a supabase, cuando se elige cierta imagen para su foto de perfil
   const getImages = async () => {
     const { data, error } = await supabase
       .storage
@@ -56,23 +67,24 @@ export function Perfil({ navigation }) {
         offset: 0,
         sortBy: { column: 'name', order: 'asc' }
       });
-
     if (data !== null) {
       setImages(data);
     } else {
       console.log('Error al cargar la imagen');
     }
   };
+
   const handleEnviar = () => {
     // Lógica para enviar el formulario o realizar las acciones necesarias
     // al tocar el botón "Enviar"
     setModalVisibleBoton(true);
   };
+
+  //logica no utilizada para poder sacar una imagen de la galeria del dispositivo del usuario, ademas que tambien se intenta poder subirlo al garaje de supabase
   const handlePickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images
-    });
-
+    })
     if (!result.cancelled) {
       const response = await supabase.storage
         .from("photos")
@@ -103,19 +115,21 @@ export function Perfil({ navigation }) {
     }
   }, [image]);
 
+
   return (
+    //Imagen de fondo
     <ImageBackground
       source={require("../../assets/images/Fondo-06.jpg")}
       resizeMode="cover"
       style={styles.image}
-
-
     >
+      {/*Menu de la parte de superior*/}
       <AppBar />
       <View style={styles.fotoPerfilll} source={fotoPerfil ? { uri: fotoPerfil } : require('../../assets/images/FotoPerfil.png')} />
-
+      {/*Linea para determinar si existe un archivo para utilizar otra foto de perfil en su lugar */}
       <Image style={styles.fotoPerfill} source={fotoPerfil ? { uri: fotoPerfil } : require('../../assets/images/FotoPerfil.png')} />
 
+    {/*Modal de foto de perfil con las opciones para subir una imagen, tomar una foto, falta la logica para eliminar foto*/}
       <Modal
         animationType="fade"
         transparent={true}
@@ -166,6 +180,8 @@ export function Perfil({ navigation }) {
           </View>
         </View>
       </Modal>
+
+      {/*Boton e imagen para desplegar el modal de opciones de foto de perfil*/}
       <Image
         source={require("../../assets/images/Camara.png")}
         style={[styles.Camara]}
@@ -175,7 +191,7 @@ export function Perfil({ navigation }) {
         style={[styles.Camara]}
       ></TouchableOpacity>
 
-
+      {/*Modal para ver imagen de foto de perfil mas grande y al tocar en cualquier lado se cierra*/}
       <Modal
         animationType="fade"
         transparent={true}
@@ -201,13 +217,20 @@ export function Perfil({ navigation }) {
           <Text style={styles}></Text>
         </Pressable>
       </Modal>
+
+      {/*Boton para accionar el modal de "foto perfil mas grande"*/}
       <TouchableOpacity
         onPress={() => setModalVisiblePhoto(true)}
         style={[styles.CamaraG]}
       ></TouchableOpacity>
 
+          {/*Nombre del usuario */}
       <Text style={styles.nUsuario}> {userConstant.name}</Text>
+
+      {/*Datos del usuario */}
       <View style={styles.datosC}>
+
+        {/*Nombre del usuario, se puede modificar el nombre */}
         <View style={styles.datos}>
           <StyledText fontSize={"subheading1"} style={styles.label}>
             Nombre completo
@@ -234,6 +257,8 @@ export function Perfil({ navigation }) {
             style={{ height: 1.5, backgroundColor: "#D9D9D9", width: "100%" }}
           />
         </View>
+        
+            {/*Email del usuario, solo se puede ver y no se puede editar */}
         <View style={styles.datos}>
           <StyledText fontSize={"subheading1"} style={styles.label}>
             E-mail
@@ -249,6 +274,8 @@ export function Perfil({ navigation }) {
             style={{ height: 1.5, backgroundColor: "#D9D9D9", width: "100%" }}
           />
         </View>
+
+                {/*Telefono del usuario*/}
         <View style={styles.datos}>
           <StyledText fontSize={"subheading1"} style={styles.label}>
             Número de teléfono
@@ -275,6 +302,7 @@ export function Perfil({ navigation }) {
             style={{ height: 1.5, backgroundColor: "#D9D9D9", width: "100%" }}
           />
         </View>
+        {/*Contenedor de botones de guardado y cancelar */}
         <View
           style={{
             flexDirection: "row",
@@ -284,19 +312,25 @@ export function Perfil({ navigation }) {
 
           }}
         >
+          {/*Boton de guardar cambios hechos*/}
           <TouchableOpacity
             style={styles.guardarButton}
             onPress={handleEnviar}
           >
             <Text style={styles.buttonText}>Guardar cambios</Text>
           </TouchableOpacity>
+
+          {/*Boton de cancerlar cualquier cambio hecho */}
           <TouchableOpacity style={styles.cancelarButton} onPress={navigation.navigate('inicio')}>
             <Text style={styles.buttonTextBlue}>Cancelar</Text>
           </TouchableOpacity>
         </View>
       </View>
 
+
       <View style={styles.centeredView} />
+
+      {/*Modal de confirmación de los datos puestos */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -342,12 +376,13 @@ export function Perfil({ navigation }) {
           </View>
         </View>
       </Modal>
+
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-
+// Estilos para diversos componentes y elementos
   modalContainer: {
     flex: 1,
     justifyContent: 'center',

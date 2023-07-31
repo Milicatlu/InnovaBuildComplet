@@ -15,7 +15,7 @@ const ExpoSecureStoreAdapter = {
    },
 }
 
-
+//Crea y exporta una constante llamada supabase que se encargara de la interraccion entre el usuario y la base de datos
 export const supabase = createClient('https://jdpgnxspeukqezawkrkm.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpkcGdueHNwZXVrcWV6YXdrcmttIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODQ0MzUyOTUsImV4cCI6MjAwMDAxMTI5NX0.q4s7VrF-q5MXp4INAr8R9MFMjKhnGuOrBbOC2FjPLG8', {
    auth: {
       storage: AsyncStorage,

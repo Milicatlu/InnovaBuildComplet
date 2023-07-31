@@ -19,11 +19,14 @@ const screenWidthPercentage = widthPercentageToDP('50%');
 
 
 export function Login({ navigation }) {
+   //Exportacion de la funcion que maneja el inicio de sesion
    const { login } = useAuth();
+   //Estado para manejar los botones para ver o no ver el texto ingresado en el formulario
    const [isPasswordVisible, setPasswordVisibility] = useState(false);
      const handlePasswordVisibility = () => {
       setPasswordVisibility(!isPasswordVisible);
    }
+   //estado usuario para guardar las credenciales para iniciar sesion
    const [user, setUser] = useState({
       email: 'innovaspaceprueba@gmail.com',
       password: '12345678Aa',
@@ -31,6 +34,7 @@ export function Login({ navigation }) {
       backgroundColor2: '#C6C6C8',
    });
  
+   //Se intenta iniciar sesion y si no lo consigue captura el error y lo muestra en la consola, queda hacer algo con el error 
    const handleLogin = async (email, password) => {
       try {
          const {
@@ -140,7 +144,7 @@ export function Login({ navigation }) {
 
 
 const styles = StyleSheet.create({
-  
+  // Estilos para diversos componentes y elementos
    subcontText: {
       color: '#04B6E8',
       fontSize:responsiveFontSize(3),
@@ -231,23 +235,3 @@ const styles = StyleSheet.create({
 });
 
 export default Login;
-/* <View style={styles.subsubcont}>
-               <Image style={styles.icons} source={require('../../assets/images/Ojo.png')} />
-               <TextInput
-                  style={[
-                     styles.TextView,
-                     { backgroundColor: user.backgroundColor2 },
-                     { width: screenWidthPercentage * 0.5 },
-                  ]}
-                  placeholder="Contraseña"
-                  placeholderTextColor="#A9A9A9"
-                  onChangeText={(text) =>
-                     setUser({
-                        ...user,
-                        password: text,
-                        backgroundColor2: 'white',
-                     })
-                  }
-                  value={user.password}
-               />
-            </View>*/ 

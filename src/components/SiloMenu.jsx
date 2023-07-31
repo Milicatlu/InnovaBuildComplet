@@ -9,7 +9,6 @@ import { jwt } from "../helpers/Config";
 import { StyledText } from "./StyledText";
 import { AppBar } from "./AppBar";
 import { LineChart } from "react-native-chart-kit";
-// import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useState, useEffect } from "react";
 import { ScrollView } from 'react-native';
 import { StyledButton, StyledButton2 } from "./StyledButton";
@@ -19,6 +18,8 @@ const { width, height } = Dimensions.get("window");
 import { Dimensions } from "react-native";
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions";
 export function SiloMenu(props) {
+
+    //declaramos las constantes para poder proporcionar los datos de tempertura , el color y el estado
     const [isOpen, setIsOpen] = useState(false)
     const [temperatura, setTemperatura] = useState(25)
     const [humedad, setHumedad] = useState(11)
@@ -33,12 +34,19 @@ export function SiloMenu(props) {
     const [reRenders, setReRenders] = useState(0)
     const [screenName, setScreenName] = useState("inicio")
     const [range, setRange] = useState("-30d")
+
+    //estas constantes se utilizan para los datos del grafico y para poder mostrarlos 
     const meses = ["1h.", "2h.", "3h.", "4h.", "5h.", "6h.", "7h.", "8h."];
-    const [parametro1, setParametro1] = useState(meses)
+    const [parametro1, setParametro1] = useState(meses);
+    //esta constnte se utilza para poder mostrar el menu desplegable con los datos optimos que debe tener la silo bolsa
     const [showDropdown, setShowDropdown] = useState(false);
 
+    // Efecto que se ejecuta cuando cambian los valores de temperatura, humedad o CO2
 
     useEffect(() => {
+    
+        // Obtiene el último punto de CO2 desde el servidor
+
         InfluxDBHelper.getLastPoint({
             tags: {
                 Sector: "AGRICULTURE",
@@ -46,13 +54,16 @@ export function SiloMenu(props) {
             },
             timeStamp: '-30d',
             field: "CO2",
-        }).then((value) => {
+        }).then((value) => { 
+            //declaramos condicionales para mostrar de distinto color los datos de CO2
             if (CO2 >= 1 && CO2 <= 17) setCO2Color("#1DB6E5")
             else if (CO2 == 18) setCO2Color("#CCA500")
             else if (CO2 >= 19) setCO2Color("#EB691A")
             if (!value.error.state)
                 setCO2(value.value)
         })
+        // Obtiene el último punto de temperatura desde el servidor
+
 
         InfluxDBHelper.getLastPoint({
             tags: {
@@ -62,7 +73,7 @@ export function SiloMenu(props) {
             timeStamp: '-30d',
             field: "TEMPERATURE",
             jwt: jwt,
-        }).then((value) => {
+        }).then((value) => { //declaramos condicionales para mostrar de distinto color los datos de TEMPERATURA
             if (temperatura >= 0 && temperatura <= 24) setTemperaturaColor("#1DB6E5")
             else if (temperatura > 5 && temperatura < 10)
                 setTemperaturaColor("red")
@@ -81,7 +92,8 @@ export function SiloMenu(props) {
             timeStamp: '-30d',
             field: "HUMIDITY",
             jwt: jwt,
-        }).then((value) => {
+        }).then((value) => { 
+            //declaramos condicionales para mostrar de distinto color los datos de HUMEDAD
             if (humedad >= 18 && humedad <= 19) setHumedadColor("#CCA500")
             else if (humedad >= 20)
                 setHumedadColor("#EB691A")
@@ -91,7 +103,7 @@ export function SiloMenu(props) {
         })
     }, [reRenders, humedad, temperatura, CO2])
 
-    useEffect(() => {
+    useEffect(() => { 
         InfluxDBHelper.getPoints({
             tags: {
                 Sector: "AGRICULTURE",
@@ -124,11 +136,15 @@ export function SiloMenu(props) {
     setTimeout(() => {
         setReRenders(reRenders + 1)
     }, 1000)
+    // Función que determina los puntos en los que se muestra el menú desplegable
+
     const determinateSnapPoints = () => {
         if (screenName === "ubicacion") return ["90%"]
         if (screenName === "grafico") return ["65%"]
         else return ["40%"]
     }
+    // Retorno del JSX que define la estructura visual del componente
+
     return (
         <>
 
@@ -220,6 +236,9 @@ export function SiloMenu(props) {
                                 ) : (<></>)}
                             </View>
                         </View>
+
+                        {/* Etiquetas para mostrar los nombres de los sensores */}
+                        
                         <View style={{ flexDirection: "row" }}>
                             <StyledText
                                 style={styles.magnitud}
@@ -241,6 +260,8 @@ export function SiloMenu(props) {
                                 Humedad
                             </StyledText>
                         </View>
+                        {/* Imagen de los termómetros */}
+
                         <View style={styles.imagencontainer}>
                             <ImageBackground
                                 source={require("../../assets/images/Termometros.png")}
@@ -248,6 +269,7 @@ export function SiloMenu(props) {
                             />
                         </View>
                     </View>
+                    {/* Gráficos */}
 
                     <View style={{ backgroundColor: "white", width: responsiveWidth(80), height: responsiveHeight(25), left: responsiveWidth(9), top: responsiveHeight(5) }}>
                         <ScrollView horizontal contentContainerStyle={styles.scrollView}>
@@ -359,6 +381,8 @@ export function SiloMenu(props) {
                             </View>
                         </ScrollView>
                     </View>
+                    {/* Dropdown para mostrar el rango de datos */}
+
                     {showDropdown && (
                         <Modal
                             visible={showDropdown}
@@ -403,13 +427,17 @@ export function SiloMenu(props) {
 
                         </Modal>
                     )}
+                    {/* Botones para cambiar entre vistas */}
+
                     <View>
                         <View>
+                            {/*este es el boton gris que permite desplegar el menu desplegable mostrando las tempresaruras optimas que deben tener los distintos datos*/}
                             <TouchableOpacity
                                 style={styles.dropdownbuton2}
                                 onPress={() => setShowDropdown(true)}
                             />
                             <View style={{ flexDirection: "row", padding: responsiveHeight(1),paddingHorizontal:responsiveWidth(5), backgroundColor: "white", top: responsiveHeight(6), borderTopLeftRadius: responsiveFontSize(2), borderTopRightRadius: responsiveFontSize(2) }} {...props}>
+                                {/*este es el boton que nos lleva a la seccion donde estan los graficos de manera mas detallada y compleja */}
                                 <StyledButton
                                     onPress={() => { props.navigation.navigate("Grafico2"); }}
                                     styleContainer={styles.lleno}
@@ -417,6 +445,7 @@ export function SiloMenu(props) {
                                 >
                                     Grafico
                                 </StyledButton>
+                                {/*este es el boton que nos permite ver la ubicacion de las silobolsas a tiempo real (falta implementar o agregar esta funcionalidad) */}
                                 <StyledButton2
                                     onPress={() => { props.navigation.navigate("GraficoView"); }}
                                     styleContainer={{ flex: 1, margin: responsiveHeight(1), padding: responsiveHeight(1) }}
@@ -432,7 +461,7 @@ export function SiloMenu(props) {
         </>
     )
 }
-
+//estilos de los componentes
 const styles = StyleSheet.create({
     container: {
         flex: 1,

@@ -30,10 +30,13 @@ import { resetPass } from '../lib/supabaseHandler'
 
 
 export function OlvideMiContraseña({ navigation }) {
+  //Estado para guardar el mail del usuario
   const [user, setUser] = useState({
     email: ""
   });
+  //Estado que maneja la visibilidad del modal
   const [modalVisible, setModalVisible] = useState(false);
+  //Funcion de ayuda que envia un mail al usuario y este tambien muestra un modal
   const handleEnviar = () => {
     resetPass(navigation, user.email)
     setModalVisible(true);
@@ -125,6 +128,7 @@ export function OlvideMiContraseña({ navigation }) {
             setModalVisible(false);
           }}
         >
+          {/*MODAL*/}
           <View style={styles.modalContainer}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>SEGUÍ LOS PASOS</Text>
@@ -153,6 +157,7 @@ export function OlvideMiContraseña({ navigation }) {
   );
 }
 export default OlvideMiContraseña;
+// Estilos para diversos componentes y elementos
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,

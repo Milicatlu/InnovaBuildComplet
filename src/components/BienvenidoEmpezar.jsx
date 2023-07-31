@@ -5,7 +5,7 @@ import { PanResponder } from 'react-native';
 import { Dimensions } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 const { width, height } = Dimensions.get('window');
-
+//logica para poder deslizar pantalla de bienvenido empezar a bienvenido
 function Bienvenido({ navigation }) {
    const panResponder = useRef(
       PanResponder.create({
@@ -20,23 +20,32 @@ function Bienvenido({ navigation }) {
    return (
 
       <View style={styles.container} {...panResponder.panHandlers}>
+         {/*Imagen de fondo */}
          <ImageBackground source={require('../../assets/images/Fondo2.png')} resizeMode="cover" style={styles.image}>
 
+            {/*Imagen ilustrativa*/}
             <Image
                style={styles.tinyLogo}
                source={require('../../assets/images/Dos.png')}
             />
 
+            {/*Imagen que indica en cual de las dos pantallas de inicio estas parado */}
             <Image
                style={styles.circleColors}
                source={require('../../assets/images/circleblue.png')}
             />
+
+            {/*Imagen que indica en cual de las dos paginas no estas en el momento */}
             <Image
                style={styles.circleColorsGrey}
                source={require('../../assets/images/circleshadow.png')}
             />
+
+            {/*Texto de bienvenida de explicación de la app*/}
             <Text style={styles.tituloBien}>Gracias a nuestros satélites</Text>
             <Text style={styles.bienvenidaT}>Podrás obtener información sobre agricultura, minería, petróleo y mucho más...</Text>
+            
+            {/*Boton para dirigir a inicio de sesión */}
             <View style={styles.botonconteiner}>
                <TouchableWithoutFeedback onPress={() => navigation.navigate('login')}>
                   <View style={styles.siguienteButton}>
@@ -44,20 +53,24 @@ function Bienvenido({ navigation }) {
                   </View>
                </TouchableWithoutFeedback>
             </View>
+
+            {/*Boton para volver atras, a la pagina de bienvenido*/}
             <View style={styles.conteinerBotonO}>
                <TouchableWithoutFeedback onPress={() => navigation.navigate('bienvenido')}>
                   <View style={styles.omitirButton}>
                      <Text style={{ color: 'white', fontSize: width * 0.035 }}>Volver atrás</Text>
                   </View>
-
                </TouchableWithoutFeedback>
             </View>
+
          </ImageBackground>
       </View>
    )
 }
 export default Bienvenido;
 const styles = StyleSheet.create({
+// Estilos para diversos componentes y elementos
+  // ...
    conteinerBotonO: {
       left: responsiveWidth(22.5),
       top: responsiveHeight(33.5),

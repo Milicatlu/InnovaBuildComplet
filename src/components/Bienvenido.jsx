@@ -3,6 +3,7 @@ import { ImageBackground, StyleSheet, Text, View, Image } from 'react-native';
 import React, { useRef } from 'react';
 import { PanResponder, TouchableWithoutFeedback } from 'react-native';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+//funcion con su logica para poder deslizar la pantalla y cambiarla a bienvenidoempezar
 function Bienvenido({ navigation }) {
    const panResponder = useRef(
       PanResponder.create({
@@ -15,28 +16,43 @@ function Bienvenido({ navigation }) {
       })
    ).current;
 
+   //manejo para dirigir a pantalla cambiocontra
    const handleOmitirPress = () => {
       navigation.navigate('cambiocontra');
    };
+
    return (
       <View style={styles.container} {...panResponder.panHandlers}>
+
+         {/*Imagen de fondo */}
          <ImageBackground source={require('../../assets/images/Fondo.png')} resizeMode="cover" style={styles.image}>
+
+            {/*Imagen ilustrativa */}
             <Image
                style={styles.tinyLogo}
                source={require('../../assets/images/Uno.png')}
             />
+
+            
+           {/*Imagen que indica en cual de las dos pantallas de inicio estas parado */}
             <Image
                style={styles.circleColors}
                source={require('../../assets/images/circleshadow.png')}
             />
+
+            {/*Imagen que indica en cual de las dos paginas no estas en el momento */}
             <Image
                style={styles.circleColorsGrey}
                source={require('../../assets/images/circleblue.png')}
             />
+
+            {/*Texto de bienvenida de explicación de la app*/}
             <Text style={styles.tituloBien}>¡Te damos la bienvenida!</Text>
             <View style={styles.conttext}>
                <Text style={styles.bienvenidaT}>En la aplicación vas a tener acceso a la información desde cualquier lugar</Text>
             </View>
+
+            {/*Boton para ir a la siguiente pagina a bienvenidoempezar */}
             <View style={styles.botonContainer}>
                <TouchableWithoutFeedback onPress={() => navigation.navigate('bienvenidoempezar')}>
                   <View style={styles.siguienteButton}>
@@ -44,6 +60,8 @@ function Bienvenido({ navigation }) {
                   </View>
                </TouchableWithoutFeedback>
             </View>
+
+            {/*Boton para omitir la siguiente pantalla e ir directamente al inicio de sesión */}
             <View style={styles.conteinerBotonO}>
                <TouchableWithoutFeedback onPress={handleOmitirPress}>
                   <View style={styles.omitirButton}>
@@ -58,7 +76,8 @@ function Bienvenido({ navigation }) {
 }
 export default Bienvenido;
 const styles = StyleSheet.create({
-
+// Estilos para diversos componentes y elementos
+  // ...
    circleColors: {
       position: 'absolute',
       left: responsiveWidth(48),

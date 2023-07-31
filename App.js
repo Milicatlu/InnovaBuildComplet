@@ -14,19 +14,20 @@ import { Terminos } from "./src/components/Terminos.jsx";
 import { Main } from "./src/components/Main.jsx";
 import { CambioDeContraseña } from "./src/components/CambioDeContraseña.jsx";
 import { supabase } from "./src/lib/supabase.ts";
+import Camara from "./src/components/Camara.jsx"
 
 const Stack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
   const [session, setSession] = useState(null);
-  
+  //Acá se crea la función para detectar si hay una sesión uniciada en la aplicación
   const getSession = async () => {
     const response = await supabase.auth.getSession();
     setSession(response.data.session);
   };
 
-
+//Función para determinar las fuentes que se van a utilizar a lo largo de la aplicación
   useEffect(() => {
     getSession();
     loadFonts();
@@ -39,16 +40,17 @@ export default function App() {
     });
     setFontsLoaded(true);
   };
-
   if (!fontsLoaded) {
     return null;
   }
 
+  //Se determina las pantallas a navegar en la aplicación 
   return (
     <AuthProvider>
       <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {/*esta condición se utiliza para poder determinar si existe la sesion iniciada y elegir entre las dos pantallas al abrir la aplicacion*/}
           {session != null
             ? <Stack.Screen name="inicio" component={Main} />
             : <Stack.Screen name="bienvenido" component={Bienvenido} />}
@@ -58,7 +60,8 @@ export default function App() {
           <Stack.Screen name="regis" component={Registro} />
           <Stack.Screen name="contraseña" component={OlvideMiContraseña} />
           <Stack.Screen name="cambiocontra" component={CambioDeContraseña} />
-          <Stack.Screen name="terminos" component={Terminos} />
+          <Stack.Screen name="camara" component={Camara} />
+           <Stack.Screen name="terminos" component={Terminos} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>
