@@ -14,7 +14,7 @@ import { Terminos } from "./src/components/Terminos.jsx";
 import { Main } from "./src/components/Main.jsx";
 import { CambioDeContraseña } from "./src/components/CambioDeContraseña.jsx";
 import { supabase } from "./src/lib/supabase.ts";
-import Camara from "./src/components/Camara.jsx"
+import Camara from "./src/components/Camara.jsx";
 
 const Stack = createStackNavigator();
 
@@ -27,7 +27,7 @@ export default function App() {
     setSession(response.data.session);
   };
 
-//Función para determinar las fuentes que se van a utilizar a lo largo de la aplicación
+  //Función para determinar las fuentes que se van a utilizar a lo largo de la aplicación
   useEffect(() => {
     getSession();
     loadFonts();
@@ -36,7 +36,7 @@ export default function App() {
     await Font.loadAsync({
       "Lato-Bold": require("./assets/fonts/Lato-Bold.ttf"),
       "Lato-Regular": require("./assets/fonts/Lato-Regular.ttf"),
-      "Portico-Outline": require("./assets/fonts/Portico-Outline.otf")
+      "Portico-Outline": require("./assets/fonts/Portico-Outline.otf"),
     });
     setFontsLoaded(true);
   };
@@ -44,24 +44,22 @@ export default function App() {
     return null;
   }
 
-  //Se determina las pantallas a navegar en la aplicación 
+  //Se determina las pantallas a navegar en la aplicación
   return (
     <AuthProvider>
       <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {/*esta condición se utiliza para poder determinar si existe la sesion iniciada y elegir entre las dos pantallas al abrir la aplicacion*/}
-          {session != null
-            ? <Stack.Screen name="inicio" component={Main} />
-            : <Stack.Screen name="bienvenido" component={Bienvenido} />}
-          <Stack.Screen name="inicio2" component={Main} />  
+          <Stack.Screen name="inicio" component={Main} />
+          <Stack.Screen name="bienvenido" component={Bienvenido} />
+          <Stack.Screen name="inicio2" component={Main} />
           <Stack.Screen name="bienvenidoempezar" component={BienvenidoEmpezar}/>
           <Stack.Screen name="login" component={Login} />
           <Stack.Screen name="regis" component={Registro} />
           <Stack.Screen name="contraseña" component={OlvideMiContraseña} />
           <Stack.Screen name="cambiocontra" component={CambioDeContraseña} />
           <Stack.Screen name="camara" component={Camara} />
-           <Stack.Screen name="terminos" component={Terminos} />
+          <Stack.Screen name="terminos" component={Terminos} />
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>

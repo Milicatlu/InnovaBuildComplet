@@ -72,7 +72,8 @@ export function EtapaMineria() {
                   </StyledText>
 
                   <View style={styles.imagencontainer}>
-                     {showhide !== true ? (
+                     <ScrollView>
+                     {showHide !== true ? (
                         <ImageBackground
                            source={require("../../assets/images/MenorGrado.png")}
                            style={{ height: responsiveHeight(30) }}
@@ -101,7 +102,6 @@ export function EtapaMineria() {
                      >
                         35º
                      </StyledText>
-                     <ScrollView>
                         <View style={styles.item}>
                            <StyledText style={{ textAlign: "center", color: "#FFF" }}>
                               Flujo de temperatura del motor
@@ -146,7 +146,7 @@ export function EtapaMineria() {
                   fontWeight="bold"
                   fontSize="subheading1"
                   style={{
-                     marginTop: responsiveHeight(5),
+                     marginTop: responsiveHeight(4),
                      fontSize: responsiveFontSize(2.5),
                      marginLeft: responsiveWidth(10),
                      color: "#1DB6E5",
@@ -205,47 +205,24 @@ export function EtapaMineria() {
                      </StyledText>
                      <View style={styles.container2}>
                         <SwitchSelector
-                           style={styles.switchSelector}
                            initial={0}
-                           fontSize={responsiveFontSize(1.25)}
-                           backgroundColor={color3}
+                           fontSize={12}
+                           backgroundColor={color2}
                            bold={true}
                            textColor={"#FFFF"}
-                           selectedColor={"#FFFF"}
+                           selectedColor={'#FFFF'}
                            buttonColor={"#FFFF"}
-                           circleStyle={{
-                              width: responsiveWidth(1),
-                              height: responsiveWidth(1),
-                           }}
                            borderColor={"#FFF"}
-                           valuePadding={responsiveWidth(1.8)}
-                           hasPadding
-                           options={
-                              showHide
-                                 ? [
-                                    { label: "", value: true, activeColor: "#FFF" },
-                                    {
-                                       label: "APAGADO",
-                                       value: false,
-                                       activeColor: "#FFF",
-                                    },
-                                 ]
-                                 : [
-                                    {
-                                       label: "ENCENDIDO",
-                                       value: true,
-                                       activeColor: "#FFF",
-                                       valuePadding: 2,
-                                    },
-                                    { label: "", value: false, activeColor: "#FFF" },
-                                 ]
-                           }
+                           hasPadding options={[{ label: "Encendido", value: true, activeColor: "#FFF" }, { label: "Apagado", value: false, activeColor: "#FFF" }]}
+                           valuePadding={3}
                            height={30}
                            onPress={(value) => {
-                              setColor(value ? "#1DB6E5" : "#EB691A");
-                              setColor3(value ? "#EB691A" : "#1DB6E5");
+                              setColor(value ? '#1DB6E5' : '#EB691A');
+                              setColor2(value ?  '#EB691A' : '#1DB6E5');
                               setShowHide(value);
                            }}
+                           
+                           trackColor={{ false: "red", true: "blue" }}
                            testID="gender-switch-selector"
                            accessibilityLabel="gender-switch-selector"
                         />
@@ -306,16 +283,17 @@ export function EtapaMineria() {
                                     height: responsiveHeight(5),
                                  }}
                               />
-                              <View
+                              <StyledText
                                  style={{
                                     fontWeight: "bold",
                                     fontSize: 20,
                                     color: "#EB691A",
                                  }}
                               >
+                                 
                                  {" "}
                                  50°
-                              </View>
+                                 </StyledText>
                            </>
                         )}
                      </View>
@@ -375,15 +353,15 @@ const styles = StyleSheet.create({
       maxHeight: responsiveHeight(50),
    },
    contenedor: {
-      height: responsiveHeight(40),
+      height: responsiveHeight(38),
       flexDirection: "column",
       borderTopLeftRadius: responsiveFontSize(3),
       borderTopRightRadius: responsiveFontSize(3),
       backgroundColor: "white",
-      marginTop: responsiveHeight(-100),
+      marginTop: responsiveHeight(-105),
    },
    container2: {
-      width: responsiveWidth(35),
+      width: responsiveWidth(39),
       height: responsiveHeight(3.5),
       paddingHorizontal: responsiveWidth(1.5),
       marginHorizontal: responsiveWidth(3),
@@ -402,25 +380,3 @@ const styles = StyleSheet.create({
       bottom: responsiveHeight(8),
    },
 });
-/*
-<View style={{backgroundColor: showhide ? '#1DB6E5' : '#EB691A'}}>
-<SwitchSelector 
-    style={[styles.container2, {backgroundColor: showhide ? '#1DB6E5' : '#EB691A'}]}
-    initial={0}
-    fontSize={12}
-    bold={true}
-    hasPadding 
-    options={[
-        { label: "Encendido", value: "true", activeColor: '#1DB6E5' }, 
-        { label: "Apagado", value: "false", activeColor: '#EB691A' }
-    ]}
-    valuePadding={responsiveHeight(-0.02)}
-    height={30}
-    onPress={(value) => setShowHide(value === "true")}
-    trackColor={{ false: "#EB691A", true: "#1DB6E5" }}
-    testID="gender-switch-selector"
-    accessibilityLabel="gender-switch-selector"
-/>
-</View>
-
-*/

@@ -271,134 +271,9 @@ export function SiloMenu(props) {
                     </View>
                     {/* Gráficos */}
 
-                    <View style={{ backgroundColor: "white", width: responsiveWidth(80), height: responsiveHeight(25), left: responsiveWidth(9), top: responsiveHeight(5) }}>
-                        <ScrollView horizontal contentContainerStyle={styles.scrollView}>
-                            <View style={styles.item}>
-                                <StyledText style={{ textAlign: "center", color: "#CCA500" }}>Temperatura</StyledText>
-                                <LineChart data={{
-                                    labels: parametro1,
-                                    datasets: [
-                                        { data: [25, 17, 20, 11, 19, 29, 7, 10, 9] }
-                                    ]
-                                }}
-                                    width={315}
-                                    height={170}
-                                    yAxisSuffix='°'
-                                    yAxisInterval={1}
-                                    chartConfig={{
-                                        backgroundColor: "#FFF",
-                                        backgroundGradientFrom: "#FFF",
-                                        backgroundGradientTo: "#FFF",
-                                        decimalPlaces: 2,
-                                        color: (opacity = 0) => `#CCA500`,
-                                        labelColor: (opacity = 0) => `rgba(0,0,0, ${opacity})`,
-                                        style: {
-                                            borderRadius: 16
-                                        },
-                                        propsForDots: {
-                                            r: "4",
-                                            strokeWidth: "1",
-                                            stroke: "#CCA500"
-                                        },
-                                    }}
-                                    bezier
-                                    style={{
-                                        marginVertical: 8,
-
-                                    }}
-                                />
-                            </View>
-
-                            <View style={styles.item}>
-                                <StyledText style={{ textAlign: "center", color: "#EB691A" }}>CO2</StyledText>
-                                <LineChart data={{
-                                    labels: parametro1,
-                                    datasets: [
-                                        { data: [24, 28, 10, 15, 22, 10, 11, 8, 6] }
-                                    ]
-                                }}
-                                    width={315}
-                                    height={170}
-                                    yAxisSuffix='%'
-                                    yAxisInterval={1}
-                                    chartConfig={{
-                                        backgroundColor: "#FFF",
-                                        backgroundGradientFrom: "#FFF",
-                                        backgroundGradientTo: "#FFF",
-                                        decimalPlaces: 2,
-                                        color: (opacity = 0) => `#EB691A`,
-                                        labelColor: (opacity = 0) => `rgba(0,0,0, ${opacity})`,
-                                        style: {
-                                            borderRadius: 16
-                                        },
-                                        propsForDots: {
-                                            r: "4",
-                                            strokeWidth: "1",
-                                            stroke: "#EB691A"
-                                        },
-                                    }}
-                                    bezier
-                                    style={{
-                                        marginVertical: 8,
-
-                                    }}
-
-                                />
-                            </View>
-                            <View style={styles.item}>
-                                <StyledText style={{ textAlign: "center", color: "#1DB6E5" }}>Humedad</StyledText>
-                                <LineChart data={{
-                                    labels: parametro1,
-                                    datasets: [
-                                        { data: [12, 18, 21, 26, 11, 8, 15, 16, 22] }
-                                    ]
-                                }}
-                                    width={315}
-                                    height={170}
-                                    yAxisSuffix='%'
-                                    yAxisInterval={1}
-                                    chartConfig={{
-                                        backgroundColor: "#FFF",
-                                        backgroundGradientFrom: "#FFF",
-                                        backgroundGradientTo: "#FFF",
-                                        decimalPlaces: 2,
-                                        color: (opacity = 0) => `#1DB6E5`,
-                                        labelColor: (opacity = 0) => `rgba(0,0,0, ${opacity})`,
-                                        style: {
-                                            borderRadius: 16
-                                        },
-                                        propsForDots: {
-                                            r: "4",
-                                            strokeWidth: "1",
-                                            stroke: "#1DB6E5"
-                                        },
-                                    }}
-                                    bezier
-                                    style={{
-                                        marginVertical: 8,
-
-                                    }} />
-                            </View>
-                        </ScrollView>
-                    </View>
                     {/* Dropdown para mostrar el rango de datos */}
-
-                    {showDropdown && (
-                        <Modal
-                            visible={showDropdown}
-                            animationType="slide"
-                            transparent={true}
-                            onRequestClose={() => setShowDropdown(false)}
-                        >
                             <View style={styles.dropdown}>
-                                <View>
-                                    <TouchableOpacity
-                                        style={styles.dropdownbuton}
-                                        onPress={() => {
-                                            setShowDropdown(false);
-                                        }}
-                                    />
-                                </View>
+                                
                                 <StyledText fontWeight="bold" fontSize="subheading1" style={{ marginTop: responsiveHeight(5), marginLeft: responsiveWidth(12), color: "#1DB6E5" }}>
                                     Rango de datos
                                 </StyledText>
@@ -407,7 +282,7 @@ export function SiloMenu(props) {
                                         Los siguientes datos son los niveles normales que debe tener la silo bolsa en cuanto a su temperatura, dióxido de carbono y humedad.
                                     </StyledText>
                                 </View>
-                                <View style={{ flexDirection: "row", marginTop: 25, marginHorizontal: responsiveWidth(9), }}>
+                                <View style={{ flexDirection: "row", marginTop: 25, marginHorizontal: responsiveWidth(1), }}>
                                     <StyledText fontWeight="bold" style={styles.magnitudcont}>
                                         0° a 25°
                                     </StyledText>
@@ -418,25 +293,18 @@ export function SiloMenu(props) {
                                         8% a 18%
                                     </StyledText>
                                 </View>
-                                <View style={{ flexDirection: "row", marginHorizontal: responsiveWidth(9),  }}>
+                                <View style={{ flexDirection: "row", marginHorizontal: responsiveWidth(1),  }}>
                                     <StyledText style={styles.magnitudcont2}>Temperatura</StyledText>
                                     <StyledText style={styles.magnitudcont2}>CO2</StyledText>
                                     <StyledText style={styles.magnitudcont2}>Humedad</StyledText>
                                 </View>
                             </View>
-
-                        </Modal>
-                    )}
+                </ImageBackground>
+                
                     {/* Botones para cambiar entre vistas */}
 
-                    <View>
-                        <View>
-                            {/*este es el boton gris que permite desplegar el menu desplegable mostrando las tempresaruras optimas que deben tener los distintos datos*/}
-                            <TouchableOpacity
-                                style={styles.dropdownbuton2}
-                                onPress={() => setShowDropdown(true)}
-                            />
-                            <View style={{ flexDirection: "row", padding: responsiveHeight(1),paddingHorizontal:responsiveWidth(5), backgroundColor: "white", top: responsiveHeight(6), borderTopLeftRadius: responsiveFontSize(2), borderTopRightRadius: responsiveFontSize(2) }} {...props}>
+                        <View>                            
+                            <View style={{ flexDirection: "row", padding: responsiveHeight(1),paddingHorizontal:responsiveWidth(5), backgroundColor: "white", borderTopLeftRadius: responsiveFontSize(2), borderTopRightRadius: responsiveFontSize(2) }} {...props}>
                                 {/*este es el boton que nos lleva a la seccion donde estan los graficos de manera mas detallada y compleja */}
                                 <StyledButton
                                     onPress={() => { props.navigation.navigate("Grafico2"); }}
@@ -447,7 +315,7 @@ export function SiloMenu(props) {
                                 </StyledButton>
                                 {/*este es el boton que nos permite ver la ubicacion de las silobolsas a tiempo real (falta implementar o agregar esta funcionalidad) */}
                                 <StyledButton2
-                                    onPress={() => { props.navigation.navigate("GraficoView"); }}
+                                    onPress={() => { }}
                                     styleContainer={{ flex: 1, margin: responsiveHeight(1), padding: responsiveHeight(1) }}
                                     style={{  fontSize: responsiveFontSize(2), fontWeight:"bold", color: "#1DB6E5" }}
                                 >
@@ -455,8 +323,6 @@ export function SiloMenu(props) {
                                 </StyledButton2>
                             </View>
                         </View>
-                    </View>
-                </ImageBackground>
             </View>
         </>
     )

@@ -84,17 +84,16 @@ export function Grafico2() {
                             { data: [1, 2] }
                         ]
                     }}
-                        width={Dimensions.get('window').width}
+                    width={Dimensions.get('window').width}
                         height={170}
                         yAxisSuffix='%'
                         yAxisInterval={1}
                         chartConfig={{
-                            backgroundColor: "#FFF",
-                            backgroundGradientFrom: "#FFF",
-                            backgroundGradientTo: "#FFF",
+                            backgroundGradientFrom: "rgba(0, 0, 0, 0.5)",
+                            backgroundGradientTo: "rgba(0, 0, 0, 0.5)",
                             decimalPlaces: 2,
                             color: (opacity = 0) => `#1DB6E5`,
-                            labelColor: (opacity = 0) => `rgba(0,0,0, ${opacity})`,
+                            labelColor: (opacity = 0) => `#FFF`,
                             style: {
                                 borderRadius: 16
                             },
@@ -124,12 +123,11 @@ export function Grafico2() {
                         yAxisSuffix='%'
                         yAxisInterval={1}
                         chartConfig={{
-                            backgroundColor: "#FFF",
-                            backgroundGradientFrom: "#FFF",
-                            backgroundGradientTo: "#FFF",
+                            backgroundGradientFrom: "rgba(0, 0, 0, 0.5)",
+                            backgroundGradientTo: "rgba(0, 0, 0, 0.5)",
                             decimalPlaces: 2,
                             color: (opacity = 0) => `#EB691A`,
-                            labelColor: (opacity = 0) => `rgba(0,0,0, ${opacity})`,
+                            labelColor: (opacity = 0) => `#FFF`,
                             style: {
                                 borderRadius: 16
                             },
@@ -157,12 +155,11 @@ export function Grafico2() {
                         yAxisSuffix='°'
                         yAxisInterval={1}
                         chartConfig={{
-                            backgroundColor: "#FFF",
-                            backgroundGradientFrom: "#FFF",
-                            backgroundGradientTo: "#FFF",
+                            backgroundGradientFrom: "rgba(0, 0, 0, 0.5)",
+                            backgroundGradientTo: "rgba(0, 0, 0, 0.5)",
                             decimalPlaces: 2,
                             color: (opacity = 0) => `#CCA500`,
-                            labelColor: (opacity = 0) => `rgba(0,0,0, ${opacity})`,
+                            labelColor: (opacity = 0) => `#FFF`,
                             style: {
                                 borderRadius: 16
                             },
@@ -222,3 +219,4 @@ const styles = StyleSheet.create({
 
     },
 })
+///en este componente se muestran los graficos de manera mas detallada, agregar funcionalidad de elejir dia excto para ver los datos de temperatura,co2 y humedad

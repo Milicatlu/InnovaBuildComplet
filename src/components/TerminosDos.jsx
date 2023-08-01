@@ -56,16 +56,9 @@ export function TerminosDos(){
                     <StyledText style={styles.label}><Text style={{fontFamily:"Lato-Bold"}}>nuestra politica de privacidad</Text></StyledText>
                     <StyledText></StyledText>
                     <StyledText style={styles.label2}><Text style={{color:"#03B6E8", fontFamily:"Lato-Bold"}}>Las actualizaciones claves</Text><Text style={{fontFamily:"Lato-Bold"}}> incluyen</Text></StyledText>
-                    <StyledText style={styles.label2}><Text style={{fontFamily:"Lato-Bold"}}>informacion sobre lo siguiente:</Text></StyledText>
+                    <StyledText style={styles.label2}><Text style={{fontFamily:"Lato-Bold"}}>informacion en el PDF</Text></StyledText>
                     <StyledText></StyledText>
-                    <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                        <ScrollView>
-                            <StyledText style={styles.label3}><Text style={{fontFamily:"Lato-Regular"}}>•  El servicio que brindara Innova Space qui dolorem impsum qui dolorem impsum</Text></StyledText>
-                            <StyledText style={styles.label3}><Text style={{fontFamily:"Lato-Regular"}}>•  El servicio que brindara Innova Space qui dolorem impsum qui dolorem impsum</Text></StyledText>
-                            <StyledText></StyledText>
-                        </ScrollView>
-                    </View>
-                    <View style={{height:responsiveHeight(4)}}></View>
+                    <View style={{height:responsiveHeight(20)}}></View>
                     <View style={{justifyContent:"center"}}>
                         <StyledButton styleContainer={styles.vacio} onPress={handleDownloadPDF} styledProps={{fontSize:'subheading1'}}><Text style={{color:"#03B6E8",fontFamily:"Lato-Bold"}}>Descargar PDF</Text></StyledButton>
                     </View>

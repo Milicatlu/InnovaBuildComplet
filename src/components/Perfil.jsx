@@ -8,7 +8,8 @@ import {
   TextInput,
   View,
   TouchableOpacity,
-  Image
+  Image,
+  Link
 } from "react-native";
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
@@ -321,9 +322,10 @@ export function Perfil({ navigation }) {
           </TouchableOpacity>
 
           {/*Boton de cancerlar cualquier cambio hecho */}
-          <TouchableOpacity style={styles.cancelarButton} onPress={navigation.navigate('inicio')}>
-            <Text style={styles.buttonTextBlue}>Cancelar</Text>
-          </TouchableOpacity>
+          <TouchableOpacity style={styles.cancelarButton} onPress={() => navigation.navigate('inicio')}>
+  <Text style={styles.buttonTextBlue}>Cancelar</Text>
+</TouchableOpacity>
+
         </View>
       </View>
 
