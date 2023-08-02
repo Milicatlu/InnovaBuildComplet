@@ -75,12 +75,12 @@ export function EtapaPetroleo() {
                      <ScrollView>
                      {showHide !== true ? (
                         <ImageBackground
-                           source={require("../../assets/images/MenorGrado.png")}
+                           source={require("../../assets/images/MayorGrado.png")}
                            style={{ height: responsiveHeight(30) }}
                         />
                      ) : (
                         <ImageBackground
-                           source={require("../../assets/images/MayorGrado.png")}
+                           source={require("../../assets/images/MenorGrado.png")}
                            style={{ height: responsiveHeight(30) }}
                         />
                      )}
@@ -119,7 +119,7 @@ export function EtapaPetroleo() {
                                  backgroundGradientFrom: "rgba(0, 0, 0, 0)",
                                  backgroundGradientTo: "rgba(0, 0, 0, 0)",
                                  decimalPlaces: 2,
-                                 color: (opacity = 0) => color,
+                                 color: (opacity = 0) => color2,
                                  labelColor: (opacity = 0) => `#FFF`,
                                  style: {
                                     borderRadius: 16,
@@ -128,7 +128,7 @@ export function EtapaPetroleo() {
                                  propsForDots: {
                                     r: "4",
                                     strokeWidth: "1",
-                                    stroke: color,
+                                    stroke: color2,
                                  },
                               }}
                               bezier
@@ -166,8 +166,9 @@ export function EtapaPetroleo() {
                            fontSize: responsiveFontSize(2.2),
                         }}
                      >
-                        El funcionamiento del motor , se encuentra en modo apagado con
-                        una temperatura baja de 10° grados
+                        
+                        El funcionamiento del motor , se encuentra en modo encendido con
+                        una temperatura cercana a los 30° grados
                      </StyledText>
                   ) : (
                      <StyledText
@@ -180,8 +181,9 @@ export function EtapaPetroleo() {
                            fontSize: responsiveFontSize(2.2),
                         }}
                      >
-                        El funcionamiento del motor , se encuentra en modo encendido con
-                        una temperatura mayor a 40° grados
+                        
+                        El funcionamiento del motor , se encuentra en modo apagado con
+                        una temperatura cercana a 0° grados
                      </StyledText>
                   )}
                </View>
@@ -217,8 +219,8 @@ export function EtapaPetroleo() {
                            valuePadding={3}
                            height={30}
                            onPress={(value) => {
-                              setColor(value ? '#1DB6E5' : '#EB691A');
-                              setColor2(value ?  '#EB691A' : '#1DB6E5');
+                              setColor(value ? '#EB691A' : '#1DB6E5' );
+                              setColor2(value ?  '#1DB6E5' : '#EB691A' );
                               setShowHide(value);
                            }}
                            
@@ -232,14 +234,15 @@ export function EtapaPetroleo() {
                      style={{
                         flexDirection: "row",
                         alignItems: "stretch",
-                        marginTop: responsiveHeight(2),
+                        marginTop: responsiveHeight(3),
+                        
                      }}
                   >
                      <StyledText
                         fontWeight="bold"
                         color="terciary"
                         style={{
-                           marginLeft: responsiveWidth(8),
+                           marginLeft: responsiveWidth(4),
                            marginTop: responsiveHeight(0.5),
                            fontSize: responsiveFontSize(1.9),
                         }}
@@ -249,7 +252,7 @@ export function EtapaPetroleo() {
 
                      <View
                         style={{
-                           marginLeft: responsiveWidth(5),
+                           marginLeft: responsiveWidth(8.5),
                            flexDirection: "row",
                            alignItems: "center",
                         }}
@@ -258,7 +261,7 @@ export function EtapaPetroleo() {
                         <SwitchSelector
                            initial={0}
                            fontSize={12}
-                           backgroundColor={color2}
+                           backgroundColor={color3}
                            bold={true}
                            textColor={"#FFFF"}
                            selectedColor={'#FFFF'}
@@ -268,8 +271,8 @@ export function EtapaPetroleo() {
                            valuePadding={3}
                            height={30}
                            onPress={(value) => {
-                              setColor(value ? '#1DB6E5' : '#EB691A');
-                              setColor2(value ?  '#EB691A' : '#1DB6E5');
+                              setColor(value ? '#EB691A' : '#1DB6E5' );
+                              setColor3(value ?  '#1DB6E5' : '#EB691A' );
                               setShowHide(value);
                            }}
                            

@@ -27,10 +27,12 @@ export default function App() {
     setSession(response.data.session);
   };
 
+
   //Función para determinar las fuentes que se van a utilizar a lo largo de la aplicación
   useEffect(() => {
     getSession();
     loadFonts();
+
   }, []);
   const loadFonts = async () => {
     await Font.loadAsync({
@@ -50,9 +52,8 @@ export default function App() {
       <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="bienvenido" component={Bienvenido} />
           <Stack.Screen name="inicio" component={Main} />
-          <Stack.Screen name="bienvenido" component={Bienvenido} />
-          <Stack.Screen name="inicio2" component={Main} />
           <Stack.Screen name="bienvenidoempezar" component={BienvenidoEmpezar}/>
           <Stack.Screen name="login" component={Login} />
           <Stack.Screen name="regis" component={Registro} />

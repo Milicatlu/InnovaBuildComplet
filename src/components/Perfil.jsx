@@ -322,9 +322,7 @@ export function Perfil({ navigation }) {
           </TouchableOpacity>
 
           {/*Boton de cancerlar cualquier cambio hecho */}
-          <TouchableOpacity style={styles.cancelarButton} onPress={() => navigation.navigate('inicio')}>
-  <Text style={styles.buttonTextBlue}>Cancelar</Text>
-</TouchableOpacity>
+       
 
         </View>
       </View>
@@ -440,18 +438,17 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   fotoPerfilG: {
-    left: width * 0.09,
-    top: width * 0.25,
-    borderRadius: 200,
-    width: Dimensions.get('window').width - 70,
-    height: Dimensions.get('window').height - 480,
+    left: responsiveWidth(10),
+    top: responsiveHeight(15),
+    width:responsiveWidth(80),
+    height: responsiveHeight(40),
+    borderRadius: responsiveFontSize(100),
+
   },
   buttonG: {
     position: 'absolute',
-    width: '100%',
-    height: '99%',
-    left: 2,
-    top: '10%',
+    width:responsiveWidth(100),
+    height: responsiveHeight(100),
     flex: 1,
   },
   CamaraG: {
@@ -459,10 +456,10 @@ const styles = StyleSheet.create({
     flex: 2,
     backdropFilter: 'blur(100px)',
     borderRadius: 100,
-    left: width * 0.27,
-    top: width * 0.3,
-    width: Dimensions.get('window').width - 245,
-    height: Dimensions.get('window').height - 640,
+    left: responsiveWidth(27),
+    top: responsiveHeight(15),
+    width: responsiveWidth(40),
+    height: responsiveHeight(20),
   },
   centeredView: {
     flex: 1,
@@ -480,32 +477,33 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 10,
-    left: '78%',
-    width: '20%',
-    bottom: '110%',
+    left: responsiveWidth(43.7),
+    width: responsiveWidth(11),
+    height:responsiveHeight(5),
+    bottom: responsiveHeight(23.9),
     backgroundColor: 'transparent',
-    borderRadius: 15,
+    borderRadius: responsiveWidth(7),
   },
   textOrange: {
     color: 'orange',
-    fontSize: 20,
+    fontSize: responsiveFontSize(2.5),
   },
   text: {
     color: 'grey',
-    fontSize: 20,
+    fontSize: responsiveFontSize(2.5),
   },
   modalText: {
-    marginTop: 15,
-    left: '15%',
+    marginTop: responsiveHeight(1.7),
+    left: responsiveWidth(7),
   },
   Camara: {
     position: 'absolute',
     flex: 1,
     borderRadius: 100,
-    top: screenHeightPercentage - height * 0.3 * 0.6,
-    left: screenWidthPercentage - width * 0.80 * -0.18,
-    height: height * 0.055,
-    width: screenWidthPercentage * 0.25,
+    top: responsiveHeight(30),
+    left: responsiveWidth(62),
+    height: responsiveHeight(6),
+    width: responsiveWidth(12),
 
   },
   buttonTextBlue: {
@@ -515,26 +513,15 @@ const styles = StyleSheet.create({
   },
   guardarButton: {
     backgroundColor: '#03B6E8',
-    borderRadius: 10,
+    borderRadius: responsiveWidth(5),
     alignItems: 'center',
     justifyContent: 'center',
-    height: Dimensions.get('window').height /15,
-    bottom: width * -0.06,
-    width: Dimensions.get('window').width /2.5,
+    height: responsiveHeight(7),
+    bottom: responsiveHeight(6),
+    width:responsiveWidth(50),
 
   },
-  cancelarButton: {
-    backgroundColor: 'transparent',
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 0,
-    borderWidth: 1.5,
-    borderColor: '#03B6E8',
-    height: Dimensions.get('window').height /15,
-    bottom: width * -0.06,
-    width: Dimensions.get('window').width /2.5,
-  },
+
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
@@ -542,14 +529,14 @@ const styles = StyleSheet.create({
 
   },
   container: {
-    width: 200,
-    height: 100,
+    width: responsiveWidth(100),
+    height: responsiveHeight(100),
   },
   nUsuario: {
     
     fontFamily: 'Lato-Bold',
     fontWeight: 'bold',
-    fontSize: width * 0.08,
+    fontSize: responsiveFontSize(4.5),
     color: '#03B6E8',
     position: 'absolute',
     top: responsiveHeight(40),
@@ -566,18 +553,19 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   datosC: {
-    width: Dimensions.get('window').width - 0,
-    height: Dimensions.get('window').height - 100,
-    paddingTop: width - 390,
-    top: width - 140,
+    width: responsiveWidth(100),
+    height:responsiveHeight(85),
+    paddingTop: responsiveHeight(3),
+    top:responsiveHeight(35),
     backgroundColor: '#fff',
-    borderTopEndRadius: 20,
-    borderTopStartRadius: 20,
+    borderTopEndRadius: responsiveWidth(7),
+    borderTopStartRadius: responsiveWidth(7),
   },
   datos: {
+    top: responsiveHeight(2),
     alignSelf: 'center',
-    width: Dimensions.get('window').width - 80,
-    paddingBottom: 20,
+    width:responsiveWidth(80),
+    paddingBottom: responsiveHeight(5),
   },
   label: {
     color: '#878789',
@@ -604,7 +592,7 @@ const styles = StyleSheet.create({
   },
   fotoPerfill: {
     margin: 10,
-    borderRadius: responsiveFontSize(4),
+    borderRadius: responsiveFontSize(100),
     position: 'absolute',
     top: responsiveHeight(12),
     left:responsiveWidth(22.5),

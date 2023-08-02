@@ -61,7 +61,7 @@ export function Terminos({ navigation, props }) {
                   </View>
                   <View style={{ height: responsiveHeight(1.6) }}></View>
                   <View style={{ flexDirection: "row", justifyContent: "space-between" }} >
-                     <StyledButton styleContainer={styles.lleno} onPress={() => { navigation.navigate("inicio2") }}><Text style={{ fontFamily: "Lato-Bold", fontSize: responsiveFontSize(2) }}>Aceptar</Text></StyledButton>
+                     <StyledButton styleContainer={styles.lleno} onPress={() => { navigation.navigate("inicio") }}><Text style={{ fontFamily: "Lato-Bold", fontSize: responsiveFontSize(2) }}>Aceptar</Text></StyledButton>
                      <StyledButton styleContainer={styles.vacio} onPress={handleDownloadPDF} ><Text style={{ color: "#03B6E8", fontFamily: "Lato-Bold", fontSize: responsiveFontSize(2) }}>Descargar PDF</Text></StyledButton>
                   </View>
                </View>

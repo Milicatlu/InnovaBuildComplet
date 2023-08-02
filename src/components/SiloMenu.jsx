@@ -278,8 +278,8 @@ export function SiloMenu(props) {
                                     Rango de datos
                                 </StyledText>
                                 <View style={{ justifyContent: "center", alignItems: "center" }}>
-                                    <StyledText fontStyle="italic" color="terciary" style={{ marginTop: 20, marginLeft: -10, width: 296, height: 75, fontSize: 16, textAlign: "justify" }}>
-                                        Los siguientes datos son los niveles normales que debe tener la silo bolsa en cuanto a su temperatura, dióxido de carbono y humedad.
+                                    <StyledText fontStyle="italic" color="terciary" style={{ marginTop: 20, marginLeft: -10, width: 300, height: responsiveHeight(10.5), fontSize: responsiveFontSize(2), textAlign: "justify" }}>
+                                        Los siguientes datos son los niveles normales  y que debe tener la silo bolsa en cuanto a su temperatura, dióxido de carbono y humedad.
                                     </StyledText>
                                 </View>
                                 <View style={{ flexDirection: "row", marginTop: 25, marginHorizontal: responsiveWidth(1), }}>
@@ -426,7 +426,7 @@ const styles = StyleSheet.create({
     dropdown: {
         position: "absolute",
         top: responsiveHeight(60),//64 // Ajusta la posición vertical del dropdown
-        height: responsiveHeight(32), // Ajusta la posición horizontal del dropdown
+        height: responsiveHeight(50), // Ajusta la posición horizontal del dropdown
         width: responsiveWidth(100), // Ajusta el ancho del dropdown
         borderTopLeftRadius: responsiveFontSize(5), // Agrega un borde en la esquina superior izquierda
         borderTopRightRadius:responsiveFontSize(5),

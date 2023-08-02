@@ -75,12 +75,12 @@ export function EtapaMineria() {
                      <ScrollView>
                      {showHide !== true ? (
                         <ImageBackground
-                           source={require("../../assets/images/MenorGrado.png")}
+                           source={require("../../assets/images/MayorGrado.png")}
                            style={{ height: responsiveHeight(30) }}
                         />
                      ) : (
                         <ImageBackground
-                           source={require("../../assets/images/MayorGrado.png")}
+                           source={require("../../assets/images/MenorGrado.png")}
                            style={{ height: responsiveHeight(30) }}
                         />
                      )}
@@ -119,7 +119,7 @@ export function EtapaMineria() {
                                  backgroundGradientFrom: "rgba(0, 0, 0, 0)",
                                  backgroundGradientTo: "rgba(0, 0, 0, 0)",
                                  decimalPlaces: 2,
-                                 color: (opacity = 0) => color,
+                                 color: (opacity = 0) => color2,
                                  labelColor: (opacity = 0) => `#FFF`,
                                  style: {
                                     borderRadius: 16,
@@ -128,7 +128,7 @@ export function EtapaMineria() {
                                  propsForDots: {
                                     r: "4",
                                     strokeWidth: "1",
-                                    stroke: color,
+                                    stroke: color2,
                                  },
                               }}
                               bezier
@@ -165,9 +165,9 @@ export function EtapaMineria() {
                            width: responsiveWidth(79),
                            fontSize: responsiveFontSize(2.2),
                         }}
-                     >
-                        El funcionamiento del motor , se encuentra en modo apagado con
-                        una temperatura baja de 10° grados
+                     >  
+                        El funcionamiento del motor , se encuentra en modo encendido con
+                        una temperatura cercana a los 30° grados
                      </StyledText>
                   ) : (
                      <StyledText
@@ -180,8 +180,8 @@ export function EtapaMineria() {
                            fontSize: responsiveFontSize(2.2),
                         }}
                      >
-                        El funcionamiento del motor , se encuentra en modo encendido con
-                        una temperatura mayor a 40° grados
+                        El funcionamiento del motor , se encuentra en modo apagado con
+                        una temperatura cercana a 0° grados
                      </StyledText>
                   )}
                </View>
@@ -217,8 +217,8 @@ export function EtapaMineria() {
                            valuePadding={3}
                            height={30}
                            onPress={(value) => {
-                              setColor(value ? '#1DB6E5' : '#EB691A');
-                              setColor2(value ?  '#EB691A' : '#1DB6E5');
+                              setColor(value ? '#EB691A' : '#1DB6E5' );
+                              setColor2(value ?  '#1DB6E5' : '#EB691A' );
                               setShowHide(value);
                            }}
                            
@@ -257,26 +257,6 @@ export function EtapaMineria() {
                         {showHide !== true ? (
                            <>
                               <Image
-                                 source={require("../../assets/icons/Temperatura.png")}
-                                 style={{
-                                    width: responsiveWidth(4),
-                                    height: responsiveHeight(5),
-                                 }}
-                              />
-                              <StyledText
-                                 style={{
-                                    fontWeight: "bold",
-                                    fontSize: 20,
-                                    color: "#1DB6E5",
-                                 }}
-                              >
-                                 {" "}
-                                 10°
-                              </StyledText>
-                           </>
-                        ) : (
-                           <>
-                              <Image
                                  source={require("../../assets/images/TemperaturaAlta.png")}
                                  style={{
                                     width: responsiveWidth(4),
@@ -290,9 +270,29 @@ export function EtapaMineria() {
                                     color: "#EB691A",
                                  }}
                               >
+                                 {" "}
+                                 35°
+                              </StyledText>
+                           </>
+                        ) : (
+                           <>
+                              <Image
+                                 source={require("../../assets/icons/Temperatura.png")}
+                                 style={{
+                                    width: responsiveWidth(4),
+                                    height: responsiveHeight(5),
+                                 }}
+                              />
+                              <StyledText
+                                 style={{
+                                    fontWeight: "bold",
+                                    fontSize: 20,
+                                    color:  "#1DB6E5",
+                                 }}
+                              >
                                  
                                  {" "}
-                                 50°
+                                 10°
                                  </StyledText>
                            </>
                         )}

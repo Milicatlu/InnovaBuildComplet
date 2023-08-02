@@ -24,6 +24,8 @@ import {
 
 export function PetroleoMenu(props) {
 
+    {/*Funcion para poder determinar en donde se agregan las silo bolsa */}
+
     const [siloBolsas, setSiloBolsas] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
@@ -74,7 +76,7 @@ export function PetroleoMenu(props) {
                         <StyledText align="center" fontSize="subheading1" fontWeight="bold" style={{fontSize:responsiveFontSize(3), top:responsiveHeight(2)}}>
                         Etapa de: Upstream
                         </StyledText>
-
+                        {/*Implementacion de los botones para agregar las nuevas silo bolsa */}
                         <View style={{ marginTop: responsiveHeight(8) }}>
                             <ScrollView style={{ maxHeight: responsiveHeight(50) }}>
                                 {renderSiloBolsa()}
@@ -99,6 +101,7 @@ export function PetroleoMenu(props) {
                                 >
                                     <StyledText style={styles.texto}>
                                     Editar nombre del petróleo
+                                    {/*Falta agregar la funcion para cambiar el nombre de la silo bolsa */}
                                     </StyledText>
                                 </MaterialIcons>
                             </View>
@@ -114,11 +117,22 @@ export function PetroleoMenu(props) {
                     setModalVisible(false);
                 }}
             >
+                {/*Aqui se agrega el menu que aparece a mantener cualquier boton de silo bolsa para poder eliminar la silo bolsa seleccionada */}
                 <View style={styles.modalContainer}>
                     <View style={styles.modalViewM}>
                         <Text style={styles.modalTextM}>ADVERTENCIA</Text>
                         <Text style={styles.modalDescription}>¿Estás seguro que</Text>
                         <Text style={styles.modalDescription}>deseas eliminarlo?</Text>
+                        <View
+                            style={{
+                                height: 1,
+                                backgroundColor: "#58656B",
+                                width: responsiveWidth(71),
+                                alignSelf: "center",
+                                marginTop: 2,
+                                top: responsiveHeight(1),
+                            }}
+                        />
                         <View
                             style={{
                                 top: 10,
