@@ -58,7 +58,7 @@ function Bienvenido({ navigation }) {
             <View style={styles.conteinerBotonO}>
                <TouchableWithoutFeedback onPress={() => navigation.navigate('bienvenido')}>
                   <View style={styles.omitirButton}>
-                     <Text style={{ color: 'white', fontSize: width * 0.035 }}>Volver atrás</Text>
+                     <Text style={{ color: 'white', fontSize: width * 0.040 }}>Volver atrás</Text>
                   </View>
                </TouchableWithoutFeedback>
             </View>

@@ -187,16 +187,16 @@ const styles = StyleSheet.create({
     },
     SiloContainer: {
         flexDirection: "row",
-        left: responsiveHeight(5),
+        left: responsiveHeight(3.6),
     },
     vacio: {
         fontWeight: "bold",
-        width: responsiveWidth(30),
+        width: responsiveWidth(35),
         height: responsiveHeight(5.6),
         marginBottom: responsiveHeight(2),
         marginTop: responsiveHeight(1),
-        marginHorizontal: responsiveWidth(3),
-        paddingHorizontal: responsiveWidth(5),
+        marginHorizontal: responsiveWidth(2),
+        paddingHorizontal: responsiveWidth(0),
     },
     lleno: {
         height: responsiveHeight(6.5),

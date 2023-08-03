@@ -18,7 +18,7 @@ function Bienvenido({ navigation }) {
 
    //manejo para dirigir a pantalla cambiocontra
    const handleOmitirPress = () => {
-      navigation.navigate('cambiocontra');
+      navigation.navigate('login');
    };
 
    return (

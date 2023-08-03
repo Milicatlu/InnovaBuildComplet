@@ -52,7 +52,7 @@ export default function App() {
       <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="bienvenido" component={Bienvenido} />
+          <Stack.Screen name="bienvenido" component={Bienvenido} />
           <Stack.Screen name="inicio" component={Main} />
           <Stack.Screen name="bienvenidoempezar" component={BienvenidoEmpezar}/>
           <Stack.Screen name="login" component={Login} />

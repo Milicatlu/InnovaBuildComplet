@@ -3,7 +3,6 @@ import { ImageBackground, StyleSheet, Linking } from 'react-native'
 import { StyledText } from './StyledText'
 import { StyledButton } from './StyledButton'
 import { View, Image, Text } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 export function Terminos({ navigation, props }) {
@@ -50,16 +49,9 @@ export function Terminos({ navigation, props }) {
                   <StyledText style={styles.label}><Text style={{ fontFamily: "Lato-Bold" }}>nuestra politica de privacidad</Text></StyledText>
                   <StyledText></StyledText>
                   <StyledText style={styles.label2}><Text style={{ color: "#03B6E8", fontFamily: "Lato-Bold" }}>Las actualizaciones claves</Text><Text style={{ fontFamily: "Lato-Bold" }}> incluyen</Text></StyledText>
-                  <StyledText style={styles.label2}><Text style={{ fontFamily: "Lato-Bold" }}>informacion sobre lo siguiente:</Text></StyledText>
+                  <StyledText style={styles.label2}><Text style={{ fontFamily: "Lato-Bold" }}>informacion detallada en el PDF</Text></StyledText>
                   <StyledText></StyledText>
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                     <ScrollView>
-                        <StyledText style={styles.label3}><Text style={{ fontFamily: "Lato-Regular" }}>•  El servicio que brindara Innova Space qui dolorem impsum qui dolorem impsum</Text></StyledText>
-                        <StyledText style={styles.label3}><Text style={{ fontFamily: "Lato-Regular" }}>•  El servicio que brindara Innova Space qui dolorem impsum qui dolorem impsum</Text></StyledText>
-                        <StyledText></StyledText>
-                     </ScrollView>
-                  </View>
-                  <View style={{ height: responsiveHeight(1.6) }}></View>
+                  <View style={{ height: responsiveHeight(20) }}></View>
                   <View style={{ flexDirection: "row", justifyContent: "space-between" }} >
                      <StyledButton styleContainer={styles.lleno} onPress={() => { navigation.navigate("inicio") }}><Text style={{ fontFamily: "Lato-Bold", fontSize: responsiveFontSize(2) }}>Aceptar</Text></StyledButton>
                      <StyledButton styleContainer={styles.vacio} onPress={handleDownloadPDF} ><Text style={{ color: "#03B6E8", fontFamily: "Lato-Bold", fontSize: responsiveFontSize(2) }}>Descargar PDF</Text></StyledButton>

@@ -31,7 +31,7 @@ export function EtapaMineria() {
    const [color3, setColor3] = useState("#1DB6E5");
    const meses = ["1h.", "2h.", "3h.", "4h.", "5h.", "6h.", "7h.", "8h."];
    const [parametro1, setParametro1] = useState(meses);
-
+   
    const onValueChange = (value) => {
       setSelectedValue(value);
 
@@ -70,7 +70,7 @@ export function EtapaMineria() {
                   >
                      Bomba de la varilla
                   </StyledText>
-
+                  {/*En esta seccion se crea las imagenes del motor que cambian dependiendo del funcionamiento del motor y el grafico que muestra como fue variando el flujo de tempertura */}
                   <View style={styles.imagencontainer}>
                      <ScrollView>
                      {showHide !== true ? (
@@ -141,6 +141,7 @@ export function EtapaMineria() {
                   </View>
                </View>
             </ImageBackground>
+            {/*En esta seccion se crea el menu que muestra el menu de los datos del motor y con los SwitchSelector para poder controlar el funcionamiento del motor */}
             <View style={styles.contenedor}>
                <StyledText
                   fontWeight="bold"
@@ -196,7 +197,7 @@ export function EtapaMineria() {
                         fontWeight="bold"
                         color="terciary"
                         style={{
-                           marginLeft: responsiveWidth(5),
+                           marginLeft: responsiveWidth(3),
                            marginTop: responsiveHeight(0.5),
                            fontSize: responsiveFontSize(1.9),
                         }}
@@ -204,6 +205,7 @@ export function EtapaMineria() {
                         Funcionamiento del motor
                      </StyledText>
                      <View style={styles.container2}>
+                          {/*En esta parte se declara los estilos que tiene el SwitchSelector y lo que sucede cuando se presiona */}
                         <SwitchSelector
                            initial={0}
                            fontSize={12}
@@ -254,6 +256,7 @@ export function EtapaMineria() {
                            alignItems: "center",
                         }}
                      >
+                        
                         {showHide !== true ? (
                            <>
                               <Image

@@ -198,7 +198,7 @@ export function EtapaPetroleo() {
                         fontWeight="bold"
                         color="terciary"
                         style={{
-                           marginLeft: responsiveWidth(4),
+                           marginLeft: responsiveWidth(2),
                            marginTop: responsiveHeight(0.5),
                            fontSize: responsiveFontSize(1.9),
                         }}
@@ -242,8 +242,8 @@ export function EtapaPetroleo() {
                         fontWeight="bold"
                         color="terciary"
                         style={{
-                           marginLeft: responsiveWidth(4),
-                           marginTop: responsiveHeight(0.5),
+                           marginLeft: responsiveWidth(2),
+                           marginTop: responsiveHeight(1),
                            fontSize: responsiveFontSize(1.9),
                         }}
                      >

@@ -4,7 +4,6 @@ import { StyledText } from './StyledText'
 import { AppBar } from './AppBar'
 import { StyledButton } from './StyledButton'
 import { View, Image, Text } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 export function TerminosDos(){
